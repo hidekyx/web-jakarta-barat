@@ -1,0 +1,84 @@
+/*================================================================================
+	Item Name: Frest HTML Admin Template
+	Version: 1.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+.marquee {
+    color: white;
+    background-color: #373e44;
+    font-size: small;
+    font-style: italic;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.marquees {
+    color: white;
+    background-color: #373e44;
+    font-size: medium;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#navbarNav a:hover {
+    background-color: orangered;
+    color: white;
+}
+
+#navbarNav a.active {
+    background-color: orangered;
+    color: white;
+}
+
+.jumbotron {
+    height: 500px;
+    /* background-image: url("/assets/images/Header.jpg"); */
+    background-size: cover;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.jumbotronq {
+    height: 500px;
+    /* background-image: url("/assets/images/Header.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 170px;
+}
+
+
+.jumbotron2 {
+    height: 500px;
+    background-image: url("/assets/images/Bg Pejabat Teras.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
+}
+
+
+.post-counter .counter-count {
+    color: white;
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 92px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.post-counter {
+    color: white;
+    margin-right: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+

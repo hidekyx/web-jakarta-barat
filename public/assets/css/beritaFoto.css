@@ -1,0 +1,67 @@
+.owl-carousel .item {
+    height: 20rem;
+    padding: 1rem;
+}
+
+#btnGroup1 button {
+    color: white;
+    font-weight: bold;
+}
+
+#btnGroup1 button a {
+    color: white;
+    font-weight: bold;
+}
+
+#btnGroup1 button:hover {
+    color: orangered;
+}
+
+#btnGroup1 .active {
+    color: orangered;
+}
+
+#btnGroup2 button {
+    color: orangered;
+    background-color: white;
+    font-weight: bold;
+}
+
+#btnGroup2 button a {
+    color: orangered;
+    background-color: white;
+    font-weight: bold;
+}
+
+#btnGroup2 button:hover {
+    background-color: orangered;
+    color: white;
+}
+
+#btnGroup2 .active {
+    background-color: orangered;
+    color: white;
+}
+
+#btnGroup3 button {
+    color: orangered;
+    background-color: white;
+    font-weight: bold;
+    transition: 0.3s all ease;
+    border: none;
+}
+
+#btnGroup3 button a {
+    color: orangered;
+    background-color: white;
+    font-weight: bold;
+}
+
+#btnGroup3 button:hover {
+    border-bottom: 3px solid orangered;
+}
+
+#btnGroup3 .active {
+    border-bottom: 3px solid orangered;
+}
+
