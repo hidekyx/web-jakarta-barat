@@ -1,6 +1,12 @@
 /node_modules
 /public/hot
 /public/storage
+/public/kecamatan
+/public/kelurahan
+/public/kominfotik
+/public/ppid
+/public/walkot-farm
+/public/batik
 #/storage/*.key
 #/vendor
 #.env
