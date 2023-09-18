@@ -1,11 +1,11 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Data Perangkat</h1>
+        <h1>Data PPID</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ asset('/dashboard/home') }}">Home</a></li>
             <li class="breadcrumb-item">PPID</li>
-            <li class="breadcrumb-item active">Prosedur Pelayanan Informasi</li>
+            <li class="breadcrumb-item active">@unlink($subpage)</li>
             </ol>
         </nav>
     </div>
@@ -22,15 +22,15 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Manage Data - Prosedur Pelayanan Informasi</h5>
+                    <h5 class="card-title">Manage Data - @unlink($subpage)</h5>
                     <form class="row g-3 needs-validation" id="form-prosedur-ppid" method="post" action="{{ asset('dashboard/ppid/'.$subpage.'/simpan') }}" enctype="multipart/form-data" novalidate>
                     @csrf
                         <div class="col-md-12 position-relative">
-                            <label for="struktur_organisasi" class="col-form-label">Infografis Prosedur Pelayanan Informasi</label>
+                            <label for="struktur_organisasi" class="col-form-label">Infografis @unlink($subpage)</label>
                             <input class="form-control" type="file" id="prosedur" accept="image/*" name="prosedur">
                             @if($data_ppid)
-                                @if($data_ppid->prosedur != null)
-                                <img id="prosedur_preview" src="{{ asset('storage/files/images/foto/ppid_prosedur/'.$data_ppid->prosedur) }}" width="100%">
+                                @if($data_ppid->gambar != null)
+                                <img id="prosedur_preview" src="{{ asset('storage/files/images/foto/ppid_prosedur/'.$data_ppid->gambar) }}" width="100%">
                                 @endif
                             @else
                             <img id="prosedur_preview" hidden="true" width="100%">

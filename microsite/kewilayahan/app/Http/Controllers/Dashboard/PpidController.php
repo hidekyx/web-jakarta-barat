@@ -107,7 +107,7 @@ class PpidController extends Controller
             else {
                 $data_ppid = $this->get_data_ppid($subpage, $id_user);
                 if($data_ppid) {
-                    if($subpage == "struktur-ppid" || $subpage == "prosedur-pelayanan-informasi") {
+                    if($subpage == "struktur-ppid" || $subpage == "prosedur-permohonan-pelayanan-informasi" || $subpage == "prosedur-pengajuan-keberatan-informasi" || $subpage == "prosedur-penanganan-sengketa-informasi" || $subpage == "prosedur-permohonan-penyelesaian-sengketa-informasi") {
                         $data_ppid = $this->update_data_ppid($subpage, $id_user, $request, $data_ppid);
                     }
                     else {
