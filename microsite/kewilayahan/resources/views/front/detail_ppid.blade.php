@@ -15,8 +15,8 @@
                         {!! $data['ppid'][strtolower($current_subpage)]->konten !!}
                         </div>
                     @elseif($current_menu->konten == "Gambar" && $data['ppid'][strtolower($current_subpage)] != null)
-                        @if($current_subpage == "prosedur-pelayanan-informasi")
-                        <img src="{{ asset('storage/files/images/foto/ppid_prosedur/'.$data['ppid'][strtolower($current_subpage)]->prosedur) }}" width="100%">
+                        @if($current_subpage == "prosedur-permohonan-pelayanan-informasi" || $current_subpage == "prosedur-pengajuan-keberatan-informasi" || $current_subpage == "prosedur-penanganan-sengketa-informasi" || $current_subpage == "prosedur-permohonan-penyelesaian-sengketa-informasi")
+                        <img src="{{ asset('storage/files/images/foto/ppid_prosedur/'.$data['ppid'][strtolower($current_subpage)]->gambar) }}" width="100%">
                         @elseif($current_subpage == "Struktur-PPID")
                         <img src="{{ asset('storage/files/images/foto/ppid_struktur_organisasi/'.$data['ppid'][strtolower($current_subpage)]->struktur_organisasi) }}" width="100%">
                         @endif

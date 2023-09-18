@@ -1,6 +1,6 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Data Deskripsi Website</h1>
+        <h1>Data Perangkat</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ asset('/dashboard/home') }}">Home</a></li>

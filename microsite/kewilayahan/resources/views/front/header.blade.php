@@ -45,6 +45,17 @@
                                                         <li><a target="_blank" href="https://ppid.jakarta.go.id/cek-status-keberatan">Cek Status Pengajuan Keberatan Informasi Publik</a></li>
                                                     </ul>
                                                 </li>
+                                            @elseif($sm->nama_menu == "Prosedur Layanan PPID")
+                                                <li class="dropdown-submenu"><a href="#">{{ $sm->nama_menu }}</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-permohonan-pelayanan-informasi">Prosedur Permohonan Pelayanan Informasi</a></li>
+                                                        <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-pengajuan-keberatan-informasi">Prosedur Pengajuan Keberatan Informasi</a></li>
+                                                        <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-penanganan-sengketa-informasi">Prosedur Penanganan Sengketa Informasi</a></li>
+                                                        <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-permohonan-penyelesaian-sengketa-informasi">Prosedur Permohonan Penyelesaian Sengketa Informasi</a></li>
+                                                    </ul>
+                                                </li>
+                                            @elseif($sm->nama_menu == "Prosedur Permohonan Pelayanan Informasi" || $sm->nama_menu == "Prosedur Pengajuan Keberatan Informasi" || $sm->nama_menu == "Prosedur Penanganan Sengketa Informasi" || $sm->nama_menu == "Prosedur Permohonan Penyelesaian Sengketa Informasi")
+                                                @continue
                                             @elseif($sm->nama_menu == "Profil Pimpinan")
                                                 @continue
                                             @elseif($kewilayahan->kategori == "Kecamatan" && $sm->nama_menu == "LMK")

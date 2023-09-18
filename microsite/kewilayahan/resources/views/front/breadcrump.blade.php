@@ -46,6 +46,17 @@
                                     <li><a target="_blank" href="https://ppid.jakarta.go.id/cek-status-keberatan">Cek Status Pengajuan Keberatan Informasi Publik</a></li>
                                 </ul>
                             </li>
+                        @elseif($sp->nama_menu == "Prosedur Layanan PPID")
+                            <li class="dropdown"><a href="#">{{ $sp->nama_menu }}</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-permohonan-pelayanan-informasi">Prosedur Permohonan Pelayanan Informasi</a></li>
+                                    <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-pengajuan-keberatan-informasi">Prosedur Pengajuan Keberatan Informasi</a></li>
+                                    <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-penanganan-sengketa-informasi">Prosedur Penanganan Sengketa Informasi</a></li>
+                                    <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-permohonan-penyelesaian-sengketa-informasi">Prosedur Permohonan Penyelesaian Sengketa Informasi</a></li>
+                                </ul>
+                            </li>
+                        @elseif($sp->nama_menu == "Prosedur Permohonan Pelayanan Informasi" || $sp->nama_menu == "Prosedur Pengajuan Keberatan Informasi" || $sp->nama_menu == "Prosedur Penanganan Sengketa Informasi" || $sp->nama_menu == "Prosedur Permohonan Penyelesaian Sengketa Informasi")
+                            @continue
                         @elseif($sp->nama_menu == "Visi Dan Misi PPID")
                             <li><a href="{{ asset('/'.$kewilayahan->username) }}/@link($sp->kategori)?page=@link($sp->nama_menu)">Visi dan Misi PPID</a></li>
                         @elseif($sp->nama_menu == "Tugas Dan Fungsi PPID")
