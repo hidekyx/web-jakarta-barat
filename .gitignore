@@ -5,8 +5,8 @@
 /public/kelurahan
 /public/kominfotik
 /public/ppid
-/public/walkot-farm
 /public/batik
+/public/walkot-farm
 #/storage/*.key
 #/vendor
 #.env
