@@ -149,7 +149,7 @@ class AstikController extends Controller
                         $disposisi_save->save();
                     }
                     DB::commit();
-                    return redirect('/astik')->with('success', 'Disposisi data layanan berhasil diperbaharui');
+                    return redirect('/astik')->with('success', 'Data layanan berhasil dilakukan disposisi');
                 } 
                 catch(\Exception $e) {
                     DB::rollback();
