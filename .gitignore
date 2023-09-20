@@ -7,6 +7,8 @@
 /public/ppid
 /public/batik
 /public/walkot-farm
+
+/public/produk-hukum/application/config/database.php
 #/storage/*.key
 #/vendor
 #.env
