@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => '10.15.38.14',
+	'username' => 'admwebdb',
+	'password' => 'KominfotikJB',
 	'database' => 'produk-hukum',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
