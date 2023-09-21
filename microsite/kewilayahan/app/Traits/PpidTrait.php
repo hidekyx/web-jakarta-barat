@@ -9,6 +9,7 @@ use App\Models\PpidMaklumat;
 use App\Models\PpidPenyelesaian;
 use App\Models\PpidPermohonan;
 use App\Models\PpidSengketa;
+use App\Models\PpidSop;
 use App\Models\PpidStruktur;
 use App\Models\PpidTugasfungsi;
 use App\Models\PpidVisimisi;
@@ -44,6 +45,9 @@ trait PpidTrait
         elseif($subpage == "laporan-penyelesaian-ppid" || $subpage == "Laporan Penyelesaian PPID") {
             $data_ppid = PpidLaporan::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
         }
+        elseif($subpage == "sop-ppid" || $subpage == "SOP PPID") {
+            $data_ppid = PpidSop::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
+        }
         elseif($subpage == "visi-dan-misi-ppid" || $subpage == "Visi Dan Misi PPID") {
             $data_ppid = PpidVisimisi::where('id_user', $id_user)->orderBy('created_at', 'DESC')->first();
         }
@@ -60,6 +64,7 @@ trait PpidTrait
             $data_ppid ['waktu-dan-biaya-layanan-informasi'] = PpidWaktubiaya::where('id_user', $id_user)->first();
             $data_ppid ['daftar-informasi-publik'] = PpidInformasi::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
             $data_ppid ['laporan-penyelesaian-ppid'] = PpidLaporan::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
+            $data_ppid ['sop-ppid'] = PpidSop::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
             $data_ppid ['visi-dan-misi-ppid'] = PpidVisimisi::where('id_user', $id_user)->first();
             $data_ppid ['maklumat-pelayanan-informasi'] = PpidVisimisi::where('id_user', $id_user)->first();
         }
@@ -76,6 +81,9 @@ trait PpidTrait
         }
         elseif($subpage == "laporan-penyelesaian-ppid" || $subpage == "Laporan Penyelesaian PPID") {
             $data_ppid = PpidLaporan::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+        }
+        elseif($subpage == "sop-ppid" || $subpage == "SOP PPID") {
+            $data_ppid = PpidSop::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
         }
         else {
             $data_ppid = "Halaman PPID tidak ditemukan"; // apabila mengakses halaman PPID yang tidak ada di menu
@@ -222,6 +230,23 @@ trait PpidTrait
                 'file' => $randomName,
             ]);
         }
+        elseif($subpage == "sop-ppid") {
+            $randomName = null;
+            if ($request->hasFile('file')) {
+                $filenameWithExt = $request->file('file')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('file')->getClientOriginalExtension();
+                $filenameSimpan = md5($filename. time()).'.'.$extension;
+                $randomName = $filenameSimpan;
+                $path = $request->file('file')->storeAs('public/files/images/foto/ppid_sop/', $filenameSimpan);
+            }
+            $data_ppid = new PpidSop([
+                'id_user' => $id_user,
+                'judul' => $request->get('judul'),
+                'keterangan' => $request->get('keterangan'),
+                'file' => $randomName,
+            ]);
+        }
         else {
             $data_ppid = "Halaman PPID tidak ditemukan"; // apabila mengakses halaman PPID yang tidak ada di menu
         }
@@ -279,6 +304,22 @@ trait PpidTrait
                 $filenameSimpan = md5($filename. time()).'.'.$extension;
                 $randomName = $filenameSimpan;
                 $path = $request->file('file')->storeAs('public/files/images/foto/ppid_laporan_penyelesaian', $filenameSimpan);
+                $data_ppid->file = $randomName;
+            }
+            else {
+                $data_ppid->judul = $request->get('judul');
+                $data_ppid->keterangan = $request->get('keterangan');
+            }
+        }
+        elseif($subpage == "sop-ppid") {
+            $randomName = null;
+            if ($request->hasFile('file')) {
+                $filenameWithExt = $request->file('file')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('file')->getClientOriginalExtension();
+                $filenameSimpan = md5($filename. time()).'.'.$extension;
+                $randomName = $filenameSimpan;
+                $path = $request->file('file')->storeAs('public/files/images/foto/ppid_sop', $filenameSimpan);
                 $data_ppid->file = $randomName;
             }
             else {

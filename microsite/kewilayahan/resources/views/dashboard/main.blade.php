@@ -96,6 +96,8 @@
                 @include('dashboard.menu.ppid_informasi_list')
             @elseif($submenu == "Laporan Penyelesaian Ppid")
                 @include('dashboard.menu.ppid_laporan_list')
+            @elseif($submenu == "Sop Ppid")
+                @include('dashboard.menu.ppid_sop_list')
             @elseif($submenu == "Create")
                 @include('dashboard.menu.ppid_create')
             @elseif($submenu == "Edit")
