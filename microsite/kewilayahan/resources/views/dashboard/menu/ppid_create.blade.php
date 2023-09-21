@@ -7,6 +7,8 @@
             <li class="breadcrumb-item">PPID</li>
             @if($subpage == "laporan-penyelesaian-ppid")
                 <li class="breadcrumb-item">Laporan Penyelesaian PPID</li>
+            @elseif($subpage == "sop-ppid")
+                <li class="breadcrumb-item">SOP PPID</li>
             @else
                 <li class="breadcrumb-item">@unlink($subpage)</li>
             @endif
@@ -20,6 +22,8 @@
             <div class="card-body">
                 @if($subpage == "laporan-penyelesaian-ppid")
                     <h5 class="card-title">Tambah Data - Laporan Penyelesaian PPID</h5>
+                @elseif($subpage == "sop-ppid")
+                    <h5 class="card-title">Tambah Data - SOP PPID</h5>
                 @else
                     <h5 class="card-title">Tambah Data - @unlink($subpage)</h5>
                 @endif

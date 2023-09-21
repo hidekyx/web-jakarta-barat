@@ -90,7 +90,7 @@ class PpidController extends Controller
         if (Auth::check()) {
             $logged_user = Auth::user();
             $id_user = $logged_user->id_user;
-            if($subpage == "daftar-informasi-publik" || $subpage == "laporan-penyelesaian-ppid") {
+            if($subpage == "daftar-informasi-publik" || $subpage == "laporan-penyelesaian-ppid" || $subpage == "sop-ppid") {
                 $data_ppid = $this->detail_data_ppid($subpage, $id_user, $request->get('id_ppid'));
                 if($request->get('submit_form') == "save") {
                     $data_ppid = $this->store_data_ppid($subpage, $id_user, $request);

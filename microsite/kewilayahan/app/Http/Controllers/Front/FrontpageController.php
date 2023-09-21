@@ -58,6 +58,7 @@ class FrontpageController extends Controller
                     if($current_subpage == "tugas-dan-fungsi-ppid") { $current_subpage = "Tugas-dan-Fungsi-PPID"; }
                     if($current_subpage == "visi-dan-misi-ppid") { $current_subpage = "Visi-dan-Misi-PPID"; }
                     if($current_subpage == "laporan-penyelesaian-ppid") { $current_subpage = "Laporan-Penyelesaian-PPID"; }
+                    if($current_subpage == "sop-ppid") { $current_subpage = "SOP-PPID"; }
                     if($current_subpage == "ptsp") { $current_subpage = "PTSP"; }
                     $current_menu = Menu::where('kategori', ucwords(str_replace('-', ' ', $kategori)))->where('nama_menu', ucwords(str_replace('-', ' ', $current_subpage)))->first();
                     if($current_menu == null) {

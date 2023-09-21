@@ -50,7 +50,13 @@
                     <div class="col-md-12 position-relative">
                         <label for="file" class="col-sm-2 col-form-label">File Data</label>
                         <input class="form-control mb-2" type="file" id="file" name="file" accept=".pdf">
+                        @if($subpage == "daftar-informasi-publik")
                         File Asli: <i><a href="{{ asset('storage/files/images/foto/ppid_daftar_informasi_publik/'.$data_ppid['file']) }}" target="_blank">{{ $data_ppid['judul'] }}.pdf</a></i>
+                        @elseif($subpage == "laporan-penyelesaian-ppid")
+                        File Asli: <i><a href="{{ asset('storage/files/images/foto/ppid_laporan_penyelesaian/'.$data_ppid['file']) }}" target="_blank">{{ $data_ppid['judul'] }}.pdf</a></i>
+                        @elseif($subpage == "sop-ppid")
+                        File Asli: <i><a href="{{ asset('storage/files/images/foto/ppid_sop/'.$data_ppid['file']) }}" target="_blank">{{ $data_ppid['judul'] }}.pdf</a></i>
+                        @endif
                     </div>
                     <div class="col-md-12"><hr></div>
                     <div class="col-md-12">
