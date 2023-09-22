@@ -121,6 +121,61 @@ class AbsensiController extends Controller
                 }
             }
 
+            if(count($absensi)) {
+                foreach ($absensi as $key => $a) {
+                    if($a->keterangan_absen_pagi != "Tidak Absen") {
+                        if($a->keterangan_absen_pagi == "Flexible Time") {
+                            $grafik_absen['pagi']['tanggal'][] = $a->tanggal;
+                            $grafik_absen['pagi']['jam_masuk'][] = $a->first_in;
+                            $jam_masuk_awal = Carbon::parse('07:30:00');
+                            $selisih_jam = Carbon::parse($a->first_in)->diff($jam_masuk_awal)->format('%H');
+                            $selisih_menit = Carbon::parse($a->first_in)->diff($jam_masuk_awal)->format('%I');
+                            $selisih_detik = Carbon::parse($a->first_in)->diff($jam_masuk_awal)->format('%S');
+                            $grafik_absen['pagi']['jadwal_masuk'][] = ($jam_masuk_awal->addHours($selisih_jam)->addMinutes($selisih_menit)->addSeconds($selisih_detik))->toTimeString();
+                        }
+                        else {
+                            $grafik_absen['pagi']['tanggal'][] = $a->tanggal;
+                            $grafik_absen['pagi']['jam_masuk'][] = $a->first_in;
+                            if($a->keterangan_absen_pagi == "Tepat Waktu") {
+                                $grafik_absen['pagi']['jadwal_masuk'][] = '07:30:00';
+                            }
+                            if($a->keterangan_absen_pagi == "Telat") {
+                                $grafik_absen['pagi']['jadwal_masuk'][] = '08:00:00';
+                            }
+                        }
+                    }
+                    if($a->keterangan_absen_sore != "Tidak Absen") {
+                        if($a->keterangan_absen_pagi == "Flexible Time") {
+                            $grafik_absen['sore']['tanggal'][] = $a->tanggal;
+                            $grafik_absen['sore']['jam_pulang'][] = $a->last_out;
+                            if(Carbon::parse($a->tanggal)->format('l') == "Friday") {
+                                $jam_pulang_awal = Carbon::parse('16:30:00');
+                            }
+                            else {
+                                $jam_pulang_awal = Carbon::parse('16:00:00');
+                            }
+                            $selisih_jam = Carbon::parse($a->last_out)->diff($jam_pulang_awal)->format('%H');
+                            $selisih_menit = Carbon::parse($a->last_out)->diff($jam_pulang_awal)->format('%I');
+                            $selisih_detik = Carbon::parse($a->last_out)->diff($jam_pulang_awal)->format('%S');
+                            $grafik_absen['sore']['jadwal_pulang'][] = ($jam_pulang_awal->addHours($selisih_jam)->addMinutes($selisih_menit)->addSeconds($selisih_detik));
+                        }
+                        else {
+                            $grafik_absen['sore']['tanggal'][] = $a->tanggal;
+                            $grafik_absen['sore']['jam_pulang'][] = $a->last_out;
+                            if(Carbon::parse($a->tanggal)->format('l') == "Friday") {
+                                $grafik_absen['sore']['jadwal_pulang'][] = '16:30:00';
+                            }
+                            else {
+                                $grafik_absen['sore']['jadwal_pulang'][] = '16:00:00';
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                $grafik_absen = null;
+            }
+
             if ($validated == true) {
                 $rekap_absen = Penggajian::where('id_user', $user->id_user)
                 ->whereMonth('bulan', $selected_bulan)
@@ -151,6 +206,7 @@ class AbsensiController extends Controller
             'bonus' => $bonus,
             'filter_bulan' => $filter_bulan,
             'rekap_absen' => $rekap_absen,
+            'grafik_absen' => $grafik_absen,
             'validated' => $validated
         ]);
     }
