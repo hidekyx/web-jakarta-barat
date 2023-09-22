@@ -173,7 +173,7 @@ class AbsensiController extends Controller
                 }
             }
             else {
-                $grafik_absen = null;
+                $grafik_absen = null; 
             }
 
             if ($validated == true) {
