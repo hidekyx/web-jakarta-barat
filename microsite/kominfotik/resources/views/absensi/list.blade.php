@@ -533,7 +533,7 @@
         </div>
         @endif
         <div class="row container text-sm">
-            <div id="grafik_absen" style="width: 100%"></div>
+            <div id="grafik_absen" style="width: 100%; height: 500px;"></div>
         </div>
     </div>
     </div>
