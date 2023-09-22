@@ -286,137 +286,137 @@
         </div>
         @foreach ($rekap_absen as $ra)
         <div class="row container text-sm">
-        <div class="col-lg-4 col-12">
-            <table class="table table-responsive border-radius-lg">
-                <tr>
-                    <td class="text-dark">Telat</td>
-                    <td>:</td>
-                    @if ($ra->total_telat != null)
-                    <td>{{ $ra->total_telat }}</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Pulang Cepat</td>
-                    <td>:</td>
-                    @if ($ra->total_pulang_cepat != null)
-                    <td>{{ $ra->total_pulang_cepat }}</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Total Telat dan Pulang Cepat</td>
-                    <td>:</td>
-                    @if ($ra->total_telat_dan_pulang_cepat != null)
-                    <td>{{ $ra->total_telat_dan_pulang_cepat }}</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-            </table>
-        </div>
-        <div class="col-lg-4 col-12">
-            <table class="table table-responsive border-radius-lg">
-                <tr>
-                    <td class="text-dark">Izin</td>
-                    <td>:</td>
-                    @if ($ra->total_izin != null)
-                    <td>{{ $ra->total_izin }} hari</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Cuti</td>
-                    <td>:</td>
-                    @if ($ra->total_cuti != null)
-                    <td>{{ $ra->total_cuti }} hari</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Alpha</td>
-                    <td>:</td>
-                    @if ($ra->total_alpha != null)
-                    <td>{{ $ra->total_alpha }} hari</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Sakit</td>
-                    <td>:</td>
-                    @if ($ra->total_sakit != null)
-                    <td>{{ $ra->total_sakit }} hari</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Tidak Absen</td>
-                    <td>:</td>
-                    @if ($ra->total_tidak_absen != null)
-                    <td>{{ $ra->total_tidak_absen }}x</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Dinas Luar Setengah Hari</td>
-                    <td>:</td>
-                    @if ($ra->total_dinas_luar_setengah != null)
-                    <td>{{ $ra->total_dinas_luar_setengah }}x</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Dinas Luar Penuh</td>
-                    <td>:</td>
-                    @if ($ra->total_dinas_luar_sehari != null)
-                    <td>{{ $ra->total_dinas_luar_sehari }}x</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-            </table>
-        </div>
-        @if($id_role != "3")
-        <div class="col-lg-4 col-12">
-            <table class="table table-responsive border-radius-lg">
-                <tr>
-                    <td class="text-dark">Gaji Pokok</td>
-                    <td>:</td>
-                    @if ($gaji_pokok != null)
-                    <td align="right">@duit($gaji_pokok)</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Potongan Alpha</td>
-                    <td>:</td>
-                    @if ($ra->potongan_alpha != null)
-                    <td align="right">@duit($ra->potongan_alpha)</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr style="border-top: solid;">
-                    <td class="text-dark">Gaji Sebelum Pajak</td>
-                    <td>:</td>
-                    @if ($ra->gaji_sebelum_pajak != null)
-                    <td align="right" class="font-weight-bolder">@duit($ra->gaji_sebelum_pajak)</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-            </table>
-        </div>
-        @endif
+            <div class="col-lg-4 col-12">
+                <table class="table table-responsive border-radius-lg">
+                    <tr>
+                        <td class="text-dark">Telat</td>
+                        <td>:</td>
+                        @if ($ra->total_telat != null)
+                        <td>{{ $ra->total_telat }}</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Pulang Cepat</td>
+                        <td>:</td>
+                        @if ($ra->total_pulang_cepat != null)
+                        <td>{{ $ra->total_pulang_cepat }}</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Total Telat dan Pulang Cepat</td>
+                        <td>:</td>
+                        @if ($ra->total_telat_dan_pulang_cepat != null)
+                        <td>{{ $ra->total_telat_dan_pulang_cepat }}</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                </table>
+            </div>
+            <div class="col-lg-4 col-12">
+                <table class="table table-responsive border-radius-lg">
+                    <tr>
+                        <td class="text-dark">Izin</td>
+                        <td>:</td>
+                        @if ($ra->total_izin != null)
+                        <td>{{ $ra->total_izin }} hari</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Cuti</td>
+                        <td>:</td>
+                        @if ($ra->total_cuti != null)
+                        <td>{{ $ra->total_cuti }} hari</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Alpha</td>
+                        <td>:</td>
+                        @if ($ra->total_alpha != null)
+                        <td>{{ $ra->total_alpha }} hari</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Sakit</td>
+                        <td>:</td>
+                        @if ($ra->total_sakit != null)
+                        <td>{{ $ra->total_sakit }} hari</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Tidak Absen</td>
+                        <td>:</td>
+                        @if ($ra->total_tidak_absen != null)
+                        <td>{{ $ra->total_tidak_absen }}x</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Dinas Luar Setengah Hari</td>
+                        <td>:</td>
+                        @if ($ra->total_dinas_luar_setengah != null)
+                        <td>{{ $ra->total_dinas_luar_setengah }}x</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Dinas Luar Penuh</td>
+                        <td>:</td>
+                        @if ($ra->total_dinas_luar_sehari != null)
+                        <td>{{ $ra->total_dinas_luar_sehari }}x</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                </table>
+            </div>
+            @if($id_role != "3")
+            <div class="col-lg-4 col-12">
+                <table class="table table-responsive border-radius-lg">
+                    <tr>
+                        <td class="text-dark">Gaji Pokok</td>
+                        <td>:</td>
+                        @if ($gaji_pokok != null)
+                        <td align="right">@duit($gaji_pokok)</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Potongan Alpha</td>
+                        <td>:</td>
+                        @if ($ra->potongan_alpha != null)
+                        <td align="right">@duit($ra->potongan_alpha)</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr style="border-top: solid;">
+                        <td class="text-dark">Gaji Sebelum Pajak</td>
+                        <td>:</td>
+                        @if ($ra->gaji_sebelum_pajak != null)
+                        <td align="right" class="font-weight-bolder">@duit($ra->gaji_sebelum_pajak)</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                </table>
+            </div>
+            @endif
         </div>
         @endforeach
         @elseif ($filter_bulan != null && $validated == false && $rekap_absen != null)
@@ -432,107 +432,189 @@
             </div>
         </div>
         <div class="row container text-sm">
-        <div class="col-lg-4 col-12">
-            <table class="table table-responsive border-radius-lg">
-                <tr>
-                    <td class="text-dark">Telat</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_telat'] != null)
-                    <td>{{ $rekap_absen['total_telat'] }}</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Pulang Cepat</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_pulang_cepat'] != null)
-                    <td>{{ $rekap_absen['total_pulang_cepat'] }}</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Total Telat dan Pulang Cepat</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_penalty'] != null)
-                    <td>{{ $rekap_absen['total_penalty'] }}</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-            </table>
-        </div>
-        <div class="col-lg-4 col-12">
-            <table class="table table-responsive border-radius-lg">
-                <tr>
-                    <td class="text-dark">Izin</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_izin'] != null)
-                    <td>{{ $rekap_absen['total_izin'] }} hari</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Cuti</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_cuti'] != null)
-                    <td>{{ $rekap_absen['total_cuti'] }} hari</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Alpha</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_alpha'] != null)
-                    <td>{{ $rekap_absen['total_alpha'] }} hari</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Sakit</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_sakit'] != null)
-                    <td>{{ $rekap_absen['total_sakit'] }} hari</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Tidak Absen</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_tidak_absen'] != null)
-                    <td>{{ $rekap_absen['total_tidak_absen'] }} x</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Dinas Luar Setengah Hari</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_dinas_luar_setengah'] != null)
-                    <td>{{ $rekap_absen['total_dinas_luar_setengah'] }} x</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-                <tr>
-                    <td class="text-dark">Dinas Luar Penuh</td>
-                    <td>:</td>
-                    @if ($rekap_absen['total_dinas_luar_sehari'] != null)
-                    <td>{{ $rekap_absen['total_dinas_luar_sehari'] }} x</td>
-                    @else
-                    <td>-</td>
-                    @endif
-                </tr>
-            </table>
-        </div>
+            <div class="col-lg-4 col-12">
+                <table class="table table-responsive border-radius-lg">
+                    <tr>
+                        <td class="text-dark">Telat</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_telat'] != null)
+                        <td>{{ $rekap_absen['total_telat'] }}</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Pulang Cepat</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_pulang_cepat'] != null)
+                        <td>{{ $rekap_absen['total_pulang_cepat'] }}</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Total Telat dan Pulang Cepat</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_penalty'] != null)
+                        <td>{{ $rekap_absen['total_penalty'] }}</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                </table>
+            </div>
+            <div class="col-lg-4 col-12">
+                <table class="table table-responsive border-radius-lg">
+                    <tr>
+                        <td class="text-dark">Izin</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_izin'] != null)
+                        <td>{{ $rekap_absen['total_izin'] }} hari</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Cuti</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_cuti'] != null)
+                        <td>{{ $rekap_absen['total_cuti'] }} hari</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Alpha</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_alpha'] != null)
+                        <td>{{ $rekap_absen['total_alpha'] }} hari</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Sakit</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_sakit'] != null)
+                        <td>{{ $rekap_absen['total_sakit'] }} hari</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Tidak Absen</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_tidak_absen'] != null)
+                        <td>{{ $rekap_absen['total_tidak_absen'] }} x</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Dinas Luar Setengah Hari</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_dinas_luar_setengah'] != null)
+                        <td>{{ $rekap_absen['total_dinas_luar_setengah'] }} x</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Dinas Luar Penuh</td>
+                        <td>:</td>
+                        @if ($rekap_absen['total_dinas_luar_sehari'] != null)
+                        <td>{{ $rekap_absen['total_dinas_luar_sehari'] }} x</td>
+                        @else
+                        <td>-</td>
+                        @endif
+                    </tr>
+                </table>
+            </div>
         </div>
         @endif
+        <div class="row container text-sm">
+            <div id="grafik_absen" style="width: 100%"></div>
+        </div>
     </div>
     </div>
 </div>
 </div>
+
+@if($grafik_absen != null)
+<script>
+    let json_jam_masuk = @json($grafik_absen['pagi']['jam_masuk']);
+    let json_jadwal_masuk = @json($grafik_absen['pagi']['jadwal_masuk']);
+    let json_jam_pulang = @json($grafik_absen['sore']['jam_pulang']);
+    let json_jadwal_pulang = @json($grafik_absen['sore']['jadwal_pulang']);
+    let json_tanggal = @json($grafik_absen['pagi']['tanggal']);
+
+    const jam_masuk = json_jam_masuk.map(timeString => {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        return hours * 60 + minutes; // Convert to minutes
+    });
+
+    const jadwal_masuk = json_jadwal_masuk.map(timeString => {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        return hours * 60 + minutes; // Convert to minutes
+    });
+
+    const jam_pulang = json_jam_pulang.map(timeString => {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        return hours * 60 + minutes; // Convert to minutes
+    });
+
+    const jadwal_pulang = json_jadwal_pulang.map(timeString => {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        return hours * 60 + minutes; // Convert to minutes
+    });
+
+    Highcharts.chart('grafik_absen', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Grafik Absensi Tenaga Terampil',
+            align: 'left'
+        },
+        subtitle: {
+            text: '{{ \Carbon\Carbon::parse($filter_bulan)->isoFormat('MMMM Y')}}',
+            align: 'left'
+        },
+        xAxis: {
+            categories: json_tanggal,
+            title: {
+                text: 'Tanggal'
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Jam Absensi'
+            },
+            labels: {
+                formatter: function () {
+                    const hours = Math.floor(this.value / 60);
+                    const minutes = this.value % 60;
+                    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+                }
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                const hours = Math.floor(this.y / 60);
+                const minutes = this.y % 60;
+                return `Jam: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+            }
+        },
+        series: [{
+            name: 'Jam Masuk',
+            data: jam_masuk
+        }, {
+            name: 'Jam Pulang',
+            data: jam_pulang
+        }, {
+            name: 'Batas Jam Masuk / Flexible Time',
+            data: jadwal_masuk
+        }]
+    });
+</script>
+@endif

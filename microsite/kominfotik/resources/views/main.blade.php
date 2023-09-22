@@ -25,6 +25,7 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="{{ asset('storage/assets/js/bootstrap-select.js') }}"></script>
 <script src="{{ asset('storage/assets/js/jq-signature.min.js') }}"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
