@@ -95,6 +95,7 @@ class AbsensiController extends Controller
         $validated = null;
         $absensi_kosong = false;
         $rekap_absen = array();
+        $grafik_absen = null;
         $currentURL = url()->full();  
         $components = parse_url($currentURL);   
         if(isset($components['query'])) {
@@ -171,9 +172,6 @@ class AbsensiController extends Controller
                         }
                     }
                 }
-            }
-            else {
-                $grafik_absen = null; 
             }
 
             if ($validated == true) {
