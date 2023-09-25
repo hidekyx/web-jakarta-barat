@@ -75,7 +75,11 @@
                                 -
                                 @endif
                             </td>
+                            @if($ip->kategori == "Dikecualikan")
+                            <td>-</td>
+                            @else
                             <td>{{ $ip->download }}</td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>
