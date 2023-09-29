@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Kegiatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -81,6 +83,57 @@ class ProfilController extends Controller
                     })->limit(5)
                     ->orderBy('tanggal', 'DESC')
                     ->get();
+                    $absensi['total_cuti'] = Absensi::where('id_user', $loaded_id_user)->where('status', 'Cuti')->whereYear('tanggal', date('Y'))->count();
+                    $absensi['total_izin'] = Absensi::where('id_user', $loaded_id_user)->where('status', 'Izin')->whereYear('tanggal', date('Y'))->count();
+                    $absensi['total_alpha'] = Absensi::where('id_user', $loaded_id_user)->where('status', 'Alpha')->whereYear('tanggal', date('Y'))->count();
+                    $absensi['total_sakit'] = Absensi::where('id_user', $loaded_id_user)->where('status', 'Sakit')->whereYear('tanggal', date('Y'))->count();
+                    $absensi['total_dinas_luar_penuh'] = Absensi::where('id_user', $loaded_id_user)->where('status', 'Dinas Luar Penuh')->whereYear('tanggal', date('Y'))->count();
+                    $absensi['total_dinas_luar_awal'] = Absensi::where('id_user', $loaded_id_user)->where('status', 'Dinas Luar Awal')->whereYear('tanggal', date('Y'))->count();
+                    $absensi['total_dinas_luar_akhir'] = Absensi::where('id_user', $loaded_id_user)->where('status', 'Dinas Luar Akhir')->whereYear('tanggal', date('Y'))->count();
+                    $absensi['total_telat_detik'] = Absensi::where('id_user', $loaded_id_user)
+                                ->where('status', 'Masuk')
+                                ->where('jenis', '!=', 'Libur')
+                                ->where('penalty_absen_pagi', '!=', null)
+                                ->whereYear('tanggal', date('Y'))
+                                ->sum(DB::raw("TIME_TO_SEC(penalty_absen_pagi)"));
+                    $absensi['total_pulang_cepat_detik'] = Absensi::where('id_user', $loaded_id_user)
+                                ->where('status', 'Masuk')
+                                ->where('jenis', '!=', 'Libur')
+                                ->where('penalty_absen_sore', '!=', null)
+                                ->whereYear('tanggal', date('Y'))
+                                ->sum(DB::raw("TIME_TO_SEC(penalty_absen_sore)"));
+                                
+                    if($absensi['total_telat_detik'] < 86400) {
+                        $absensi['total_telat'] = gmdate("H:i:s", $absensi['total_telat_detik']);
+                    }
+                    else {
+                        $absensi['total_telat'] = "Lebih dari 24 jam";
+                    }
+
+                    if($absensi['total_pulang_cepat_detik'] < 86400) {
+                        $absensi['total_pulang_cepat'] = gmdate("H:i:s", $absensi['total_pulang_cepat_detik']);
+                    }
+                    else {
+                        $absensi['total_pulang_cepat'] = "Lebih dari 24 jam";
+                    }
+
+                    for ($bulan=0; $bulan < 12; $bulan++) { 
+                        $absensi['total_telat_bulanan'][$bulan+1] = 1000*Absensi::where('id_user', $loaded_id_user)
+                        ->where('status', 'Masuk')
+                        ->where('jenis', '!=', 'Libur')
+                        ->where('penalty_absen_pagi', '!=', null)
+                        ->whereYear('tanggal', date('Y'))
+                        ->whereMonth('tanggal', $bulan+1)
+                        ->sum(DB::raw("TIME_TO_SEC(penalty_absen_pagi)"));
+
+                        $absensi['total_pulang_cepat_bulanan'][$bulan+1] = 1000*Absensi::where('id_user', $loaded_id_user)
+                        ->where('status', 'Masuk')
+                        ->where('jenis', '!=', 'Libur')
+                        ->where('penalty_absen_sore', '!=', null)
+                        ->whereYear('tanggal', date('Y'))
+                        ->whereMonth('tanggal', $bulan+1)
+                        ->sum(DB::raw("TIME_TO_SEC(penalty_absen_sore)"));
+                    }
     
                     return view("main", [
                         'page' => "Profil",
@@ -88,6 +141,7 @@ class ProfilController extends Controller
                         'pegawai_seksi' => $pegawai_seksi,
                         'user' => $user,
                         'kegiatan' => $kegiatan,
+                        'absensi' => $absensi,
                         'id_role' => $logged_user->id_role,
                         'logged_user' => $logged_user,
                         'logged_profile' => $logged_profile

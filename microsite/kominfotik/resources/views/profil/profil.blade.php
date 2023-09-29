@@ -31,5 +31,6 @@
 @if ($logged_profile == false && $id_role != 3)
     @include('profil.kegiatan')
 @endif
+@include('profil.absensi')
 </div>
 </div>
