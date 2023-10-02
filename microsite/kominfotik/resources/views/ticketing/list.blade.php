@@ -201,12 +201,12 @@
                         <span class="badge w-100 badge-sm bg-gradient-secondary">Penanganan</span>
                         @elseif($l->kategori == "Instalasi, Penambahan, dan Penataan Jaringan")
                         <span class="badge w-100 badge-sm bg-gradient-dark">Instalasi</span>
-                        @elseif($l->kategori == "Kategori Lainnya")
-                        <span class="badge w-100 badge-sm bg-gradient-primary">Lainnya</span>
+                        @elseif($l->kategori == "Dukungan Zoom Meeting")
+                        <span class="badge w-100 badge-sm bg-gradient-primary">Zoom</span>
                         @endif
                     </td>
                     <td>
-                        @if($l->kategori == "Kategori Lainnya")
+                        @if($l->kategori == "Dukungan Zoom Meeting")
                             <p class="text-xs font-weight-bold mb-0">
                                 @php
                                 $maxLength = 35;
@@ -554,7 +554,9 @@
                                                         <p class="text-wrap m-0 p-0">No Surat: {{ $l->no_surat}}</p>
                                                         <p class="text-wrap m-0 p-0">Tanggal: {{ $l->tanggal_surat }}</p>
                                                         <p class="text-wrap m-0 p-0">Perihal: {{ $l->perihal_surat }}</p>
-                                                    <a class="text-info font-weight-bold mb-2 text-wrap" target="_blank" href="{{ asset('storage/layanan/id/surat/'.$l->file_surat) }}">Download File Surat</a>
+                                                    @if($l->file_surat != null)
+                                                        <a class="text-info font-weight-bold mb-2 text-wrap" target="_blank" href="{{ asset('storage/layanan/id/surat/'.$l->file_surat) }}">Download File Surat</a>
+                                                    @endif
                                                 </div>
                                                 @endif
                                                 <div class="mb-3 div-foto-hasil">

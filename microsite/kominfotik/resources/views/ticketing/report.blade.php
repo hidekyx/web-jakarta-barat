@@ -84,6 +84,7 @@
                         <td class="text-sm font-weight-bold">Cakupan</td>
                         <td class="text-sm">{{ $layanan->cakupan }}</td>
                     </tr>
+                    @if($layanan->kategori != "Dukungan Zoom Meeting")
                     <tr>
                         <td class="text-sm font-weight-bold">Jenis Permasalahan Jaringan</td>
                         <td class="text-sm">
@@ -94,6 +95,7 @@
                             @endforeach
                         </td>
                     </tr>
+                    @endif
                     <tr style="border-width: 1px; border-color: #dee2e6;">
                         <td class="text-sm font-weight-bold">Deskripsi Permasalahan</td>
                         <td class="text-sm">
@@ -193,6 +195,7 @@
                         </td>
                     </tr>
                     @endif
+                    @if($layanan->kategori != "Dukungan Zoom Meeting")
                     <tr>
                         <td class="text-sm font-weight-bold">Perangkat Jaringan <br>Yang Ditangani</td>
                         <td class="text-sm">
@@ -421,6 +424,7 @@
                             <input type="text" name="ip_2" id="ip_2" style="border: none; border-bottom: 1px solid black;" required>
                         </td>
                     </tr>
+                    @endif
                     <tr>
                         <td class="text-sm font-weight-bold">Penjelasan Pekerjaan, <br>Lokasi, dan Keterangan Lain</td>
                         <td class="text-sm">
@@ -503,7 +507,7 @@
             </div>
             <div class="col-lg">
                 <h6 class="text-primary text-sm">Foto Kondisi: </h6>
-                <img src="{{ asset('/storage/images/layanan/kondisi/'.$layanan->foto_kondisi) }}" class="w-100 mb-3">
+                <img src="{{ asset('/storage/layanan/id/kondisi/'.$layanan->foto_kondisi) }}" class="w-100 mb-3">
             </div>
         </div>        
         <hr class="my-3">

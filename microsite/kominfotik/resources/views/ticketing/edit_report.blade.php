@@ -3,8 +3,8 @@
     var penjelasan_pekerjaan = '{{ $layanan->penjelasan_pekerjaan }}';
     var nama_perwakilan = '{{ $layanan->nama_perwakilan }}';
     var nip_perwakilan = '{{ $layanan->nip_perwakilan }}';
-    var tanda_tangan = '{{ asset('/storage/images/layanan/ttd/'.$layanan->tanda_tangan) }}';
-    var foto_hasil = '{{ asset('/storage/images/layanan/hasil/'.$layanan->foto_hasil) }}';
+    var tanda_tangan = '{{ asset('/storage/layanan/id/ttd/'.$layanan->tanda_tangan) }}';
+    var foto_hasil = '{{ asset('/storage/layanan/id/hasil/'.$layanan->foto_hasil) }}';
     var detail = @json($detail);
     var kategori = '{{ $kategori }}';
     var form_action = '{{ asset('/ticketing/update_report/'.$layanan->id_layanan); }}';

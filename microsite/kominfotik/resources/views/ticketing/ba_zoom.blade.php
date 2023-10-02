@@ -29,7 +29,7 @@
     <hr style="height: 1px; background: black;" class="mb-1 mt-1">
     <center>
         <h5 style="font-size: 12px;" class="mb-0 font-weight-bolder">BERITA ACARA</h5>
-        <h5 style="font-size: 12px;" class="mb-0 font-weight-bolder">PENANGANAN PERMASALAHAN JARINGAN</h5>
+        <h5 style="font-size: 12px;" class="mb-0 font-weight-bolder">DUKUNGAN ZOOM MEETING</h5>
         <h5 style="font-size: 12px;" class="mb-0 font-weight-bolder">SUKU DINAS KOMINFOTIK JAKARTA BARAT</h5>
     </center>
     <p class="mt-1">Pada hari <b>{{ \Carbon\Carbon::parse($layanan->tanggal)->isoFormat('dddd')}}</b>, tanggal <b>{{ \Carbon\Carbon::parse($layanan->tanggal)->isoFormat('D')}}</b> bulan <b>{{ \Carbon\Carbon::parse($layanan->tanggal)->isoFormat('MMMM')}}</b> tahun <b>{{ \Carbon\Carbon::parse($layanan->tanggal)->isoFormat('Y')}}</b>, telah dilakukan pemeriksaan dan perbaikan jaringan sebagaimana berikut:</p>
@@ -56,120 +56,9 @@
             <td colspan="2">{{ $layanan->kontak }}</td>
         </tr>
         <tr>
-            <td>Jenis permasalahan jaringan</td>
-            <td>:</td>
-            @if(count($layanan_detail['jenis']) == 0)
-            <td colspan="2"></td>
-            @else
-                @for($i=0; $i < count($layanan_detail['jenis']); $i++)
-                <td>
-                    <ul style="list-style-type:square;" class="mb-0 pl-3">
-                    @foreach($layanan_detail['jenis'][$i] as $ld)
-                    <li>{{ $ld }}</li>
-                    @endforeach
-                    </ul>
-                </td>
-                @endfor
-            @endif
-        </tr>
-        <tr>
             <td>Cakupan permasalahan jaringan   </td>
             <td>:</td>
             <td colspan="2">{{ $layanan->cakupan }}</td>
-        </tr>
-        @isset($layanan_detail['penanganan'])
-        <tr>
-            <td>Penanganan yang dilakukan</td>
-            <td>:</td>
-            @if(count($layanan_detail['penanganan']) == 0)
-            <td colspan="2"></td>
-            @else
-                @for($i=0; $i < count($layanan_detail['penanganan']); $i++)
-                <td>
-                    <ul style="list-style-type:square;" class="mb-0 pl-3">
-                    @foreach($layanan_detail['penanganan'][$i] as $ld)
-                    <li>{{ $ld }}</li>
-                    @endforeach
-                    </ul>
-                </td>
-                @endfor
-            @endif
-        @endisset
-        </tr>
-        <tr>
-            <td>Perangkat jaringan yang ditangani</td>
-            <td>:</td>
-            @if(count($layanan_detail['perangkat']) == 0)
-            <td colspan="2"></td>
-            @else
-                @for($i=0; $i < count($layanan_detail['perangkat']); $i++)
-                <td>
-                    <ul style="list-style-type:square;" class="mb-0 pl-3">
-                    @foreach($layanan_detail['perangkat'][$i] as $ld)
-                    <li>{{ $ld }}</li>
-                    @endforeach
-                    </ul>
-                </td>
-                @endfor
-            @endif
-        </tr>
-        <tr>
-            <td>Alat kerja yang dipakai</td>
-            <td>:</td>
-            @if(count($layanan_detail['alat_kerja']) == 0)
-            <td colspan="2"></td>
-            @else
-                @for($i=0; $i < count($layanan_detail['alat_kerja']); $i++)
-                <td>
-                    <ul style="list-style-type:square;" class="mb-0 pl-3">
-                    @foreach($layanan_detail['alat_kerja'][$i] as $ld)
-                    <li>{{ $ld }}</li>
-                    @endforeach
-                    </ul>
-                </td>
-                @endfor
-            @endif
-        </tr>
-        <tr>
-            <td>Barang habis pakai yang digunakan</td>
-            <td>:</td>
-            @if(count($layanan_detail['barang_habis']) == 0)
-            <td colspan="2"></td>
-            @else
-                @for($i=0; $i < count($layanan_detail['barang_habis']); $i++)
-                <td>
-                    <ul style="list-style-type:square;" class="mb-0 pl-3">
-                    @foreach($layanan_detail['barang_habis'][$i] as $ld)
-                    <li>{{ $ld }}</li>
-                    @endforeach
-                    </ul>
-                </td>
-                @endfor
-            @endif
-        </tr>
-        <tr>
-            <td>Perangkat Kominfotik yg dipasang (jika ada)</td>
-            <td>:</td>
-            <td colspan="2">
-                <ul style="list-style-type:square;" class="mb-0 pl-3">
-                @foreach($layanan->layanan_detail as $ld)
-                    @if($ld->id_layanan_kategori == 6)
-                    <li>Jenis : {{ $ld->value }} (S/N : {{ $ld->value_2 }})</li>
-                    @endif
-                @endforeach
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>IP address yang digunakan (range)</td>
-            <td>:</td>
-            <td colspan="2">
-                @foreach($layanan->layanan_detail as $ld)
-                    @if($ld->id_layanan_kategori == 7)
-                    {{ $ld->value }} - {{ $ld->value_2 }}
-                    @endif
-                @endforeach
-            </td>
         </tr>
         <tr>
             <td>Deskripsi permasalahan, solusi, dan keterangan</td>
