@@ -200,9 +200,9 @@
             <td style="text-align: center;">Mengetahui,<br>Kepala Seksi Jaringan Komunikasi<br>Data Sudiskominfotik Jakarta Barat,</td>
         </tr>
         <tr align="center">
-            <td><img src="{{ public_path('/storage/images/layanan/ttd/'.$layanan->tanda_tangan) }}" width="200px"></td>
-            <td><img src="{{ public_path('/storage/images/layanan/ttd/'.$layanan->user->id_user.'.png') }}" width="100px"></td>
-            <td><img src="{{ public_path('/storage/images/layanan/ttd/'.$kepala_seksi->id_user.'.png') }}" width="100px"></td>
+            <td><img src="{{ public_path('/storage/layanan/id/ttd/'.$layanan->tanda_tangan) }}" width="200px"></td>
+            <td><img src="{{ public_path('/storage/layanan/id/ttd/'.$layanan->user->id_user.'.png') }}" width="100px"></td>
+            <td><img src="{{ public_path('/storage/layanan/id/ttd/'.$kepala_seksi->id_user.'.png') }}" width="100px"></td>
         </tr>
         <tr>
             <td style="text-align: center;">{{ $layanan->nama_perwakilan }}<br>NIP {{ $layanan->nip_perwakilan }}</td>

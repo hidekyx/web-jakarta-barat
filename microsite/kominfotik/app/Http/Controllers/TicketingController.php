@@ -193,6 +193,10 @@ class TicketingController extends Controller
                 $pdf = PDF::loadview('ticketing.ba_penanganan',['layanan'=>$layanan, 'layanan_detail'=>$layanan_detail, 'kepala_seksi' => $kepala_seksi]);
                 return $pdf->stream('Berita Acara - Penanganan Permasalahan Jaringan - '.$layanan->kode_layanan.'.pdf');
             }
+            if($layanan->kategori == "Dukungan Zoom Meeting") {
+                $pdf = PDF::loadview('ticketing.ba_zoom',['layanan'=>$layanan, 'layanan_detail'=>$layanan_detail, 'kepala_seksi' => $kepala_seksi]);
+                return $pdf->stream('Berita Acara - Dukungan Zoom Meeting - '.$layanan->kode_layanan.'.pdf');
+            }
         }
     }
 
@@ -1005,6 +1009,9 @@ class TicketingController extends Controller
                             elseif($layanan->kategori == "Instalasi, Penambahan, dan Penataan Jaringan") {
                                 $kategori = "Report Instalasi";
                             }
+                            elseif($layanan->kategori == "Dukungan Zoom Meeting") {
+                                $kategori = "Report Zoom";
+                            }
                             return view("main", [
                                 'page' => "Ticketing",
                                 'subpage' => "Report",
@@ -1049,6 +1056,9 @@ class TicketingController extends Controller
                             elseif($layanan->kategori == "Instalasi, Penambahan, dan Penataan Jaringan") {
                                 $kategori = "Report Instalasi";
                             }
+                            elseif($layanan->kategori == "Dukungan Zoom Meeting") {
+                                $kategori = "Report Zoom";
+                            }
                             return view("main", [
                                 'page' => "Ticketing",
                                 'subpage' => "EditReport",
@@ -1070,21 +1080,37 @@ class TicketingController extends Controller
     public function submit_report(Request $request, $id_layanan) {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            $rules = [
-                'ip_1' => 'required',
-                'ip_2' => 'required',
-                'penjelasan_pekerjaan' => 'required',
-                'nama_perwakilan' => 'required|string',
-                'nip_perwakilan' => 'required|numeric',
-            ];
-
-            $messages = [
-                'ip_1.required' => 'Range IP wajib diisi',
-                'ip_2.required' => 'Range IP wajib diisi',
-                'penjelasan_pekerjaan.required' => 'Penjelasan Pekerjaan wajib diisi',
-                'nama_perwakilan.required' => 'Nama Perwakilan wajib diisi',
-                'nip_perwakilan.required' => 'NIP Perwakilan wajib diisi',
-            ];
+            $layanan = Layanan::where('id_layanan', $id_layanan)->first();
+            if($layanan->kategori != "Dukungan Zoom Meeting") {
+                $rules = [
+                    'ip_1' => 'required',
+                    'ip_2' => 'required',
+                    'penjelasan_pekerjaan' => 'required',
+                    'nama_perwakilan' => 'required|string',
+                    'nip_perwakilan' => 'required|numeric',
+                ];
+    
+                $messages = [
+                    'ip_1.required' => 'Range IP wajib diisi',
+                    'ip_2.required' => 'Range IP wajib diisi',
+                    'penjelasan_pekerjaan.required' => 'Penjelasan Pekerjaan wajib diisi',
+                    'nama_perwakilan.required' => 'Nama Perwakilan wajib diisi',
+                    'nip_perwakilan.required' => 'NIP Perwakilan wajib diisi',
+                ];
+            }
+            else {
+                $rules = [
+                    'penjelasan_pekerjaan' => 'required',
+                    'nama_perwakilan' => 'required|string',
+                    'nip_perwakilan' => 'required|numeric',
+                ];
+    
+                $messages = [
+                    'penjelasan_pekerjaan.required' => 'Penjelasan Pekerjaan wajib diisi',
+                    'nama_perwakilan.required' => 'Nama Perwakilan wajib diisi',
+                    'nip_perwakilan.required' => 'NIP Perwakilan wajib diisi',
+                ];
+            }
 
             $validator = Validator::make($request->all(), $rules, $messages);
             if($validator->fails()){
@@ -1165,84 +1191,87 @@ class TicketingController extends Controller
                                 }
                             }
 
-                            $alat_kerja = $request->get('alat_kerja');
-                            $alat_kerja_lainnya = $request->get('alat_kerja_lainnya');
-                            $total_alat_kerja = count($request->get('alat_kerja'));
-                            for ($i=0; $i < $total_alat_kerja; $i++) { 
-                                $alat_kerja_save = new LayananDetail([
-                                    'id_layanan' => $id_layanan,
-                                    'value' => $alat_kerja[$i],
-                                    'id_layanan_kategori' => 3
-                                ]);
-                                $alat_kerja_save->save();
-                            }
-                            if($alat_kerja_lainnya != null) {
-                                $alat_kerja_save = new LayananDetail([
-                                    'id_layanan' => $id_layanan,
-                                    'value' => $alat_kerja_lainnya,
-                                    'id_layanan_kategori' => 3
-                                ]);
-                                $alat_kerja_save->save();
-                            }
+                            if($layanan->kategori != "Dukungan Zoom Meeting") {
+                                $alat_kerja = $request->get('alat_kerja');
+                                $alat_kerja_lainnya = $request->get('alat_kerja_lainnya');
+                                $total_alat_kerja = count($request->get('alat_kerja'));
+                                for ($i=0; $i < $total_alat_kerja; $i++) { 
+                                    $alat_kerja_save = new LayananDetail([
+                                        'id_layanan' => $id_layanan,
+                                        'value' => $alat_kerja[$i],
+                                        'id_layanan_kategori' => 3
+                                    ]);
+                                    $alat_kerja_save->save();
+                                }
+                                if($alat_kerja_lainnya != null) {
+                                    $alat_kerja_save = new LayananDetail([
+                                        'id_layanan' => $id_layanan,
+                                        'value' => $alat_kerja_lainnya,
+                                        'id_layanan_kategori' => 3
+                                    ]);
+                                    $alat_kerja_save->save();
+                                }
 
-                            $perangkat = $request->get('perangkat');
-                            $perangkat_lainnya = $request->get('perangkat_lainnya');
-                            $total_perangkat = count($request->get('perangkat'));
-                            for ($i=0; $i < $total_perangkat; $i++) { 
-                                $perangkat_save = new LayananDetail([
-                                    'id_layanan' => $id_layanan,
-                                    'value' => $perangkat[$i],
-                                    'id_layanan_kategori' => 4
-                                ]);
-                                $perangkat_save->save();
-                            }
-                            if($perangkat_lainnya != null) {
-                                $perangkat_save = new LayananDetail([
-                                    'id_layanan' => $id_layanan,
-                                    'value' => $perangkat_lainnya,
-                                    'id_layanan_kategori' => 4
-                                ]);
-                                $perangkat_save->save();
-                            }
+                                $perangkat = $request->get('perangkat');
+                                $perangkat_lainnya = $request->get('perangkat_lainnya');
+                                $total_perangkat = count($request->get('perangkat'));
+                                for ($i=0; $i < $total_perangkat; $i++) { 
+                                    $perangkat_save = new LayananDetail([
+                                        'id_layanan' => $id_layanan,
+                                        'value' => $perangkat[$i],
+                                        'id_layanan_kategori' => 4
+                                    ]);
+                                    $perangkat_save->save();
+                                }
+                                if($perangkat_lainnya != null) {
+                                    $perangkat_save = new LayananDetail([
+                                        'id_layanan' => $id_layanan,
+                                        'value' => $perangkat_lainnya,
+                                        'id_layanan_kategori' => 4
+                                    ]);
+                                    $perangkat_save->save();
+                                }
 
-                            $barang_habis = $request->get('barang_habis');
-                            if($barang_habis != null) {
-                                foreach ($barang_habis as $b) {
-                                    if(isset($b['id_barang'])) {
-                                        $barang_habis_save = new LayananDetail([
-                                            'id_layanan' => $id_layanan,
-                                            'value' => $b['id_barang'],
-                                            'value_2' => $b['jumlah'],
-                                            'id_layanan_kategori' => 5
-                                        ]);
-                                        $barang_habis_save->save();
-                                        $barang = InventarisBarang::where('id_barang', $b['id_barang'])->first();
-                                        $barang->jumlah_terpakai = $barang->jumlah_terpakai + $b['jumlah'];
-                                        $barang->update();
+                                $barang_habis = $request->get('barang_habis');
+                                if($barang_habis != null) {
+                                    foreach ($barang_habis as $b) {
+                                        if(isset($b['id_barang'])) {
+                                            $barang_habis_save = new LayananDetail([
+                                                'id_layanan' => $id_layanan,
+                                                'value' => $b['id_barang'],
+                                                'value_2' => $b['jumlah'],
+                                                'id_layanan_kategori' => 5
+                                            ]);
+                                            $barang_habis_save->save();
+                                            $barang = InventarisBarang::where('id_barang', $b['id_barang'])->first();
+                                            $barang->jumlah_terpakai = $barang->jumlah_terpakai + $b['jumlah'];
+                                            $barang->update();
+                                        }
                                     }
                                 }
+
+                                if($request->get('perangkat_kominfo_jenis') != null && $request->get('perangkat_kominfo_SN') != null) {
+                                    $total_perangkat_kominfo = count($request->get('perangkat_kominfo_jenis'));
+                                    for ($i=0; $i < $total_perangkat_kominfo; $i++) { 
+                                        $perangkat_kominfo_save = new LayananDetail([
+                                            'id_layanan' => $id_layanan,
+                                            'value' => $request->get('perangkat_kominfo_jenis')[$i],
+                                            'value_2' => $request->get('perangkat_kominfo_SN')[$i],
+                                            'id_layanan_kategori' => 6
+                                        ]);
+                                        $perangkat_kominfo_save->save();
+                                    }
+                                }
+                                
+                                $ip_address_save = new LayananDetail([
+                                    'id_layanan' => $id_layanan,
+                                    'value' => $request->get('ip_1'),
+                                    'value_2' => $request->get('ip_2'),
+                                    'id_layanan_kategori' => 7
+                                ]);
+                                $ip_address_save->save();
                             }
 
-                            if($request->get('perangkat_kominfo_jenis') != null && $request->get('perangkat_kominfo_SN') != null) {
-                                $total_perangkat_kominfo = count($request->get('perangkat_kominfo_jenis'));
-                                for ($i=0; $i < $total_perangkat_kominfo; $i++) { 
-                                    $perangkat_kominfo_save = new LayananDetail([
-                                        'id_layanan' => $id_layanan,
-                                        'value' => $request->get('perangkat_kominfo_jenis')[$i],
-                                        'value_2' => $request->get('perangkat_kominfo_SN')[$i],
-                                        'id_layanan_kategori' => 6
-                                    ]);
-                                    $perangkat_kominfo_save->save();
-                                }
-                            }
-                            
-                            $ip_address_save = new LayananDetail([
-                                'id_layanan' => $id_layanan,
-                                'value' => $request->get('ip_1'),
-                                'value_2' => $request->get('ip_2'),
-                                'id_layanan_kategori' => 7
-                            ]);
-                            $ip_address_save->save();
                             return redirect('/ticketing')->with('success', 'Data ticketing telah diselesaikan');
                         }
                     }
@@ -1255,21 +1284,37 @@ class TicketingController extends Controller
     public function update_report(Request $request, $id_layanan) {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            $rules = [
-                'ip_1' => 'required',
-                'ip_2' => 'required',
-                'penjelasan_pekerjaan' => 'required',
-                'nama_perwakilan' => 'required|string',
-                'nip_perwakilan' => 'required|numeric',
-            ];
-
-            $messages = [
-                'ip_1.required' => 'Range IP wajib diisi',
-                'ip_2.required' => 'Range IP wajib diisi',
-                'penjelasan_pekerjaan.required' => 'Penjelasan Pekerjaan wajib diisi',
-                'nama_perwakilan.required' => 'Nama Perwakilan wajib diisi',
-                'nip_perwakilan.required' => 'NIP Perwakilan wajib diisi',
-            ];
+            $layanan = Layanan::where('id_layanan', $id_layanan)->first();
+            if($layanan->kategori != "Dukungan Zoom Meeting") {
+                $rules = [
+                    'ip_1' => 'required',
+                    'ip_2' => 'required',
+                    'penjelasan_pekerjaan' => 'required',
+                    'nama_perwakilan' => 'required|string',
+                    'nip_perwakilan' => 'required|numeric',
+                ];
+    
+                $messages = [
+                    'ip_1.required' => 'Range IP wajib diisi',
+                    'ip_2.required' => 'Range IP wajib diisi',
+                    'penjelasan_pekerjaan.required' => 'Penjelasan Pekerjaan wajib diisi',
+                    'nama_perwakilan.required' => 'Nama Perwakilan wajib diisi',
+                    'nip_perwakilan.required' => 'NIP Perwakilan wajib diisi',
+                ];
+            }
+            else {
+                $rules = [
+                    'penjelasan_pekerjaan' => 'required',
+                    'nama_perwakilan' => 'required|string',
+                    'nip_perwakilan' => 'required|numeric',
+                ];
+    
+                $messages = [
+                    'penjelasan_pekerjaan.required' => 'Penjelasan Pekerjaan wajib diisi',
+                    'nama_perwakilan.required' => 'Nama Perwakilan wajib diisi',
+                    'nip_perwakilan.required' => 'NIP Perwakilan wajib diisi',
+                ];
+            }
 
             $validator = Validator::make($request->all(), $rules, $messages);
             if($validator->fails()){
@@ -1353,114 +1398,116 @@ class TicketingController extends Controller
                                 }
                             }
 
-                            $alat_kerja_delete = LayananDetail::where('id_layanan_kategori', 3)->where('id_layanan', $id_layanan)->get();
-                            $total_alat_kerja_delete = count($alat_kerja_delete);
-                            for ($i=0; $i < $total_alat_kerja_delete; $i++) { 
-                                $alat_kerja_delete[$i]->delete();
-                            }
+                            if($layanan->kategori != "Dukungan Zoom Meeting") {
+                                $alat_kerja_delete = LayananDetail::where('id_layanan_kategori', 3)->where('id_layanan', $id_layanan)->get();
+                                $total_alat_kerja_delete = count($alat_kerja_delete);
+                                for ($i=0; $i < $total_alat_kerja_delete; $i++) { 
+                                    $alat_kerja_delete[$i]->delete();
+                                }
 
-                            $alat_kerja = $request->get('alat_kerja');
-                            $alat_kerja_lainnya = $request->get('alat_kerja_lainnya');
-                            $total_alat_kerja = count($request->get('alat_kerja'));
-                            for ($i=0; $i < $total_alat_kerja; $i++) { 
-                                $alat_kerja_save = new LayananDetail([
-                                    'id_layanan' => $id_layanan,
-                                    'value' => $alat_kerja[$i],
-                                    'id_layanan_kategori' => 3
-                                ]);
-                                $alat_kerja_save->save();
-                            }
-                            if($alat_kerja_lainnya != null) {
-                                $alat_kerja_save = new LayananDetail([
-                                    'id_layanan' => $id_layanan,
-                                    'value' => $alat_kerja_lainnya,
-                                    'id_layanan_kategori' => 3
-                                ]);
-                                $alat_kerja_save->save();
-                            }
+                                $alat_kerja = $request->get('alat_kerja');
+                                $alat_kerja_lainnya = $request->get('alat_kerja_lainnya');
+                                $total_alat_kerja = count($request->get('alat_kerja'));
+                                for ($i=0; $i < $total_alat_kerja; $i++) { 
+                                    $alat_kerja_save = new LayananDetail([
+                                        'id_layanan' => $id_layanan,
+                                        'value' => $alat_kerja[$i],
+                                        'id_layanan_kategori' => 3
+                                    ]);
+                                    $alat_kerja_save->save();
+                                }
+                                if($alat_kerja_lainnya != null) {
+                                    $alat_kerja_save = new LayananDetail([
+                                        'id_layanan' => $id_layanan,
+                                        'value' => $alat_kerja_lainnya,
+                                        'id_layanan_kategori' => 3
+                                    ]);
+                                    $alat_kerja_save->save();
+                                }
 
-                            $perangkat_delete = LayananDetail::where('id_layanan_kategori', 4)->where('id_layanan', $id_layanan)->get();
-                            $total_perangkat_delete = count($perangkat_delete);
-                            for ($i=0; $i < $total_perangkat_delete; $i++) { 
-                                $perangkat_delete[$i]->delete();
-                            }
+                                $perangkat_delete = LayananDetail::where('id_layanan_kategori', 4)->where('id_layanan', $id_layanan)->get();
+                                $total_perangkat_delete = count($perangkat_delete);
+                                for ($i=0; $i < $total_perangkat_delete; $i++) { 
+                                    $perangkat_delete[$i]->delete();
+                                }
 
-                            $perangkat = $request->get('perangkat');
-                            $perangkat_lainnya = $request->get('perangkat_lainnya');
-                            $total_perangkat = count($request->get('perangkat'));
-                            for ($i=0; $i < $total_perangkat; $i++) { 
-                                $perangkat_save = new LayananDetail([
-                                    'id_layanan' => $id_layanan,
-                                    'value' => $perangkat[$i],
-                                    'id_layanan_kategori' => 4
-                                ]);
-                                $perangkat_save->save();
-                            }
-                            if($perangkat_lainnya != null) {
-                                $perangkat_save = new LayananDetail([
-                                    'id_layanan' => $id_layanan,
-                                    'value' => $perangkat_lainnya,
-                                    'id_layanan_kategori' => 4
-                                ]);
-                                $perangkat_save->save();
-                            }
+                                $perangkat = $request->get('perangkat');
+                                $perangkat_lainnya = $request->get('perangkat_lainnya');
+                                $total_perangkat = count($request->get('perangkat'));
+                                for ($i=0; $i < $total_perangkat; $i++) { 
+                                    $perangkat_save = new LayananDetail([
+                                        'id_layanan' => $id_layanan,
+                                        'value' => $perangkat[$i],
+                                        'id_layanan_kategori' => 4
+                                    ]);
+                                    $perangkat_save->save();
+                                }
+                                if($perangkat_lainnya != null) {
+                                    $perangkat_save = new LayananDetail([
+                                        'id_layanan' => $id_layanan,
+                                        'value' => $perangkat_lainnya,
+                                        'id_layanan_kategori' => 4
+                                    ]);
+                                    $perangkat_save->save();
+                                }
 
-                            $barang_habis_delete = LayananDetail::where('id_layanan_kategori', 5)->where('id_layanan', $id_layanan)->get();
-                            $total_barang_habis_delete = count($barang_habis_delete);
-                            for ($i=0; $i < $total_barang_habis_delete; $i++) { 
-                                $barang_habis_delete[$i]->delete();
-                            }
+                                $barang_habis_delete = LayananDetail::where('id_layanan_kategori', 5)->where('id_layanan', $id_layanan)->get();
+                                $total_barang_habis_delete = count($barang_habis_delete);
+                                for ($i=0; $i < $total_barang_habis_delete; $i++) { 
+                                    $barang_habis_delete[$i]->delete();
+                                }
 
-                            $barang_habis = $request->get('barang_habis');
-                            if($barang_habis != null) {
-                                foreach ($barang_habis as $b) {
-                                    if(isset($b['id_barang'])) {
-                                        $barang_habis_save = new LayananDetail([
-                                            'id_layanan' => $id_layanan,
-                                            'value' => $b['id_barang'],
-                                            'value_2' => $b['jumlah'],
-                                            'id_layanan_kategori' => 5
-                                        ]);
-                                        $barang_habis_save->save();
-                                        $barang = InventarisBarang::where('id_barang', $b['id_barang'])->first();
-                                        $barang->jumlah_terpakai = $barang->jumlah_terpakai + $b['jumlah'];
-                                        $barang->update();
+                                $barang_habis = $request->get('barang_habis');
+                                if($barang_habis != null) {
+                                    foreach ($barang_habis as $b) {
+                                        if(isset($b['id_barang'])) {
+                                            $barang_habis_save = new LayananDetail([
+                                                'id_layanan' => $id_layanan,
+                                                'value' => $b['id_barang'],
+                                                'value_2' => $b['jumlah'],
+                                                'id_layanan_kategori' => 5
+                                            ]);
+                                            $barang_habis_save->save();
+                                            $barang = InventarisBarang::where('id_barang', $b['id_barang'])->first();
+                                            $barang->jumlah_terpakai = $barang->jumlah_terpakai + $b['jumlah'];
+                                            $barang->update();
+                                        }
                                     }
                                 }
-                            }
 
-                            if($request->get('perangkat_kominfo_jenis') != null && $request->get('perangkat_kominfo_SN') != null) {
-                                $perangkat_kominfo_delete = LayananDetail::where('id_layanan_kategori', 6)->where('id_layanan', $id_layanan)->get();
-                                $total_perangkat_kominfo_delete = count($perangkat_kominfo_delete);
-                                for ($i=0; $i < $total_perangkat_kominfo_delete; $i++) { 
-                                    $perangkat_kominfo_delete[$i]->delete();
+                                if($request->get('perangkat_kominfo_jenis') != null && $request->get('perangkat_kominfo_SN') != null) {
+                                    $perangkat_kominfo_delete = LayananDetail::where('id_layanan_kategori', 6)->where('id_layanan', $id_layanan)->get();
+                                    $total_perangkat_kominfo_delete = count($perangkat_kominfo_delete);
+                                    for ($i=0; $i < $total_perangkat_kominfo_delete; $i++) { 
+                                        $perangkat_kominfo_delete[$i]->delete();
+                                    }
+
+                                    $total_perangkat_kominfo = count($request->get('perangkat_kominfo_jenis'));
+                                    for ($i=0; $i < $total_perangkat_kominfo; $i++) { 
+                                        $perangkat_kominfo_save = new LayananDetail([
+                                            'id_layanan' => $id_layanan,
+                                            'value' => $request->get('perangkat_kominfo_jenis')[$i],
+                                            'value_2' => $request->get('perangkat_kominfo_SN')[$i],
+                                            'id_layanan_kategori' => 6
+                                        ]);
+                                        $perangkat_kominfo_save->save();
+                                    }
+                                }
+                                
+                                $ip_address_delete = LayananDetail::where('id_layanan_kategori', 7)->where('id_layanan', $id_layanan)->get();
+                                $total_ip_address_delete = count($ip_address_delete);
+                                for ($i=0; $i < $total_ip_address_delete; $i++) { 
+                                    $ip_address_delete[$i]->delete();
                                 }
 
-                                $total_perangkat_kominfo = count($request->get('perangkat_kominfo_jenis'));
-                                for ($i=0; $i < $total_perangkat_kominfo; $i++) { 
-                                    $perangkat_kominfo_save = new LayananDetail([
-                                        'id_layanan' => $id_layanan,
-                                        'value' => $request->get('perangkat_kominfo_jenis')[$i],
-                                        'value_2' => $request->get('perangkat_kominfo_SN')[$i],
-                                        'id_layanan_kategori' => 6
-                                    ]);
-                                    $perangkat_kominfo_save->save();
-                                }
+                                $ip_address_save = new LayananDetail([
+                                    'id_layanan' => $id_layanan,
+                                    'value' => $request->get('ip_1'),
+                                    'value_2' => $request->get('ip_2'),
+                                    'id_layanan_kategori' => 7
+                                ]);
+                                $ip_address_save->save();
                             }
-                            
-                            $ip_address_delete = LayananDetail::where('id_layanan_kategori', 7)->where('id_layanan', $id_layanan)->get();
-                            $total_ip_address_delete = count($ip_address_delete);
-                            for ($i=0; $i < $total_ip_address_delete; $i++) { 
-                                $ip_address_delete[$i]->delete();
-                            }
-
-                            $ip_address_save = new LayananDetail([
-                                'id_layanan' => $id_layanan,
-                                'value' => $request->get('ip_1'),
-                                'value_2' => $request->get('ip_2'),
-                                'id_layanan_kategori' => 7
-                            ]);
-                            $ip_address_save->save();
                             return redirect('/ticketing')->with('success', 'Data ticketing telah diselesaikan');
                         }
                     }
