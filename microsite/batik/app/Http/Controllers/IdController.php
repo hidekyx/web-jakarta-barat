@@ -244,7 +244,7 @@ class IdController extends Controller
             'cakupan' => $cakupan,
             'deskripsi' => $deskripsi,
             'foto_kondisi' => $foto_kondisi,
-            'surat_permohonan' => $file_surat,
+            'file_surat' => $file_surat,
             'no_surat' => $no_surat,
             'tanggal_surat' => $tanggal_surat,
             'perihal_surat' => $perihal_surat,
