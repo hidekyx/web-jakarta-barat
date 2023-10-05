@@ -54,7 +54,17 @@
                                                         <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=prosedur-permohonan-penyelesaian-sengketa-informasi">Prosedur Permohonan Penyelesaian Sengketa Informasi</a></li>
                                                     </ul>
                                                 </li>
+                                            @elseif($sm->nama_menu == "Daftar Informasi Publik")
+                                                <li class="dropdown-submenu"><a href="#">{{ $sm->nama_menu }}</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=daftar-informasi-publik-setiap-saat">Setiap Saat</a></li>
+                                                        <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=daftar-informasi-publik-berkala">Berkala</a></li>
+                                                        <li><a href="{{ asset('/'.$kewilayahan->username) }}/ppid?page=daftar-informasi-publik-serta-merta">Serta Merta</a></li>
+                                                    </ul>
+                                                </li>
                                             @elseif($sm->nama_menu == "Prosedur Permohonan Pelayanan Informasi" || $sm->nama_menu == "Prosedur Pengajuan Keberatan Informasi" || $sm->nama_menu == "Prosedur Penanganan Sengketa Informasi" || $sm->nama_menu == "Prosedur Permohonan Penyelesaian Sengketa Informasi")
+                                                @continue
+                                            @elseif($sm->nama_menu == "Daftar Informasi Publik Setiap Saat" || $sm->nama_menu == "Daftar Informasi Publik Berkala" || $sm->nama_menu == "Daftar Informasi Publik Serta Merta")
                                                 @continue
                                             @elseif($sm->nama_menu == "Profil Pimpinan")
                                                 @continue
