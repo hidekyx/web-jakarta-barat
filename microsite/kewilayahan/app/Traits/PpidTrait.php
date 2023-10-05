@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use App\Models\PpidInformasiBerkala;
-use App\Models\PpidInformasiSertaMerta;
+use App\Models\PpidInformasiSertamerta;
 use App\Models\PpidInformasiSetiapsaat;
 use App\Models\PpidKeberatan;
 use App\Models\PpidLaporan;
@@ -48,7 +48,7 @@ trait PpidTrait
             $data_ppid = PpidInformasiBerkala::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
         }
         elseif($subpage == "daftar-informasi-publik-serta-merta" || $subpage == "Daftar Informasi Publik Serta Merta") {
-            $data_ppid = PpidInformasiSertaMerta::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
+            $data_ppid = PpidInformasiSertamerta::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
         }
         elseif($subpage == "laporan-penyelesaian-ppid" || $subpage == "Laporan Penyelesaian PPID") {
             $data_ppid = PpidLaporan::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
@@ -72,7 +72,7 @@ trait PpidTrait
             $data_ppid ['waktu-dan-biaya-layanan-informasi'] = PpidWaktubiaya::where('id_user', $id_user)->first();
             $data_ppid ['daftar-informasi-publik-setiap-saat'] = PpidInformasiSetiapsaat::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
             $data_ppid ['daftar-informasi-publik-berkala'] = PpidInformasiBerkala::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
-            $data_ppid ['daftar-informasi-publik-serta-merta'] = PpidInformasiSertaMerta::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
+            $data_ppid ['daftar-informasi-publik-serta-merta'] = PpidInformasiSertamerta::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
             $data_ppid ['laporan-penyelesaian-ppid'] = PpidLaporan::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
             $data_ppid ['sop-ppid'] = PpidSop::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
             $data_ppid ['visi-dan-misi-ppid'] = PpidVisimisi::where('id_user', $id_user)->first();
@@ -93,7 +93,7 @@ trait PpidTrait
             $data_ppid = PpidInformasiBerkala::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
         }
         elseif($subpage == "daftar-informasi-publik-serta-merta" || $subpage == "Daftar Informasi Publik Serta Merta") {
-            $data_ppid = PpidInformasiSertaMerta::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+            $data_ppid = PpidInformasiSertamerta::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
         }
         elseif($subpage == "laporan-penyelesaian-ppid" || $subpage == "Laporan Penyelesaian PPID") {
             $data_ppid = PpidLaporan::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
@@ -256,7 +256,7 @@ trait PpidTrait
                 $randomName = $filenameSimpan;
                 $path = $request->file('file')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik/', $filenameSimpan);
             }
-            $data_ppid = new PpidInformasiSertaMerta([
+            $data_ppid = new PpidInformasiSertamerta([
                 'id_user' => $id_user,
                 'judul' => $request->get('judul'),
                 'keterangan' => $request->get('keterangan'),
