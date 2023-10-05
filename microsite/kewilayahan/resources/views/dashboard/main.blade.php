@@ -92,7 +92,7 @@
                 @include('dashboard.menu.ppid_prosedur')
             @elseif($submenu == "Tugas Dan Fungsi Ppid" || $submenu == "Waktu Dan Biaya Layanan Informasi" || $submenu == "Visi Dan Misi Ppid" || $submenu == "Maklumat Pelayanan Informasi")
                 @include('dashboard.menu.ppid')
-            @elseif($submenu == "Daftar Informasi Publik")
+            @elseif($submenu == "Daftar Informasi Publik Setiap Saat" || $submenu == "Daftar Informasi Publik Berkala" || $submenu == "Daftar Informasi Publik Serta Merta")
                 @include('dashboard.menu.ppid_informasi_list')
             @elseif($submenu == "Laporan Penyelesaian Ppid")
                 @include('dashboard.menu.ppid_laporan_list')
