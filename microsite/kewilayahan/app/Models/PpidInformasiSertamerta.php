@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PpidInformasi extends Model
+class PpidInformasiSertaMerta extends Model
 {
-    protected $table = "ppid_informasi";
+    protected $table = "ppid_informasi_sertamerta";
     protected $primaryKey = 'id_ppid';
     
     protected $fillable = [
