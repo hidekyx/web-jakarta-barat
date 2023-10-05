@@ -18,6 +18,7 @@
 
 <body>
     <div class="body-inner">
+        @include('front.disabilitas')
         @if($page == "Beranda")
             @include('front.header')
             @isset($data['foto-keperluan-website'])
@@ -52,11 +53,7 @@
             @include('front.breadcrump')
             @include('front.detail_layanan')
             @include('front.footer')
-        @elseif($page == "Berita - List")
-            @include('front.header')
-            @include('front.berita_breadcrump')
-            @include('front.berita_list')
-            @include('front.footer')
+
         @endif
     </div>
     
@@ -82,6 +79,7 @@
             $('#datatable').DataTable();
         } );
     </script>
+    @stack('scripts')
 </body>
 
 </html>
