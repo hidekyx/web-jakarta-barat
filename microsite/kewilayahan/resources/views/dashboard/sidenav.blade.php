@@ -34,7 +34,7 @@
                 @foreach ($submenu as $sm)
                 @if($sm->nama_menu == "LMK" && $logged_user->kategori == "Kecamatan")
                     @continue
-                @elseif($sm->nama_menu == "Layanan PPID" || $sm->nama_menu == "Prosedur Layanan PPID")
+                @elseif($sm->nama_menu == "Layanan PPID" || $sm->nama_menu == "Prosedur Layanan PPID" || $sm->nama_menu == "Daftar Informasi Publik")
                     @continue
                 @endif
                 <li>
