@@ -362,7 +362,11 @@
                                         </div>
                                         <div class="mb-3">
                                             <p class="label-body mb-0 fw-bold text-wrap">Surat Permohonan</p>
+                                            @if($l->surat_permohonan)
                                             <a class="text-info" target="_blank" href="{{ asset('/storage/layanan/astik/surat_permohonan/'.$l->surat_permohonan) }}">Lihat Surat Permohonan</a>
+                                            @else
+                                            -
+                                            @endif
                                         </div>
                                         <div class="mb-3">
                                             <p class="label-body mb-0 fw-bold text-wrap">Tanggal Permohonan</p>
