@@ -41,10 +41,16 @@
         @endif
     </div>
         <div class="row container">
-            <div class="col-12 col-lg">
-                @if ($id_role == 1 || $id_role == 5)
-                <a href="#"><button class="btn btn-sm btn-info">Tambah Data</button></a>
-                @endif
+            <div class="col-12 col-lg mb-4">
+                <form role="form" class="text-start">
+                    <div class="input-group input-group-outline" style="width:fit-content">
+                        <select class="form-control" name="tahun" required style="height: auto; width: 150px;">
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
+                        <button type="submit" class="btn btn-outline-primary mb-0">Filter</button>
+                    </div>
+                </form>
             </div>
         </div>
         
@@ -86,8 +92,8 @@
                                 <a href="#"><i class="material-icons ms-auto text-success cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak Laporan Barang">print</i></a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
-                    @endforeach
                 </table>
                 <hr class="mt-0">
                 </div>
@@ -116,7 +122,8 @@
                         </tr>
                     </thead>
                     <tbody class="rekap-barang">
-                        @foreach ($riwayat_barang as $key => $rb)
+                        @if($riwayat_barang[$detail_barang->nama_barang])
+                        @foreach ($riwayat_barang[$detail_barang->nama_barang] as $key => $rb)
                         <tr>
                             <td>
                                 <p class="text-xs font-weight-bold mb-0 ps-3">{{ $key+1 }}</p>
@@ -136,6 +143,7 @@
                             </td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

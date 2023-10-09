@@ -23,12 +23,23 @@ class InventarisController extends Controller
             $id_role = $logged_user->id_role;
 
             if(($id_role == 1 || $id_role == 2 || $id_role == 4 || $id_role == 6)) {
+                $currentURL = url()->full();
+                $components = parse_url($currentURL);
+                if(isset($components['query'])) {
+                    parse_str($components['query'], $results); 
+                    if(isset($results['tahun']) && $results['tahun'] != null) {
+                        $tahun = $results['tahun'];
+                    }
+                }
+                else {
+                    $tahun = Carbon::now()->isoFormat('Y');
+                }
                 $inventaris_barang = InventarisBarang::get();
                 $instansi = Instansi::get();
-                $id_barang = 1;
-                $detail_barang = InventarisBarang::where('id_barang', $id_barang)->first();
-                $riwayat_barang = $this->get_riwayat_barang($id_barang);
-                // dd($satuan_barang);
+                foreach($inventaris_barang as $ib) {
+                    $riwayat_barang[$ib->nama_barang] = $this->get_riwayat_barang($ib->id_barang, $tahun);
+                }
+                $detail_barang = InventarisBarang::where('id_barang', 1)->first();
                 return view("main", [
                     'page' => "Barang-Pakai-Habis",
                     'subpage' => "BarangList",
@@ -44,15 +55,19 @@ class InventarisController extends Controller
         return redirect('/');
     }
 
-    public function get_riwayat_barang($id_barang) {
+    public function get_riwayat_barang($id_barang, $tahun = 2023) {
         $layanan_detail = LayananDetail::where('id_layanan_kategori', 5)->where('value', $id_barang)->orderBy('id_layanan_detail', 'DESC')->get();
+        $riwayat_barang = null;
         foreach($layanan_detail as $key => $ld) {
-            $riwayat_barang[$key]['kode_layanan'] = Layanan::where('id_layanan', $ld->id_layanan)->first()->kode_layanan;
-            $riwayat_barang[$key]['tanggal'] = Layanan::where('id_layanan', $ld->id_layanan)->first()->tanggal;
-            $riwayat_barang[$key]['instansi'] = Layanan::where('id_layanan', $ld->id_layanan)->first()->instansi->nama_instansi;
-            $riwayat_barang[$key]['jumlah_terpakai'] = $ld->value_2;
-            $riwayat_barang[$key]['hari'] = Carbon::parse(Layanan::where('id_layanan', $ld->id_layanan)->first()->tanggal)->isoFormat('dddd');
-            $riwayat_barang[$key]['tanggal'] = Carbon::parse(Layanan::where('id_layanan', $ld->id_layanan)->first()->tanggal)->isoFormat('D MMMM Y');
+            $cek_tahun[$key]['tahun'] = Carbon::parse(Layanan::where('id_layanan', $ld->id_layanan)->first()->tanggal)->isoFormat('Y');
+            if($cek_tahun[$key]['tahun'] == $tahun) {
+                $riwayat_barang[$key]['tanggal'] = Layanan::where('id_layanan', $ld->id_layanan)->whereYear('created_at', $tahun)->first()->tanggal;
+                $riwayat_barang[$key]['kode_layanan'] = Layanan::where('id_layanan', $ld->id_layanan)->first()->kode_layanan;
+                $riwayat_barang[$key]['instansi'] = Layanan::where('id_layanan', $ld->id_layanan)->first()->instansi->nama_instansi;
+                $riwayat_barang[$key]['jumlah_terpakai'] = $ld->value_2;
+                $riwayat_barang[$key]['hari'] = Carbon::parse(Layanan::where('id_layanan', $ld->id_layanan)->first()->tanggal)->isoFormat('dddd');
+                $riwayat_barang[$key]['tanggal'] = Carbon::parse(Layanan::where('id_layanan', $ld->id_layanan)->first()->tanggal)->isoFormat('D MMMM Y');
+            }
         }
         return $riwayat_barang;
     }
