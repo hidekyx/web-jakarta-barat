@@ -23,15 +23,14 @@ class BeritaController extends Controller
         if($kewilayahan) { 
             $list_menu = $this->get_list_menu();
             $data = $this->get_berita_list($kewilayahan);
-            // $berita_paginate_collection = collect($data['berita_paginate'], true);
-            // $data['berita_paginate_collection'] = new LengthAwarePaginator(
-            //     $berita_paginate_collection->slice(0, 10),
-            //     $berita_paginate_collection->count(),
-            //     10,
-            //     1,
-            //     ['path' => request()->url(), 'query' => request()->query()]
-            // );
-            // dd($data);
+            $berita_paginate_collection = collect($data['berita_paginate'], true);
+            $data['berita_paginate_collection'] = new LengthAwarePaginator(
+                $berita_paginate_collection->slice(0, 10),
+                $berita_paginate_collection->count(),
+                10,
+                1,
+                ['path' => request()->url(), 'query' => request()->query()]
+            );
             return view("front.main", [
                 'kewilayahan' => $kewilayahan,
                 'list_menu' => $list_menu,
