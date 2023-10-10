@@ -53,7 +53,13 @@
             @include('front.breadcrump')
             @include('front.detail_layanan')
             @include('front.footer')
-
+        @elseif($page == "Berita - List")
+            @include('front.header')
+            @include('front.berita_breadcrump')
+            @if(count($data['berita']))
+                @include('front.berita_list')
+            @endif
+            @include('front.footer')
         @endif
     </div>
     
