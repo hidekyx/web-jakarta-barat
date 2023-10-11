@@ -18,7 +18,8 @@ class Kegiatan extends Model
         'deskripsi',
         'lokasi',
         'gambar',
-        'link'
+        'link',
+        'is_from_batik'
     ];
 
     public function user()

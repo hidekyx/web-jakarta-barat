@@ -189,7 +189,11 @@
                     <td>
                         @if($k->gambar != null)
                         <div class="overflow" style="overflow: hidden;">
+                            @if($k->is_from_batik == 1)
+                            <img class="zoom" src="{{ asset('/storage/layanan/id/hasil/'.$k->gambar) }}" style="min-width: 250px; max-width: 250px; object-fit: cover;" data-toggle="modal" data-target="#gambarid{{ $k->gambar }}">
+                            @else
                             <img class="zoom" src="{{ asset('/storage/images/dokumentasi/'.$k->gambar) }}" style="min-width: 250px; max-width: 250px; object-fit: cover;" data-toggle="modal" data-target="#gambarid{{ $k->gambar }}">
+                            @endif
                         </div>
                         <!-- Modal Picture -->
                         <div class="modal fade" id="gambarid{{ $k->gambar }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -202,7 +206,11 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    @if($k->is_from_batik == 1)
+                                    <img src="{{ asset('/storage/layanan/id/hasil/'.$k->gambar) }}" width="100%">
+                                    @else
                                     <img src="{{ asset('/storage/images/dokumentasi/'.$k->gambar) }}" width="100%">
+                                    @endif
                                 </div>
                                 </div>
                             </div>
