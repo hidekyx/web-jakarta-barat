@@ -219,7 +219,7 @@
                             @endphp
                         </p>
                     </td>
-                    @if ($id_role == "2" && $a->validated == "N")
+                    @if (($id_role == "2" || $id_role == "7") && $a->validated == "N")
                     <td>
                         <a href="{{ asset('/absensi/edit_keterangan/'.$a->id_absensi) }}"><i class="fas fa-edit text-info text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i></a>
                     </td>
@@ -255,7 +255,7 @@
                 </tr>
                 @endif
                 @endforeach
-                @if ($id_role == "2" && $validated == false)
+                @if (($id_role == "2" || $id_role == "7") && $validated == false)
                 <tr>
                     <td colspan="12" align="right">
                         <button type="submit" class="btn btn-sm bg-gradient-primary mb-0 toast-btn">Validasi Absen</button>

@@ -8,7 +8,7 @@
     </div>
     
     <div class="card-body px-0 pb-2">
-        @if ($id_role == 1)
+        @if ($id_role == 1 || $id_role == 7)
         <div class="ms-3 mb-0">
         <a class="mr-3" href="{{ asset('/absensi/import') }}"><button class="btn btn-sm bg-gradient-success toast-btn" type="button" data-target="successToast">Import Data Absen</button></a>
         <a class="mr-3" href="{{ asset('/absensi/wfh') }}"><button class="btn btn-sm bg-gradient-info toast-btn" type="button" data-target="successToast">Import Data WFH</button></a>

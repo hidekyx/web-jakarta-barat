@@ -22,7 +22,7 @@ class KegiatanController extends Controller
             $logged_user = Auth::user();
             $id_role = $logged_user->id_role;
 
-            if($id_role == 1 || $id_role == 4) {
+            if($id_role == 1 || $id_role == 4 || $id_role == 7) {
                 $tenaga_terampil = User::where('id_role','=','3')->where('status_kontrak','Aktif')->get();
                 return view("main", [
                     'page' => "Kegiatan",
@@ -72,7 +72,7 @@ class KegiatanController extends Controller
 
             $logged_user = Auth::user();
             if ($user->id_role == 3) {
-                if($logged_user->id_role == 1 || $logged_user->id_role == 4) {
+                if($logged_user->id_role == 1 || $logged_user->id_role == 4 || $logged_user->id_role == 7) {
                     return $this->list_load($user, $logged_user, $username);
                 }
                 else if($logged_user->id_role == 2 || 5 && $logged_user->id_seksi == $user->id_seksi) {
