@@ -30,7 +30,7 @@ class ProfilController extends Controller
                     ]);
                     })->get();
                 }
-                else if($id_role == 1 || $id_role == 4) {
+                else if($id_role == 1 || $id_role == 4 || $id_role == 7) {
                     $tenaga_terampil = User::where('id_role','=','3')->get();
                 }
                 
@@ -69,7 +69,7 @@ class ProfilController extends Controller
                 }
                 $id_seksi = $user->id_seksi;
                 $id_seksi_logged = $logged_user->id_seksi;
-                if ($id_seksi == $id_seksi_logged || $logged_id_role == 1 || $logged_id_role == 4) {
+                if ($id_seksi == $id_seksi_logged || $logged_id_role == 1 || $logged_id_role == 4 || $logged_id_role == 7) {
                     $pegawai_seksi = User::whereHas('seksi', function($query) use ($id_seksi, $loaded_id_user) {
                     $query->where([
                                 ['id_seksi', '=', $id_seksi],

@@ -43,7 +43,7 @@
 </div>
 @endif
 
-@if ($id_role == "1")
+@if ($id_role == "1" || $id_role == "7")
 <div class="col-md-6 mb-4">
 <div class="card mb-4 h-100">
 <div class="card-header pb-0 px-3">
