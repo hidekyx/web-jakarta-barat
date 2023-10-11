@@ -98,8 +98,8 @@ Route::get('/kip', [KipController::class, 'list']);
 Route::get('/inventaris/barang-pakai-habis', [InventarisController::class, 'barang_list']);
 Route::get('/inventaris/get_json_barang/{id_barang}', [InventarisController::class, 'get_json_barang']);
 Route::get('/inventaris/barang-aset', [InventarisController::class, 'aset_list']);
-// Route::get('/inventaris/import', [InventarisController::class, 'import_view']);
-// Route::post('/inventaris/generate', [InventarisController::class, 'import_action']);
+Route::get('/inventaris/import', [InventarisController::class, 'import_view']);
+Route::post('/inventaris/generate', [InventarisController::class, 'import_action']);
 
 Route::get('/net-ticketing', [TicketingController::class, 'batik']);
 Route::get('/net-ticketing/status/{kode_layanan}', [TicketingController::class, 'batik_status']);
