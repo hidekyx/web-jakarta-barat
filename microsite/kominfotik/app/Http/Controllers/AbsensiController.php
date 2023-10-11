@@ -22,7 +22,7 @@ class AbsensiController extends Controller
             $logged_user = Auth::user();
             $id_role = $logged_user->id_role;
 
-            if($id_role == 1 || $id_role == 4) {
+            if($id_role == 1 || $id_role == 4 || $id_role == 7) {
                 $tenaga_terampil = User::where('id_role','=','3')->where('status_kontrak','Aktif')->get();
                 return view("main", [
                     'page' => "Absensi",
@@ -71,7 +71,7 @@ class AbsensiController extends Controller
 
             $logged_user = Auth::user();
             if ($user->id_role == 3) {
-                if($logged_user->id_role == 1 || $logged_user->id_role == 4) {
+                if($logged_user->id_role == 1 || $logged_user->id_role == 4 || $logged_user->id_role == 7) {
                     return $this->list_load($user, $logged_user);
                 }
                 else if($logged_user->id_role == 2 || 5 && $logged_user->id_seksi == $user->id_seksi) {
@@ -318,7 +318,7 @@ class AbsensiController extends Controller
     public function import_view () {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 1) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 return view("main", [
                     'page' => "Absensi",
                     'subpage' => "Import",
@@ -334,7 +334,7 @@ class AbsensiController extends Controller
     public function import_action(Request $request) {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 1) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 $tanggal_awal = $request->get('tanggal_awal');
                 $tanggal_akhir = $request->get('tanggal_akhir');
                 for($i = strtotime($tanggal_awal); $i <= strtotime($tanggal_akhir); $i = $i + 86400) {
@@ -411,7 +411,7 @@ class AbsensiController extends Controller
     public function wfh_view () {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 1) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 return view("main", [
                     'page' => "Absensi",
                     'subpage' => "WFH",
@@ -427,7 +427,7 @@ class AbsensiController extends Controller
     public function wfh_action(Request $request) {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 1) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 $tanggal_awal = $request->get('tanggal_awal');
                 $tanggal_akhir = $request->get('tanggal_akhir');
                 for($i = strtotime($tanggal_awal); $i <= strtotime($tanggal_akhir); $i = $i + 86400) {
@@ -498,7 +498,7 @@ class AbsensiController extends Controller
     public function libur_view () {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 1) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 return view("main", [
                     'page' => "Absensi",
                     'subpage' => "Libur",
@@ -514,7 +514,7 @@ class AbsensiController extends Controller
     public function libur_action(Request $request) {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 1) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 $tanggal = $request->get('tanggal');
                 $keterangan = $request->get('keterangan');
                 $rules = [
@@ -605,7 +605,7 @@ class AbsensiController extends Controller
                 $absensi = Absensi::where('id_absensi', $id_absensi)->get();
                 foreach ($absensi as $a) {
                     if($a->status != "Libur" && $a->validated == "N") {
-                        if($logged_user->id_role == 1) {
+                        if($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                             return $this->load_edit_keterangan($absensi, $logged_user);
                         }
                         else if($logged_user->id_role == 2 && $logged_user->id_seksi == $a->user->id_seksi) {
@@ -663,7 +663,7 @@ class AbsensiController extends Controller
     public function validasi_view () {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 2) {
+            if ($logged_user->id_role == 2 || $logged_user->id_role == 7) {
                 return view("main", [
                     'page' => "Absensi",
                     'subpage' => "Validasi",
@@ -679,7 +679,7 @@ class AbsensiController extends Controller
     public function validasi_action (Request $request) {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 2) {
+            if ($logged_user->id_role == 2 || $logged_user->id_role == 7) {
                 $id_absensi = $request->get('id_absensi');
                 
                 foreach ($id_absensi as $key => $i) {
@@ -759,7 +759,7 @@ class AbsensiController extends Controller
     public function unvalidasi_view () {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 1) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 $seksi = Seksi::all();
                 foreach ($seksi as $s) {
                     $user[$s->id_seksi] = User::where('id_seksi', $s->id_seksi)->where('id_role', 3)->get();
@@ -781,7 +781,7 @@ class AbsensiController extends Controller
     public function unvalidasi_action (Request $request) {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            if ($logged_user->id_role == 1) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 $bulan = $request->get('bulan');
                 $id_user = $request->get('id_user');
                 $rules = [
