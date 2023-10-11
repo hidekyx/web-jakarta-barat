@@ -79,7 +79,7 @@ class HomeController extends Controller
                 ]);
             }
 
-            if ($logged_user->id_role == 1 || $logged_user->id_role == 4) {
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 4 || $logged_user->id_role == 7) {
                 $validated_absen = null;
                 $validated_kegiatan = null;
                 $waktu_validasi_absen = null;
