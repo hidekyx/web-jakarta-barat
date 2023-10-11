@@ -45,7 +45,7 @@
             </div>
         </div>
         <hr>
-        <h5 class="contact-title sc-pb-15">Informasi Pemilik</h5>
+        <h5 class="contact-title sc-pb-15">Informasi Narahubung</h5>
         <div class="row">
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Nama Narahubung</b>

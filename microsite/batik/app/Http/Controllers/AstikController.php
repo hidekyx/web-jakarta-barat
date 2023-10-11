@@ -82,7 +82,7 @@ class AstikController extends Controller
         $id_instansi = $kode_layanan = $kategori = $nama_pemohon = $nip_pemohon = $jabatan = $no_hp_pemohon = $email = $alamat_kantor = $penjelasan = $nama_narahubung = $no_hp_narahubung = $file_surat = null;
         $id_layanan_astik = $tanggal_pelaksanaan = $waktu_mulai = $waktu_akhir = $lokasi_pelaksanaan = $jammer_sinyal = $perangkat = $seksi = $bidang = $perangkat_daerah = null;
         $jenis_akun = $target_akun = $nama_domain = $jenis_web = $fungsi_web = $lokasi_server = $ip_address = $port = $operating_system = $protokol = null;
-        $bahasa = $database = $service_lain = $organisasi = $kota = $provinsi = $file_ektp = $file_sk = $nik_pemohon = null;
+        $bahasa = $database = $service_lain = $organisasi = $kota = $provinsi = $file_ektp = $file_sk = $nik_pemohon = $jenis_permasalahan = null;
 
         if($request->kategori == "Kontra Penginderaan") {
             $rules = [
@@ -340,7 +340,7 @@ class AstikController extends Controller
             $nama_pemohon = $request->get('nama_pemilik_pentest');
             $nip_pemohon = $request->get('nip_pemilik_pentest');
             $jabatan = $request->get('jabatan_pemilik_pentest');
-            $kode_kategori = "AP"; // Astik Pentest
+            $kode_kategori = "AX"; // Astik Pentest
             $kategori_file_surat = "file_surat_pentest";
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -603,6 +603,67 @@ class AstikController extends Controller
             }
         }
 
+        elseif($request->kategori == "Troubleshooting Aplikasi") {
+            $rules = [
+                'kategori' => 'required|string',
+                'nama_pemohon_troubleshooting' => 'required|string',
+                'nip_pemohon_troubleshooting' => 'required',
+                'jabatan_pemohon_troubleshooting' => 'required|string',
+                'instansi_troubleshooting' => 'required|int',
+                'no_hp_pemohon_troubleshooting' => 'required',
+                'email_pemohon_troubleshooting' => 'required|string',
+                'alamat_kantor_troubleshooting' => 'required|string',
+                'deskripsi_troubleshooting' => 'required|string',
+                'jenis_permasalahan_troubleshooting' => 'required|string',
+                'file_surat_troubleshooting' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:10000'
+            ];
+            $messages = [
+                'kategori.required' => 'Kategori wajib dipilih',
+                'kategori.string' => 'Kategori tidak valid',
+                'nama_pemohon_troubleshooting.required' => 'Nama pemohon wajib diisi',
+                'nama_pemohon_troubleshooting.string' => 'Nama pemohon tidak valid',
+                'nip_pemohon_troubleshooting.required' => 'NIP pemohon wajib diisi',
+                'jabatan_pemohon_troubleshooting.required' => 'Jabatan pemohon wajib diisi',
+                'jabatan_pemohon_troubleshooting.string' => 'Jabatan pemohon tidak valid',
+                'instansi_troubleshooting.required' => 'Unit kerja wajib dipilih',
+                'instansi_troubleshooting.int' => 'Unit kerja tidak valid',
+                'no_hp_pemohon_troubleshooting.required' => 'No HP pemohon wajib diisi',
+                'email_pemohon_troubleshooting.required' => 'Email pemohon wajib diisi',
+                'email_pemohon_troubleshooting.string' => 'Email pemohon tidak valid',
+                'alamat_kantor_troubleshooting.required' => 'Alamat kantor wajib diisi',
+                'alamat_kantor_troubleshooting.string' => 'Alamat kantor tidak valid',
+                'deskripsi_troubleshooting.required' => 'Penjelasan permasalahan wajib diisi',
+                'deskripsi_troubleshooting.string' => 'Penjelasan permasalahan tidak valid',
+                'jenis_permasalahan_troubleshooting.required' => 'Jenis permasalahan wajib dipilih',
+                'jenis_permasalahan_troubleshooting.string' => 'Jenis permasalahan tidak valid',
+                'file_surat_troubleshooting.required' => 'File surat permohonan wajib diupload',
+                'file_surat_troubleshooting.mimes' => 'File surat permohonan tidak valid',
+                'file_surat_troubleshooting.max' => 'File surat permohonan melebihi batas maksimal upload yang diperbolehkan'
+            ];
+
+            $id_instansi = $request->get('instansi_troubleshooting');
+            $kategori = $request->get('kategori');
+            $nama_pemohon = $request->get('nama_pemohon_troubleshooting');
+            $nip_pemohon = $request->get('nip_pemohon_troubleshooting');
+            $jabatan = $request->get('jabatan_pemohon_troubleshooting');
+            $no_hp_pemohon = $request->get('no_hp_pemohon_troubleshooting');
+            $penjelasan = $request->get('deskripsi_troubleshooting');
+            if($request->get('jenis_permasalahan_troubleshooting') == "Tidak Bisa Akses" || $request->get('jenis_permasalahan_troubleshooting') == "Tidak Bisa Upload" || $request->get('jenis_permasalahan_troubleshooting') == "Tidak Bisa Simpan") {
+                $jenis_permasalahan = $request->get('jenis_permasalahan_troubleshooting');
+            }
+            else {
+                $jenis_permasalahan = $request->get('jenis_permasalahan_lainnya_troubleshooting');
+            }
+
+            $kode_kategori = "AT"; // Astik Troubleshooting
+            $kategori_file_surat = "file_surat_troubleshooting";
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+            if($validator->fails()){
+                return redirect()->back()->withErrors($validator)->withInput($request->all);
+            }
+        }
+
         else {
             return redirect()->back()->withErrors('Kategori layanan wajib dipilih');
         }
@@ -692,6 +753,7 @@ class AstikController extends Controller
                 'file_ektp' => $file_ektp,
                 'file_sk' => $file_sk,
                 'nik_pemohon' => $nik_pemohon,
+                'jenis_permasalahan' => $jenis_permasalahan,
             ]);
             $layanan_astik_detail->save();
         }
