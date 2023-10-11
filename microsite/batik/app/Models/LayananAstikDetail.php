@@ -40,6 +40,7 @@ class LayananAstikDetail extends Model
         'file_ektp',
         'file_sk',
         'nik_pemohon',
+        'jenis_permasalahan',
     ];
 
     public function layanan()

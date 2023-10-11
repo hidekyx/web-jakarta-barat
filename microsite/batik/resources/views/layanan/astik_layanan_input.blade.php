@@ -48,6 +48,7 @@
                                     <option value="Pengamanan Sinyal">Pengamanan Sinyal</option>
                                 </optgroup>
                                 <optgroup label="Keamanan Sistem">
+                                    <option value="Troubleshooting Aplikasi">Troubleshooting Aplikasi</option>
                                     <option value="Instalasi Antivirus">Instalasi Antivirus</option>
                                     <option value="Penetration Testing">Penetration Testing</option>
                                     <option value="Pemulihan Akun Pemerintahan Yang Diretas">Pemulihan Akun Pemerintahan Yang Diretas</option>
@@ -72,6 +73,8 @@
                     $('.kontra_penginderaan_form').prop("required", false);
                     $('#pengamanan_sinyal').fadeOut("fast");
                     $('.pengamanan_sinyal_form').prop("required", false);
+                    $('#troubleshooting_aplikasi').fadeOut("fast");
+                    $('.troubleshooting_aplikasi_form').prop("required", false);
                     $('#instalasi_antivirus').fadeOut("fast");
                     $('.instalasi_antivirus_form').prop("required", false);
                     $('#penetration_testing').fadeOut("fast");
@@ -91,6 +94,11 @@
                         $('#pengamanan_sinyal').delay(100).fadeIn();
                         $('.pengamanan_sinyal_form').prop("required", true);
                         $('#deskripsi_layanan').html('Pengamanan sinyal radio/seluler dari gangguan penyadapan pada kegiatan strategis pemerintah');
+                    }
+                    else if(kategori_value == "Troubleshooting Aplikasi") {
+                        $('#troubleshooting_aplikasi').delay(100).fadeIn();
+                        $('.troubleshooting_aplikasi_form').prop("required", true);
+                        $('#deskripsi_layanan').html('Diagnosa dan penanganan permasalahan pada aplikasi atau software yang digunakan dalam menunjang pekerjaan');
                     }
                     else if(kategori_value == "Instalasi Antivirus") {
                         $('#instalasi_antivirus').delay(100).fadeIn();
@@ -121,6 +129,7 @@
                 </script>
                 @include('layanan.astik_penginderaan')
                 @include('layanan.astik_sinyal')
+                @include('layanan.astik_troubleshooting')
                 @include('layanan.astik_antivirus')
                 @include('layanan.astik_pentest')
                 @include('layanan.astik_pemulihan')
