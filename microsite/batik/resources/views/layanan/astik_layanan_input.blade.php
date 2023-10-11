@@ -98,7 +98,7 @@
                     else if(kategori_value == "Troubleshooting Aplikasi") {
                         $('#troubleshooting_aplikasi').delay(100).fadeIn();
                         $('.troubleshooting_aplikasi_form').prop("required", true);
-                        $('#deskripsi_layanan').html('Diagnosa dan penanganan permasalahan pada aplikasi atau software yang digunakan dalam menunjang pekerjaan');
+                        $('#deskripsi_layanan').html('Diagnosa dan penanganan permasalahan aplikasi yang disediakan oleh Sudiskominfotik Jakarta Barat (misal: microsite kec/kel, kontributor berita)');
                     }
                     else if(kategori_value == "Instalasi Antivirus") {
                         $('#instalasi_antivirus').delay(100).fadeIn();

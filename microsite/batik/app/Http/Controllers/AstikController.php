@@ -645,6 +645,8 @@ class AstikController extends Controller
             $kategori = $request->get('kategori');
             $nama_pemohon = $request->get('nama_pemohon_troubleshooting');
             $nip_pemohon = $request->get('nip_pemohon_troubleshooting');
+            $email = $request->get('email_pemohon_troubleshooting');
+            $alamat_kantor = $request->get('alamat_kantor_troubleshooting');
             $jabatan = $request->get('jabatan_pemohon_troubleshooting');
             $no_hp_pemohon = $request->get('no_hp_pemohon_troubleshooting');
             $penjelasan = $request->get('deskripsi_troubleshooting');

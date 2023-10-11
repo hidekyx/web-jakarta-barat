@@ -108,6 +108,7 @@
                                     <option value="Instalasi Antivirus">Instalasi Antivirus</option>
                                     <option value="Penetration Testing">Penetration Testing</option>
                                     <option value="Optimalisasi Komputer / Laptop">Optimalisasi Komputer / Laptop</option>
+                                    <option value="Troubleshooting Aplikasi">Troubleshooting Aplikasi</option>
                                     <option value="Pemulihan Akun Pemerintahan Yang Diretas">Pemulihan Akun Pemerintahan Yang Diretas</option>
                                     <option value="Sertifikat Elektronik">Sertifikat Elektronik</option>
                                     <option value="Permohonan Email">Permohonan Email</option>
@@ -216,6 +217,8 @@
                         <span class="badge w-100 badge-sm bg-gradient-danger">Sertifikat Elektronik</span>
                         @elseif($l->kategori == "Permohonan Email")
                         <span class="badge w-100 badge-sm bg-gradient-secondary">Permohonan Email</span>
+                        @elseif($l->kategori == "Troubleshooting Aplikasi")
+                        <span class="badge w-100 badge-sm bg-gradient-warning">Troubleshooting Aplikasi</span>
                         @endif
                     </td>
                     <td>
@@ -228,7 +231,7 @@
                         @endif
                     </td>
                     <td>
-                        @if($l->kategori == "Penetration Testing" || $l->kategori == "Permohonan Email" || $l->kategori == "Sertifikat Elektronik")
+                        @if($l->kategori == "Penetration Testing" || $l->kategori == "Permohonan Email" || $l->kategori == "Sertifikat Elektronik" || $l->kategori == "Troubleshooting Aplikasi")
                         -
                         @else
                         <p class="text-xs text-secondary mb-0"><b>Nama:</b> {{ $l->nama_narahubung }}</p>
@@ -411,7 +414,26 @@
                                                     <p class="label-body mb-0 fw-bold text-wrap">Kategori Layanan</p>
                                                     <p class="text-secondary text-wrap ">{{ $l->kategori }}</p>
                                                 </div>
-                                                @if($l->kategori == "Kontra Penginderaan")
+                                                @if($l->kategori == "Troubleshooting Aplikasi")
+                                                <div id="troubleshooting_aplikasi">
+                                                    <div class="mb-3">
+                                                        <p class="label-body mb-0 label-deskripsi fw-bold text-wrap">Jenis Permasalahan</p>
+                                                        <p class="mb-0 text-wrap">{{ $l->layanan_astik_detail->jenis_permasalahan }}</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <p class="label-body mb-0 label-deskripsi fw-bold text-wrap">Penjelasan Permasalahan</p>
+                                                        <p class="mb-0 text-wrap">{{ $l->penjelasan }}</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <p class="label-body mb-0 label-deskripsi fw-bold text-wrap">Screenshot Error</p>
+                                                        @if($l->surat_permohonan != null)
+                                                        <img src="{{ asset('/storage/layanan/astik/surat_permohonan/'.$l->surat_permohonan) }}" width="300px" height="250px" style="object-fit: cover;" class="rounded float-start mb-3 mt-3" alt="Screenshot Error">
+                                                        @else
+                                                        <p class="mt-0 text-wrap">-</p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                @elseif($l->kategori == "Kontra Penginderaan")
                                                 <div id="kontra_penginderaan">
                                                     <div class="mb-3">
                                                         <p class="label-body mb-0 label-deskripsi fw-bold text-wrap">Waktu Pelaksanaan</p>
