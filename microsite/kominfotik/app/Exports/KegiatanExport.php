@@ -256,7 +256,12 @@ class KegiatanExport implements FromCollection, WithMapping, WithHeadings, WithS
                     foreach ($kegiatan as $array => $k) {
                         if ($k->gambar != null) {     
                             $drawing[$array] = new Drawing();
-                            $drawing[$array]->setPath(public_path('/storage/images/dokumentasi/'.$k->gambar));
+                            if ($k->is_from_batik == 1) {
+                                $drawing[$array]->setPath(public_path('/storage/layanan/id/hasil/'.$k->gambar));
+                            }
+                            else {
+                                $drawing[$array]->setPath(public_path('/storage/images/dokumentasi/'.$k->gambar));
+                            }
                             $drawing[$array]->setOffsetX(10);
                             $drawing[$array]->setOffsetY(10);
                             $drawing[$array]->setWidth(250);

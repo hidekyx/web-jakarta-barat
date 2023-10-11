@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instansi;
 use App\Models\InventarisBarang;
+use App\Models\Kegiatan;
 use App\Models\Layanan;
 use App\Models\LayananDetail;
 use App\Models\User;
@@ -824,7 +825,7 @@ class TicketingController extends Controller
                 }
             }
 
-            elseif($kategori == "Kategori Lainnya") {
+            elseif($kategori == "Dukungan Zoom Meeting") {
                 $rules = $rules + [
                     'deskripsi_3' => 'required|string',
                     'no_surat_2' => 'required|string',
@@ -1525,6 +1526,34 @@ class TicketingController extends Controller
                 $layanan = Layanan::find($id_layanan);
                 $layanan->status = "Selesai";
                 $layanan->update();
+
+                $disposisi = array();
+                foreach($layanan->layanan_detail as $ld) {
+                    if($ld->id_layanan_kategori == 8) {
+                        $disposisi[] = $ld->value;
+                    }
+                }
+                foreach($disposisi as $d) {
+                    if($layanan->kategori == "Penanganan Permasalahan Jaringan") {
+                        $id_ruang_lingkup = 4;
+                    }
+                    elseif($layanan->kategori == "Instalasi, Penambahan, dan Penataan Jaringan") {
+                        $id_ruang_lingkup = 2;
+                    }
+                    $kegiatan = new Kegiatan([
+                        'id_user'           => $d,
+                        'tanggal'           => $layanan->tanggal_selesai,
+                        'jam_mulai'         => "08:00:00",
+                        'jam_selesai'       => "16:00:00",
+                        'deskripsi'         => $layanan->penjelasan_pekerjaan.' di '.$layanan->instansi->nama_instansi,
+                        'lokasi'            => $layanan->instansi->nama_instansi,
+                        'id_ruang_lingkup'  => $id_ruang_lingkup,
+                        'gambar'            => $layanan->foto_hasil,
+                        'is_from_batik'     => 1,
+                    ]);
+
+                    $kegiatan->save();
+                }
                 return redirect('/ticketing')->with('success', 'Data ticketing berhasil divalidasi');
             }
             return redirect('/ticketing')->with('error', 'Data ticketing gagal diproses');
