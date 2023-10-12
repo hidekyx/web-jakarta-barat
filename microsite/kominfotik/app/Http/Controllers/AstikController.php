@@ -124,11 +124,12 @@ class AstikController extends Controller
                 $disposisi = $request->get('disposisi');
                 if($disposisi != null) {
                     $total_disposisi = count($disposisi);
+                    $layanan->status = "Menunggu Respon";
                 }
                 else {
                     $total_disposisi = 0;
+                    $layanan->status = "Belum Disposisi";
                 }
-                $layanan->status = "Menunggu Respon";
                 try {
                     DB::beginTransaction();
                     $layanan->update();
