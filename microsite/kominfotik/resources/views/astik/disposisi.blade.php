@@ -52,7 +52,7 @@
                     {{ \Carbon\Carbon::parse($layanan->tanggal_penerimaan)->isoFormat('dddd, DD MMMM Y')}}
                 </div>
                 <h6 class="text-dark text-sm">Disposisi: </h6>
-                <select class="selectpicker disposisi w-100" data-size="4" title="Pilih Disposisi" name="disposisi[]" multiple required>
+                <select class="selectpicker disposisi w-100" data-size="4" title="Pilih Disposisi" name="disposisi[]" multiple>
                     <optgroup label="Pelaksana">
                         @foreach ($staff as $s)
                             <option value="{{ $s->id_user }}">{{ $s->nama_lengkap }}</option>
