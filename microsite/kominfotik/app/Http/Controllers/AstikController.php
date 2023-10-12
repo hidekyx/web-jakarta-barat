@@ -110,17 +110,6 @@ class AstikController extends Controller
     public function submit_disposisi(Request $request, $id_layanan_astik) {
         if (Auth::check()) {
             $logged_user = Auth::user();
-            $rules = [
-                'disposisi' => 'required|array'
-            ];
-            $messages = [
-                'disposisi.required' => 'Disposisi wajib diisi'
-            ];
-
-            $validator = Validator::make($request->all(), $rules, $messages);
-            if($validator->fails()){
-                return redirect()->back()->withErrors($validator)->withInput($request->all);
-            }
 
             $id_role = $logged_user->id_role;
             if($id_role == 2) {
