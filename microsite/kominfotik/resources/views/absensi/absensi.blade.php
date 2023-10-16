@@ -14,6 +14,7 @@
         <a class="mr-3" href="{{ asset('/absensi/wfh') }}"><button class="btn btn-sm bg-gradient-info toast-btn" type="button" data-target="successToast">Import Data WFH</button></a>
         <a class="mr-3" href="{{ asset('/absensi/libur') }}"><button class="btn btn-sm bg-gradient-warning toast-btn" type="button" data-target="successToast">Input Hari Libur</button></a>
         <a class="mr-3" href="{{ asset('/absensi/unvalidasi') }}"><button class="btn btn-sm bg-gradient-danger toast-btn" type="button" data-target="successToast">Unvalidasi Data Absen</button></a>
+        <a class="mr-3" href="{{ asset('/absensi/export_bulanan') }}"><button class="btn btn-sm bg-gradient-primary toast-btn" type="button" data-target="successToast">Export Data Absen</button></a>
         <!-- <a class="mr-3" href="{{ asset('/absensi/weekend') }}"><button class="btn btn-sm bg-gradient-info toast-btn" type="button" data-target="successToast">Generate Hari Weekend</button></a> -->
         <!-- <a href="{{ asset('/absensi/alpha') }}"><button class="btn btn-sm bg-gradient-danger toast-btn" type="button" data-target="successToast">Cek Absensi Alpha</button></a> -->
         </div>

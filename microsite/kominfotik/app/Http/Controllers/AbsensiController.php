@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AbsensiBulananExport;
 use App\Imports\AbsensiImport;
 use App\Imports\WFHImport;
 use App\Models\Absensi;
@@ -762,7 +763,7 @@ class AbsensiController extends Controller
             if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
                 $seksi = Seksi::all();
                 foreach ($seksi as $s) {
-                    $user[$s->id_seksi] = User::where('id_seksi', $s->id_seksi)->where('id_role', 3)->get();
+                    $user[$s->id_seksi] = User::where('id_seksi', $s->id_seksi)->where('id_role', 3)->where('status_kontrak', 'Aktif')->get();
                 }
                 return view("main", [
                     'page' => "Absensi",
@@ -866,6 +867,74 @@ class AbsensiController extends Controller
             }
             $bulan_cetak = $bulan.' '.$selected_tahun;
             return Excel::download(new AbsensiExport($absensi, $penggajian, $user, $bulan_cetak, $validated), 'Laporan Absensi - '.$bulan.' '.$selected_tahun.' - '.$nama_lengkap.'.xlsx');
+            
+        }
+        return redirect('/');
+	}
+
+    public function export_bulanan_view () {
+        if (Auth::check()) {
+            $logged_user = Auth::user();
+            if ($logged_user->id_role == 1 || $logged_user->id_role == 7) {
+                $seksi = Seksi::all();
+                foreach ($seksi as $s) {
+                    $user[$s->id_seksi] = User::where('id_seksi', $s->id_seksi)->where('id_role', 3)->where('status_kontrak', 'Aktif')->get();
+                }
+                return view("main", [
+                    'page' => "Absensi",
+                    'subpage' => "ExportBulanan",
+                    'seksi' => $seksi,
+                    'user' => $user,
+                    'id_role' => $logged_user->id_role,
+                    'logged_user' => $logged_user
+                ]);
+            }
+        }
+
+        return redirect('/');
+    }
+
+    public function export_bulanan_action(Request $request) {
+        if (Auth::check()) {
+            $user = User::where('id_role', 3)->where('status_kontrak', 'Aktif')->get();
+            $validated = null;
+
+            $explode_bulan = explode('-',$request->get('bulan'));
+            $selected_bulan = $explode_bulan[1];
+            $selected_tahun = $explode_bulan[0];
+            $bulan = date("F", strtotime(date("Y") ."-". $selected_bulan ."-01"));
+            $bulan = Carbon::parse($bulan)->isoFormat('MMMM');
+
+            foreach($user as $key => $u) {
+                $absensi[$key] = Absensi::where('id_user', $u->id_user)
+                ->whereMonth('tanggal', $selected_bulan)
+                ->whereyear('tanggal', $selected_tahun)
+                ->orderBy('tanggal', 'ASC')
+                ->get();
+
+                foreach ($absensi[$key] as $a) {
+                    if ($a->validated == "Y") {
+                        $validated[$key] = true;
+                    }
+                    else {
+                        $validated[$key] = false;
+                    }
+                }
+
+                if($validated[$key] == true) {
+                    $penggajian[$key] = Penggajian::where('id_user', $u->id_user)
+                    ->whereMonth('bulan', $selected_bulan)
+                    ->whereyear('bulan', $selected_tahun)
+                    ->first();
+                }
+                else {
+                    $penggajian[$key] = $this->kalkulasi_rekap($absensi[$key]);
+                }
+            }
+            
+            $bulan_cetak = $bulan.' '.$selected_tahun;
+            return Excel::download(new AbsensiBulananExport($absensi, $penggajian, $user, $bulan_cetak, $validated), 'Laporan Absensi - '.$bulan.' '.$selected_tahun.'.xlsx');
+            // return Excel::download(new AbsensiExport($absensi, $penggajian, $user, $bulan_cetak, $validated), 'Laporan Absensi - '.$bulan.' '.$selected_tahun.'.xlsx');
             
         }
         return redirect('/');
