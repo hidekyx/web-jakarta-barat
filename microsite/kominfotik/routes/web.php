@@ -45,6 +45,8 @@ Route::post('/absensi/update_keterangan/{id_absensi}', [AbsensiController::class
 Route::post('/absensi/generate_validasi', [AbsensiController::class, 'validasi_action']);
 Route::get('/absensi/unvalidasi', [AbsensiController::class, 'unvalidasi_view']);
 Route::post('/absensi/generate_unvalidasi', [AbsensiController::class, 'unvalidasi_action']);
+Route::get('/absensi/export_bulanan', [AbsensiController::class, 'export_bulanan_view']);
+Route::post('/absensi/generate_export_bulanan', [AbsensiController::class, 'export_bulanan_action']);
 
 Route::get('/profil', [ProfilController::class, 'main']);
 Route::get('/profil/view/{username}', [ProfilController::class, 'profil']);

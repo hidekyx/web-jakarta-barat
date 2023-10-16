@@ -8,10 +8,11 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
+use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class AbsensiExport implements FromCollection, WithMapping, WithStyles, WithEvents, WithCustomStartCell
+class AbsensiExport implements FromCollection, WithMapping, WithStyles, WithEvents, WithCustomStartCell, WithTitle
 {
     private $absensi;
     private $penggajian;
@@ -340,5 +341,10 @@ class AbsensiExport implements FromCollection, WithMapping, WithStyles, WithEven
         $sheet->mergeCells('B10:D10');
         $sheet->mergeCells('E10:G10');
         $sheet->mergeCells('H10:I10');
+    }
+
+    public function title(): string
+    {
+        return $this->user->nama_lengkap;
     }
 }

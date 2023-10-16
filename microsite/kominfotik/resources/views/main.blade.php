@@ -107,6 +107,8 @@
               @include('absensi.editbonus')
             @elseif($subpage == "Kompensasi")
               @include('absensi.kompensasi')
+            @elseif($subpage == "ExportBulanan")
+              @include('absensi.export_bulanan')
             @endif
           @else
             @include('absensi.absensi')
