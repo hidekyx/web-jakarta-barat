@@ -24,11 +24,21 @@ class LayananKip extends Model
         'tanggal_proses',
         'tanggal_selesai',
         'status',
+        'hasil_text',
+        'hasil_file',
+        'hasil_image',
+        'alat_kerja',
+        'link',
     ];
 
     public function layanan_kip_detail()
     {
-        return $this->hasMany(LayananKipDetail::class, 'id_layanan_kip');
+        return $this->hasOne(LayananKipDetail::class, 'id_layanan_kip');
+    }
+
+    public function layanan_kip_disposisi()
+    {
+        return $this->hasMany(LayananKipDisposisi::class, 'id_layanan_kip');
     }
     
     public function instansi()

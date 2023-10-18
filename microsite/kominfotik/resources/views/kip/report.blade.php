@@ -3,12 +3,12 @@
     <div class="card-header bg-gradient-primary shadow-dark pb-3 px-3">
         <div class="row">
         <div class="col-md-6">
-            <h6 class="mb-0 text-white">Laporan Penyelesaian Aktifitas Layanan ASTIK</h6>
+            <h6 class="mb-0 text-white">Laporan Penyelesaian Aktifitas Layanan KIP</h6>
         </div>
         </div>
     </div>
     <div class="card-body pt-4 p-3">
-        <form role="form" id="ticketing" class="text-start" action="{{ asset('/astik/submit_report/'.$layanan->id_layanan_astik); }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form role="form" id="ticketing" class="text-start" action="{{ asset('/kip/submit_report/'.$layanan->id_layanan_kip); }}" method="post" enctype="multipart/form-data" autocomplete="off">
         @csrf
         <div class="row">
             @if(session('errors'))
@@ -52,7 +52,7 @@
                         <div class="mb-3 text-sm">
                         <h6 class="text-primary text-sm">Pegawai Disposisi: </h6>
                         <ul>
-                            @foreach ($layanan->layanan_astik_disposisi as $ld)
+                            @foreach ($layanan->layanan_kip_disposisi as $ld)
                                 <li>{{ $ld->user->nama_lengkap }}</li>
                             @endforeach
                         </ul>
@@ -112,13 +112,49 @@
                         </td>
                     </tr>
                     <tr class="d-flex">
+                        <td class="text-sm col-4 font-weight-bold">Link</td>
+                        <td class="text-sm col-8">
+                            <div class="input-group input-group-outline mb-3">
+                                @if($layanan->link != null)
+                                <input name="link" type="text" class="form-control" value="{{ $layanan->link }}">
+                                @else
+                                <input name="link" type="text" class="form-control" placeholder="Sediakan link apabila ada">
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class="text-sm col-4 font-weight-bold">Alat Kerja</td>
+                        <td class="text-sm col-8">
+                            <select class="selectpicker alat_kerja w-100" data-size="10" title="Pilih Alat Kerja" name="alat_kerja[]" multiple required>
+                                <option value="Kamera Video">Kamera Video</option>
+                                <option value="Kamera Foto">Kamera Foto</option>
+                                <option value="Tripod">Tripod</option>
+                                <option value="Monopod">Monopod</option>
+                                <option value="Gun Mic">Gun Mic</option>
+                                <option value="Mic Clip-on">Mic Clip-on</option>
+                                <option value="Lighting">Lighting</option>
+                                <option value="Voice Recorder">Voice Recorder</option>
+                                <option value="Switcher">Switcher</option>
+                                <option value="Audio Mixer">Audio Mixer</option>
+                                <option value="Wireless HDMI">Wireless HDMI</option>
+                                <option value="Software Editing">Software Editing</option>
+                                <option value="Software Desain Grafis">Software Desain Grafis</option>
+                            </select>
+                            <script>
+                                var alat_kerja = @json(explode(', ', $layanan->alat_kerja));
+                                $('.alat_kerja').selectpicker('val', alat_kerja);
+                            </script>
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
                         <td class="text-sm col-4 font-weight-bold">Laporan Hasil<br> File PDF</td>
                         <td class="text-sm col-8">
                             <div class="input-group input-group-outline mt-2">
                                 <input name="hasil_file" type="file" accept=".pdf">
                             </div>
                             @if($layanan->hasil_file != null)
-                            <a class="text-info font-weight-bold" target="_blank" href="{{ asset('/storage/layanan/astik/hasil_file/'.$layanan->hasil_file) }}">Lihat Laporan File PDF</a>
+                            <a class="text-info font-weight-bold" target="_blank" href="{{ asset('/storage/layanan/kip/hasil_file/'.$layanan->hasil_file) }}">Lihat Laporan File PDF</a>
                             @endif
                         </td>
                     </tr>
@@ -139,7 +175,11 @@
                                 }
                             </script>
                             <br>
-                            <img id="file-ip-1-preview" src="{{ asset('/storage/layanan/astik/hasil_image/'.$layanan->hasil_image) }}" height="160px" class="mb-3 mt-2" {{ $layanan->hasil_image ? 'style="display: none"' : ''}}>
+                            @if($layanan->hasil_file != null)
+                            <img id="file-ip-1-preview" src="{{ asset('/storage/layanan/kip/hasil_image/'.$layanan->hasil_image) }}" height="160px" class="mb-3 mt-2">
+                            @else
+                            <img id="file-ip-1-preview" height="160px" class="mb-3 mt-2" style="display: none;">
+                            @endif
                         </td>
                     </tr>
                     <tr style="border-width: 1px; border-color: #dee2e6;">

@@ -144,7 +144,7 @@ class AstikController extends Controller
                         $disposisi_save->save();
                     }
                     DB::commit();
-                    return redirect('/astik')->with('success', 'Data layanan berhasil diperbaharui lagi');
+                    return redirect('/astik')->with('success', 'Data layanan berhasil diperbaharui');
                 } 
                 catch(\Exception $e) {
                     DB::rollback();

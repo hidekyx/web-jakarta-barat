@@ -155,7 +155,11 @@
 
         @elseif($page == "Kip")
           @isset($subpage)
-            
+            @if($subpage == "Disposisi")
+              @include('kip.disposisi')
+            @elseif($subpage == "Report")
+              @include('kip.report')
+            @endif
           @else
             @include('kip.list')
           @endisset

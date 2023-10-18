@@ -704,7 +704,7 @@
                             @if($logged_user->id_role == 1 || $logged_user->id_role == 2)
                             <form role="form" class="text-start" action="{{ asset('/astik/validasi_report/'.$l->id_layanan_astik) }}" method="post" enctype="multipart/form-data" autocomplete="off">
                                 @csrf
-                                <button type="submit" class="btn btn-sm btn-success">Validasi</button>
+                                <button type="submit" class="btn btn-sm btn-success mb-0">Validasi</button>
                             </form>
                             @elseif($logged_user->id_role == 3 || $logged_user->id_role == 5)
                             <a href="{{ asset('/astik/edit_report/'.$l->id_layanan_astik) }}"><i class="material-icons ms-auto text-warning cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">edit</i></a>

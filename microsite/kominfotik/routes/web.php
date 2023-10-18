@@ -96,6 +96,16 @@ Route::post('/astik/validasi_report/{id_layanan_astik}', [AstikController::class
 Route::post('/astik/delete/{id_layanan_astik}', [AstikController::class, 'delete']);
 
 Route::get('/kip', [KipController::class, 'list']);
+Route::get('/kip/disposisi/{id_layanan_kip}', [KipController::class, 'disposisi']);
+Route::post('/kip/submit_disposisi/{id_layanan_kip}', [KipController::class, 'submit_disposisi']);
+Route::post('/kip/process/{id_layanan_kip}', [KipController::class, 'process']);
+Route::post('/kip/cancel/{id_layanan_kip}', [KipController::class, 'cancel']);
+Route::get('/kip/report/{id_layanan_kip}', [KipController::class, 'report']);
+Route::get('/kip/edit_report/{id_layanan_kip}', [KipController::class, 'edit_report']);
+Route::post('/kip/submit_report/{id_layanan_kip}', [KipController::class, 'submit_report']);
+Route::post('/kip/update_report/{id_layanan_kip}', [KipController::class, 'update_report']);
+Route::post('/kip/validasi_report/{id_layanan_kip}', [KipController::class, 'validasi_report']);
+Route::post('/kip/delete/{id_layanan_kip}', [KipController::class, 'delete']);
 
 Route::get('/inventaris/barang-pakai-habis', [InventarisController::class, 'barang_list']);
 Route::get('/inventaris/get_json_barang/{id_barang}', [InventarisController::class, 'get_json_barang']);
