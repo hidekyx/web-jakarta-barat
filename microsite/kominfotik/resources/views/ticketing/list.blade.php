@@ -504,7 +504,7 @@
                                                 </div>
                                                 <div class="mb-3 div-ip">
                                                     <p class="label-body mb-0 fw-bold text-wrap">IP Address Yang Digunakan (Range)</p>
-                                                    @if($l->status == "Selesai")
+                                                    @if($l->status == "Selesai" || $l->status == "Menunggu Validasi")
                                                         @if($ld->id_layanan_kategori == 7)
                                                         <p class="text-wrap" id="status_ip">{{ $ld->value }} - {{ $ld->value_2 }}</p>
                                                         @endif
