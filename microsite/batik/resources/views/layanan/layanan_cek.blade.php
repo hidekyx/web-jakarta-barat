@@ -7,14 +7,22 @@
                 <h3 class="title">Status <span class="primary-color italic">Layanan</span></h3>
             </div>
             <center><p>Anda dapat mengecek status layanan menggunakan kode resi yang telah didapatkan.</p>
-            <form action="#" method="get">@csrf</form>
-            <div class="sc-searchbar-area d-flex align-items-center justify-content-center">
-                <div class="input-field">
-                    <input type="text" id="kode_layanan" name="kode_layanan" placeholder="Cek Resi" required="" />
+            <form role="form" action="{{ asset('/layanan/detail-status') }}" method="get" enctype="multipart/form-data" autocomplete="on">
+                <div class="sc-searchbar-area d-flex align-items-center justify-content-center">
+                    <div class="input-field">
+                        <input type="text" id="kode_layanan" name="kode_layanan" placeholder="Cek Resi" required/>
+                    </div>
+                    <button type="submit" class="btn sc-primary-btn"><i class="icon-search"></i> Cari</button>
                 </div>
-                <a href="{{ asset('/layanan/detail-status') }}" class="lightbox-detail" data-glightbox="type: external"><button class="btn sc-primary-btn"><i class="icon-search"></i> Cari</button></a>
-            </div>
+            </form>
         </div>
+        @if($layanan != null && $layanan_detail == "ID")
+            @include('layanan.layanan_id_detail')
+        @elseif($layanan != null && $layanan_detail == "ASTIK")
+            @include('layanan.layanan_astik_detail')
+        @elseif($layanan != null && $layanan_detail == "KIP")
+            @include('layanan.layanan_kip_detail')
+        @endif
     </div>
 </div>
 </section>
