@@ -4,11 +4,11 @@
         <div class="row">
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Nama Pemohon</b>
-                <input class="from-control instalasi_id_form" type="text" name="nama_pemohon_instalasi_id" placeholder="Isi Nama Lengkap Pemohon" required="" />
+                <input class="from-control instalasi_id_form" type="text" name="nama_pemohon_instalasi_id" placeholder="Isi Nama Lengkap Pemohon" maxlength="100" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">No HP / Email</b>
-                <input class="from-control instalasi_id_form" type="text" name="kontak_instalasi_id" placeholder="Isi Kontak" required="" />
+                <input class="from-control instalasi_id_form" type="text" name="kontak_instalasi_id" id="kontak_instalasi_id" placeholder="Isi Kontak" maxlength="100" />
             </div>
             <div class="col-md-12" style="margin-bottom: 30px;">
                 <b class="contact-title sc-pb-0 primary-color">Instansi</b>

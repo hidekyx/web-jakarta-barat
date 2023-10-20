@@ -4,15 +4,15 @@
         <div class="row">
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Nama Pemohon</b>
-                <input class="from-control publikasi_media_form" type="text" name="nama_pemohon_publikasi" placeholder="Isi Nama Lengkap Pemohon" required="" />
+                <input class="from-control publikasi_media_form" type="text" name="nama_pemohon_publikasi" placeholder="Isi Nama Lengkap Pemohon" maxlength="100" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">NIP Pemohon</b>
-                <input class="from-control publikasi_media_form" type="number" name="nip_pemohon_publikasi" placeholder="Isi NIP Pemohon" required="" />
+                <input class="from-control publikasi_media_form" type="number" name="nip_pemohon_publikasi" id="nip_pemohon publikasi" placeholder="Isi NIP Pemohon" maxlength="18" minlength="9" oninput="numberOnly(this.name);"/>
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Jabatan</b>
-                <input class="from-control publikasi_media_form" type="text" name="jabatan_pemohon_publikasi" placeholder="Isi Jabatan Pemohon" required="" />
+                <input class="from-control publikasi_media_form" type="text" name="jabatan_pemohon_publikasi" placeholder="Isi Jabatan Pemohon" maxlength="80" />
             </div>
             <div class="col-md-6" style="margin-bottom: 30px;">
                 <b class="contact-title sc-pb-0 primary-color">Unit Kerja</b>
@@ -24,11 +24,11 @@
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">No HP Pemohon</b>
-                <input class="from-control publikasi_media_form" type="number" name="no_hp_pemohon_publikasi" placeholder="Isi No HP Pemohon" required="" />
+                <input class="from-control publikasi_media_form" type="number" name="no_hp_pemohon_publikasi" id="no_hp_pemohon_publikasi" placeholder="Isi No HP Pemohon" maxlength="15" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Email Pemohon</b>
-                <input class="from-control publikasi_media_form" type="email" name="email_pemohon_publikasi" placeholder="Isi Email Pemohon" required="" />
+                <input class="from-control publikasi_media_form" type="email" name="email_pemohon_publikasi" placeholder="Isi Email Pemohon" maxlength="100" />
             </div>
             <div class="col-md-12">
                 <b class="contact-title sc-pb-0 primary-color">Alamat Kantor</b>
