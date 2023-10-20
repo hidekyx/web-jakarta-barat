@@ -15,12 +15,14 @@ class LayananController extends Controller
     public function cek_status_view() {
         $footer_secaw_infografis = $this->get_latest_infografis();
         $berita = $this->get_latest_berita();
+        $layanan = null;
         
         return view("main", [
             'page' => "Layanan",
             'subpage' => "Cek Status Layanan",
             'footer_secaw_infografis' => $footer_secaw_infografis,
-            'berita' => $berita
+            'berita' => $berita,
+            'layanan' => $layanan,
         ]);
     }
 

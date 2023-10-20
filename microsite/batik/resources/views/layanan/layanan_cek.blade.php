@@ -16,12 +16,14 @@
                 </div>
             </form>
         </div>
-        @if($layanan != null && $layanan_detail == "ID")
-            @include('layanan.layanan_id_detail')
-        @elseif($layanan != null && $layanan_detail == "ASTIK")
-            @include('layanan.layanan_astik_detail')
-        @elseif($layanan != null && $layanan_detail == "KIP")
-            @include('layanan.layanan_kip_detail')
+        @if($layanan != null)
+            @if($layanan_detail == "ID")
+                @include('layanan.layanan_id_detail')
+            @elseif($layanan_detail == "ASTIK")
+                @include('layanan.layanan_astik_detail')
+            @elseif($layanan_detail == "KIP")
+                @include('layanan.layanan_kip_detail')
+            @endif
         @endif
     </div>
 </div>
