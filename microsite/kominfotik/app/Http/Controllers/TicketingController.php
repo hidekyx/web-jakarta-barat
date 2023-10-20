@@ -1540,6 +1540,9 @@ class TicketingController extends Controller
                     elseif($layanan->kategori == "Instalasi, Penambahan, dan Penataan Jaringan") {
                         $id_ruang_lingkup = 2;
                     }
+                    elseif($layanan->kategori == "Dukungan Zoom Meeting") {
+                        $id_ruang_lingkup = 5;
+                    }
                     $kegiatan = new Kegiatan([
                         'id_user'           => $d,
                         'tanggal'           => $layanan->tanggal_selesai,
