@@ -27,11 +27,17 @@ class LayananKip extends Model
 
     public function layanan_detail()
     {
-        return $this->hasMany(LayananKipDetail::class, 'id_layanan_kip');
+        return $this->hasOne
+        (LayananKipDetail::class, 'id_layanan_kip');
     }
     
     public function instansi()
     {
         return $this->hasOne(Instansi::class, 'id_instansi', 'id_instansi');
+    }
+
+    public function layanan_kip_disposisi()
+    {
+        return $this->hasMany(LayananKipDisposisi::class, 'id_layanan_kip');
     }
 }

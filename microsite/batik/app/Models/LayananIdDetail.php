@@ -21,6 +21,16 @@ class LayananIdDetail extends Model
         return $this->belongsTo(LayananId::class, 'id_layanan');
     }
 
+    public function disposisi()
+    {
+        return $this->hasOne(User::class, 'id_user', 'value');
+    }
+
+    public function barang()
+    {
+        return $this->hasOne(InventarisBarang::class, 'id_barang', 'value');
+    }
+
     // public function layanan_kategori()
     // {
     //     return $this->hasMany(LayananIdKategori::class, 'id_layanan');

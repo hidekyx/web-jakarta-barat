@@ -29,11 +29,16 @@ class LayananAstik extends Model
 
     public function layanan_detail()
     {
-        return $this->hasMany(LayananAstikDetail::class, 'id_layanan_astik');
+        return $this->hasOne(LayananAstikDetail::class, 'id_layanan_astik');
     }
     
     public function instansi()
     {
         return $this->hasOne(Instansi::class, 'id_instansi', 'id_instansi');
+    }
+
+    public function layanan_astik_disposisi()
+    {
+        return $this->hasMany(LayananAstikDisposisi::class, 'id_layanan_astik');
     }
 }
