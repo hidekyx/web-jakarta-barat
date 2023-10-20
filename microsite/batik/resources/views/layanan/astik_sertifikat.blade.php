@@ -4,23 +4,23 @@
         <div class="row">
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Nama Lengkap</b>
-                <input class="from-control sertifikat_elektronik_form" type="text" name="nama_lengkap_sertifikat" placeholder="Isi Nama Lengkap" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="text" name="nama_lengkap_sertifikat" placeholder="Isi Nama Lengkap" maxlength="100" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">NIK KTP</b>
-                <input class="from-control sertifikat_elektronik_form" type="number" name="nik_sertifikat" placeholder="Isi NIK KTP" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="text" name="nik_sertifikat" id="nik_sertifikat" placeholder="Isi NIK KTP" maxlength="16" minlength="9" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">NIP</b>
-                <input class="from-control sertifikat_elektronik_form" type="number" name="nip_sertifikat" placeholder="Isi NIP" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="text" name="nip_sertifikat" id="nip_sertifikat" placeholder="Isi NIP" maxlength="18" minlength="9" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Email Pribadi @jakarta.go.id</b>
-                <input class="from-control sertifikat_elektronik_form" type="email" name="email_pribadi_sertifikat" placeholder="Isi Email Wajib @jakarta.go.id" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="email" name="email_pribadi_sertifikat" placeholder="Isi Email Wajib @jakarta.go.id" maxlength="100" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Jabatan</b>
-                <input class="from-control sertifikat_elektronik_form" type="text" name="jabatan_sertifikat" placeholder="Isi Jabatan" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="text" name="jabatan_sertifikat" placeholder="Isi Jabatan" maxlength="80" />
             </div>
             <div class="col-md-6" style="margin-bottom: 30px;">
                 <b class="contact-title sc-pb-0 primary-color">Unit Kerja</b>
@@ -32,19 +32,19 @@
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">No HP</b>
-                <input class="from-control sertifikat_elektronik_form" type="number" name="no_hp_sertifikat" placeholder="Isi No HP" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="text" name="no_hp_sertifikat" id="no_hp_sertifikat" placeholder="Isi No HP" maxlength="15" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Organisasi</b>
-                <input class="from-control sertifikat_elektronik_form" type="text" name="organisasi_sertifikat" placeholder="Isi Organisasi" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="text" name="organisasi_sertifikat" placeholder="Isi Organisasi" maxlength="80" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Kota</b>
-                <input class="from-control sertifikat_elektronik_form" type="text" name="kota_sertifikat" placeholder="Isi Kota" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="text" name="kota_sertifikat" placeholder="Isi Kota" maxlength="16" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Provinsi</b>
-                <input class="from-control sertifikat_elektronik_form" type="text" name="provinsi_sertifikat" placeholder="Isi Provinsi" required="" />
+                <input class="from-control sertifikat_elektronik_form" type="text" name="provinsi_sertifikat" placeholder="Isi Provinsi" maxlength="11" />
             </div>
         </div>
 

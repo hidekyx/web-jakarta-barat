@@ -4,19 +4,19 @@
         <div class="row">
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Nama Lengkap</b>
-                <input class="from-control permohonan_email_form" type="text" name="nama_lengkap_email" placeholder="Isi Nama Lengkap" required="" />
+                <input class="from-control permohonan_email_form" type="text" name="nama_lengkap_email" placeholder="Isi Nama Lengkap" maxlength="100" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">NIP</b>
-                <input class="from-control permohonan_email_form" type="number" name="nip_email" placeholder="Isi NIP" required="" />
+                <input class="from-control permohonan_email_form" type="text" name="nip_email" id="nip_email" placeholder="Isi NIP" maxlength="18" minlength="9" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Jabatan</b>
-                <input class="from-control permohonan_email_form" type="text" name="jabatan_email" placeholder="Isi Jabatan" required="" />
+                <input class="from-control permohonan_email_form" type="text" name="jabatan_email" placeholder="Isi Jabatan" maxlength="80" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">No HP</b>
-                <input class="from-control permohonan_email_form" type="number" name="no_hp_email" placeholder="Isi No HP" required="" />
+                <input class="from-control permohonan_email_form" type="text" name="no_hp_email" id="no_hp_email" placeholder="Isi No HP" maxlength="15" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-12" style="margin-bottom: 30px;">
                 <b class="contact-title sc-pb-0 primary-color">Unit Kerja</b>

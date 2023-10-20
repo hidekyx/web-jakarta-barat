@@ -4,15 +4,15 @@
         <div class="row">
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Nama Pemohon</b>
-                <input class="from-control pemulihan_akun_form" type="text" name="nama_pemohon_pemulihan" placeholder="Isi Nama Lengkap Pemohon" required="" />
+                <input class="from-control pemulihan_akun_form" type="text" name="nama_pemohon_pemulihan" placeholder="Isi Nama Lengkap Pemohon" maxlength="100" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">NIP Pemohon</b>
-                <input class="from-control pemulihan_akun_form" type="number" name="nip_pemohon_pemulihan" placeholder="Isi NIP Pemohon" required="" />
+                <input class="from-control pemulihan_akun_form" type="text" name="nip_pemohon_pemulihan" id="nip_pemohon_pemulihan" placeholder="Isi NIP Pemohon" maxlength="18" minlength="9" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Jabatan</b>
-                <input class="from-control pemulihan_akun_form" type="text" name="jabatan_pemohon_pemulihan" placeholder="Isi Jabatan Pemohon" required="" />
+                <input class="from-control pemulihan_akun_form" type="text" name="jabatan_pemohon_pemulihan" placeholder="Isi Jabatan Pemohon" maxlength="80" />
             </div>
             <div class="col-md-6" style="margin-bottom: 30px;">
                 <b class="contact-title sc-pb-0 primary-color">Unit Kerja</b>
@@ -24,11 +24,11 @@
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">No HP Pemohon</b>
-                <input class="from-control pemulihan_akun_form" type="number" name="no_hp_pemohon_pemulihan" placeholder="Isi No HP Pemohon" required="" />
+                <input class="from-control pemulihan_akun_form" type="text" name="no_hp_pemohon_pemulihan" id="no_hp_pemohon_pemulihan" placeholder="Isi No HP Pemohon" maxlength="15" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Email Instansi</b>
-                <input class="from-control pemulihan_akun_form" type="email" name="email_instansi_pemulihan" placeholder="Isi Email Instansi" required="" />
+                <input class="from-control pemulihan_akun_form" type="email" name="email_instansi_pemulihan" placeholder="Isi Email Instansi" maxlength="100" />
             </div>
             <div class="col-md-4">
                 <b class="contact-title sc-pb-0 primary-color">Seksi / SubBag / Satpel</b>
@@ -45,13 +45,13 @@
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Alamat Instansi</b>
                 <div class="form-box">
-                    <textarea class="from-control pemulihan_akun_form" name="alamat_instansi_pemulihan" placeholder="Tuliskan Alamat Lengkap Instansi" required=""></textarea>
+                    <textarea class="from-control pemulihan_akun_form" name="alamat_instansi_pemulihan" placeholder="Tuliskan Alamat Lengkap Instansi" maxlength="500"></textarea>
                 </div>
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Penjelasan Permasalahan</b>
                 <div class="form-box">
-                    <textarea class="from-control pemulihan_akun_form" name="deskripsi_pemulihan" placeholder="Jelaskan deskripsi, kronologi, ataupun segala cara yang sudah diupayakan dalam mengembalikan akun anda" required=""></textarea>
+                    <textarea class="from-control pemulihan_akun_form" name="deskripsi_pemulihan" placeholder="Jelaskan deskripsi, kronologi, ataupun segala cara yang sudah diupayakan dalam mengembalikan akun anda" maxlength="500"></textarea>
                 </div>
             </div>
             <div class="col-md-6" style="margin-bottom: 30px;">
@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Username / Email / No HP</b>
-                <input class="from-control pemulihan_akun_form" type="text" name="username_pemulihan" placeholder="Isi Username / Email / No HP" required="" />
+                <input class="from-control pemulihan_akun_form" type="text" name="username_pemulihan" placeholder="Isi Username / Email / No HP" maxlength="100" />
             </div>
         </div>
 
@@ -74,11 +74,11 @@
         <div class="row">
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Nama Narahubung</b>
-                <input class="from-control pemulihan_akun_form" type="text" name="nama_narahubung_pemulihan" placeholder="Isi Nama Narahubung" required="" />
+                <input class="from-control pemulihan_akun_form" type="text" name="nama_narahubung_pemulihan" placeholder="Isi Nama Narahubung" maxlength="100" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">No Telp/HP</b>
-                <input class="from-control pemulihan_akun_form" type="number" name="no_telp_narahubung_pemulihan" placeholder="Isi No Telp/HP" required="" />
+                <input class="from-control pemulihan_akun_form" type="text" name="no_telp_narahubung_pemulihan" id="no_telp_narahubung_pemulihan" placeholder="Isi No Telp/HP" maxlength="15" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-12">
                 <b class="contact-title sc-pb-0 primary-color">Surat Permohonan</b>
