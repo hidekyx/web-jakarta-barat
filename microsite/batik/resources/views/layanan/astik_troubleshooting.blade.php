@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">NIP Pemohon</b>
-                <input class="from-control troubleshooting_aplikasi_form" type="number" name="nip_pemohon_troubleshooting" id="nip_pemohon_troubleshooting" placeholder="Isi NIP Pemohon" maxlength="18" minlength="9" oninput="numberOnly(this.name);" />
+                <input class="from-control troubleshooting_aplikasi_form" type="text" name="nip_pemohon_troubleshooting" id="nip_pemohon_troubleshooting" placeholder="Isi NIP Pemohon" maxlength="18" minlength="9" oninput="numberOnly(this.name);" />
             </div>
             <div class="col-md-6">
                 <b class="contact-title sc-pb-0 primary-color">Jabatan</b>

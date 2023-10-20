@@ -140,6 +140,10 @@
                         var selectpicker = document.querySelector("[data-id=" + id_element + "]");
                         selectpicker.style.outline  = "2px solid #17975a";
                     }
+                    function numberOnly(id) {
+                        var element = document.getElementById(id);
+                        element.value = element.value.replace(/[^0-9]/gi, "");
+                    }
                 </script>
             </div>
         </form>
