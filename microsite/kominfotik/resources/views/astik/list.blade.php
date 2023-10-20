@@ -239,7 +239,7 @@
                         @endif
                     </td>
                     <td>
-                        @if($l->surat_permohonan)
+                        @if($l->surat_permohonan && $l->kategori != "Troubleshooting Aplikasi")
                         <a href="{{ asset('/storage/layanan/astik/surat_permohonan/'.$l->surat_permohonan) }}"><button type="button" class="btn btn-sm mb-0 btn-info">Download</button></a>
                         @else
                         -
@@ -332,7 +332,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <p class="label-body mb-0 fw-bold text-wrap">Alamat Kantor</p>
-                                            @if($l->email)
+                                            @if($l->alamat_kantor)
                                             <p class="text-wrap">
                                                 @php
                                                 $maxLength = 60;

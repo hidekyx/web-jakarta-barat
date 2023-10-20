@@ -178,8 +178,8 @@
                 @foreach ($layanan as $l)
                 <tr>
                     <td>
-                        <p class="text-xs font-weight-bold mb-0 ps-3">{{ \Carbon\Carbon::parse($l->tanggal)->isoFormat('dddd')}}</p>
-                        <p class="text-xs mb-0 ps-3">{{ \Carbon\Carbon::parse($l->tanggal)->isoFormat('D MMMM Y')}}</p>
+                        <p class="text-xs font-weight-bold mb-0 ps-3">{{ \Carbon\Carbon::parse($l->tanggal_penerimaan)->isoFormat('dddd')}}</p>
+                        <p class="text-xs mb-0 ps-3">{{ \Carbon\Carbon::parse($l->tanggal_penerimaan)->isoFormat('D MMMM Y')}}</p>
                     </td>
                     <td>
                         <p class="text-xs font-weight-bold mb-0">{{ strtoupper($l->kode_layanan) }}</p>
