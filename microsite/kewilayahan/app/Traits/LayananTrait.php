@@ -34,11 +34,21 @@ trait LayananTrait
     }
 
     public function store_data_layanan($subpage, $id_user, $request) {
+        $randomName = null;
+        if ($request->hasFile('foto')) {
+            $filenameWithExt = $request->file('foto')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $filenameSimpan = md5($filename. time()).'.'.$extension;
+            $randomName = $filenameSimpan;
+            $path = $request->file('foto')->storeAs('public/files/images/foto/layanan_publik/', $filenameSimpan);
+        }
         $data_layanan = new LayananPublik([
             'id_user' => $id_user,
             'kategori' => $subpage,
             'nama_layanan' => $request->nama_layanan,
             'alamat_layanan' => $request->alamat_layanan,
+            'foto' => $randomName,
         ]);
 
         return $data_layanan;

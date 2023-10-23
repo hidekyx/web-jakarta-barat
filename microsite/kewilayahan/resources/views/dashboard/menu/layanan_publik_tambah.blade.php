@@ -37,6 +37,25 @@
                             Alamat layanan wajib diisi
                         </div>
                     </div>
+                    <div class="col-md-12 position-relative">
+                        <label for="foto" class="col-form-label">Foto Bangunan</label>
+                        <input class="form-control" type="file" id="foto" accept="image/*" name="foto">
+                        <img id="foto_preview" hidden="true" height="160px">
+                        <div class="invalid-feedback">Foto harus diisi!</div>
+                    </div>
+                    @push('scripts')
+                    <script type="text/javascript">
+                        $('input[type="file"]').change(function(e) {
+                            var id_preview = $(this).attr('id') + '_preview';
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                document.getElementById(id_preview).src = e.target.result;
+                                document.getElementById(id_preview).hidden = false;
+                            };
+                            reader.readAsDataURL(this.files[0]);
+                        });
+                    </script>
+                    @endpush
                     <div class="col-md-12"><hr></div>
                     <div class="col-md-12">
                         <button class="btn btn-primary" type="submit">Simpan</button>

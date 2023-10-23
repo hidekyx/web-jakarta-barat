@@ -114,6 +114,16 @@ class LayananController extends Controller
             $id_user = $logged_user->id_user;
             $data_layanan = $this->detail_data_layanan(ucwords(str_replace('-', ' ', $subpage)), $id_user, $id_layanan_publik);
             if($data_layanan) {
+                $randomName = null;
+                if ($request->hasFile('foto')) {
+                    $filenameWithExt = $request->file('foto')->getClientOriginalName();
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    $extension = $request->file('foto')->getClientOriginalExtension();
+                    $filenameSimpan = md5($filename. time()).'.'.$extension;
+                    $randomName = $filenameSimpan;
+                    $path = $request->file('foto')->storeAs('public/files/images/foto/layanan_publik/', $filenameSimpan);
+                    $data_layanan->foto = $randomName;
+                }
                 $data_layanan->nama_layanan = $request->get('nama_layanan');
                 $data_layanan->alamat_layanan = $request->get('alamat_layanan');
                 try {

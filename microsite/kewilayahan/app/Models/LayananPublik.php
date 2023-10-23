@@ -14,5 +14,6 @@ class LayananPublik extends Model
         'kategori',
         'nama_layanan',
         'alamat_layanan',
+        'foto',
     ];
 }

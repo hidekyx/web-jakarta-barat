@@ -29,6 +29,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Nama Layanan</th>
                             <th scope="col">Alamat</th>
+                            <th scope="col">Foto</th>
                             <th scope="col">Menu</th>
                         </tr>
                     </thead>
@@ -38,6 +39,9 @@
                             <th scope="row"><a href="#">#{{ $key+1 }}</a></th>
                             <td>{{ $dl->nama_layanan }}</td>
                             <td>{{ $dl->alamat_layanan }}</td>
+                            <td>
+                                <img src="{{ asset('storage/files/images/foto/layanan_publik/'.$dl->foto) }}" class="img-fluid" alt="" style="max-width: 100px;">
+                            </td>
                             <td style="min-width: 100px;">
                                 <a href="{{ asset('dashboard/layanan-publik/'.$subpage.'/edit/'.$dl->id_layanan_publik) }}"><button type="button" class="btn btn-sm btn-warning"><i class="bx bxs-pencil text-white"></i></button></a>
                                 <button type="button" class="btn btn-sm btn-danger" onclick="delete_layanan({{ $dl->id_layanan_publik }})"><i class="bx bxs-trash-alt"></i></button>

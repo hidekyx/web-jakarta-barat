@@ -13,8 +13,8 @@
                                 <tr>
                                     <th>Nama</th>
                                     <th>Alamat</th>
-                                    <th>Kategori</th>
-                                    <th class="noExport">Menu</th>
+                                    <th>Foto</th>
+                                    <th class="noExport">Lokasi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -25,19 +25,13 @@
                                 <tr>
                                     <td>{{ $dl->nama_layanan }}</td>
                                     <td>{{ $dl->alamat_layanan }}</td>
-                                    @if($dl->kategori == "Kesehatan")
-                                    <td><span class="badge badge-pill bg-success">{{ $dl->kategori }}</span></td>
-                                    @elseif($dl->kategori == "Pendidikan")
-                                    <td><span class="badge badge-pill bg-danger">{{ $dl->kategori }}</span></td>
-                                    @elseif($dl->kategori == "Transportasi")
-                                    <td><span class="badge badge-pill bg-primary">{{ $dl->kategori }}</span></td>
-                                    @elseif($dl->kategori == "PTSP")
-                                    <td><span class="badge badge-pill bg-warning">{{ $dl->kategori }}</span></td>
-                                    @elseif($dl->kategori == "Kanal Pengaduan")
-                                    <td><span class="badge badge-pill bg-info">{{ $dl->kategori }}</span></td>
-                                    @elseif($dl->kategori == "Tempat Ibadah")
-                                    <td><span class="badge badge-pill bg-secondary">{{ $dl->kategori }}</span></td>
-                                    @endif
+                                    <td>
+                                        @if($dl->foto)
+                                        <img src="{{ asset('storage/files/images/foto/layanan_publik/'.$dl->foto) }}" class="img-fluid" alt="" style="width: 100%; max-height: 250px;">
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
                                     <td>
                                         <a class="text-reset" href="#map-{{ $dl->id_layanan_publik }}" data-lightbox="inline" data-bs-toggle="tooltip" data-bs-original-title="Cari Melalui Google Map"><i class="fa fa-map-marker-alt"></i></a>
                                         <div id="map-{{ $dl->id_layanan_publik }}" class="modal no-padding" data-delay="3000" style="max-width: 700px; min-height:450px">
