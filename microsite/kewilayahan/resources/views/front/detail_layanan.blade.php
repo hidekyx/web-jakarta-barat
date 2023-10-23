@@ -13,8 +13,8 @@
                                 <tr>
                                     <th>Nama</th>
                                     <th>Alamat</th>
-                                    <th>Foto</th>
                                     <th class="noExport">Lokasi</th>
+                                    <th>Foto</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,13 +26,6 @@
                                     <td>{{ $dl->nama_layanan }}</td>
                                     <td>{{ $dl->alamat_layanan }}</td>
                                     <td>
-                                        @if($dl->foto)
-                                        <img src="{{ asset('storage/files/images/foto/layanan_publik/'.$dl->foto) }}" class="img-fluid" alt="" style="width: 100%; max-height: 250px;">
-                                        @else
-                                        -
-                                        @endif
-                                    </td>
-                                    <td>
                                         <a class="text-reset" href="#map-{{ $dl->id_layanan_publik }}" data-lightbox="inline" data-bs-toggle="tooltip" data-bs-original-title="Cari Melalui Google Map"><i class="fa fa-map-marker-alt"></i></a>
                                         <div id="map-{{ $dl->id_layanan_publik }}" class="modal no-padding" data-delay="3000" style="max-width: 700px; min-height:450px">
                                             <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
@@ -43,6 +36,13 @@
                                                 @endif
                                             </iframe>
                                         </div>
+                                    </td>
+                                    <td>
+                                        @if($dl->foto)
+                                        <img src="{{ asset('storage/files/images/foto/layanan_publik/'.$dl->foto) }}" class="img-fluid" alt="" style="width: 100%; max-height: 250px;">
+                                        @else
+                                        -
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
