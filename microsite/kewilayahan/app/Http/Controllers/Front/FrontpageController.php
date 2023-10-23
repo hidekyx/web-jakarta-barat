@@ -82,11 +82,11 @@ class FrontpageController extends Controller
                 ]);
             }
             else {
-                echo "URL menu salah"; die(); // URL mengambil data menu yang tidak ada di table menu
+                echo "404"; die(); // URL mengambil data menu yang tidak ada di table menu
             }
         }
         else {
-            echo "Gaada data kewilayahan"; die(); // URL mengambil data menu yang tidak ada di table menu
+            echo "404"; die(); // URL mengambil data menu yang tidak ada di table menu
         }
     }
 }
