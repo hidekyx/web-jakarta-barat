@@ -36,7 +36,9 @@
 @else
     @include('dashboard.header')
     @include('dashboard.sidenav')
-    @if($page == "Home")
+    @if($page == "Home Admin")
+        @include('dashboard.home_admin')
+    @elseif($page == "Home")
         @include('dashboard.home')
     @elseif($page == "Password")
         @include('dashboard.password_change')

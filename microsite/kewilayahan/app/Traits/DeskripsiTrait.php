@@ -19,6 +19,10 @@ trait DeskripsiTrait
         elseif($subpage == "kontak-wilayah" || $subpage == "Kontak Wilayah") {
             $data_deskripsi = DeskripsiKontak::where('id_user', $id_user)->first();
         }
+        elseif($subpage == "all") {
+            $data_deskripsi['deskripsi-foto'] = DeskripsiFoto::where('id_user', $id_user)->first();
+            $data_deskripsi['deskripsi-kontak'] = DeskripsiKontak::where('id_user', $id_user)->first();
+        }
         else {
             $data_deskripsi = "Halaman deskripsi website tidak ditemukan"; // apabila mengakses halaman website yang tidak ada di menu
         }

@@ -40,6 +40,16 @@ trait ProfilTrait
         return $data_profil;
     }
 
+    public function get_all_data_profil() {
+        $data_profil['sejarah'] = ProfilSejarah::where()->get();
+        $data_profil['geografi'] = ProfilGeografi::where()->get();
+        $data_profil['demografi'] = ProfilDemografi::where()->get();
+        $data_profil['visi-dan-misi'] = ProfilVisimisi::where()->get();
+        $data_profil['potensi-wilayah'] = ProfilPotensi::where()->get();
+
+        return $data_profil;
+    }
+
     public function store_data_profil($subpage, $id_user, $request) {
         if($subpage == "sejarah") {
             $data_profil = new ProfilSejarah([

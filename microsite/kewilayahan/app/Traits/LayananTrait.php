@@ -21,6 +21,17 @@ trait LayananTrait
         return $data_layanan;
     }
 
+    public function count_data_layanan($subpage, $id_user) {
+        $data_layanan['total'] = LayananPublik::where('kategori', $subpage)->where('id_user', $id_user)->count();
+        if($data_layanan['total'] != 0) {
+            $data_layanan['updated_at'] = LayananPublik::where('kategori', $subpage)->where('id_user', $id_user)->orderBy('id_layanan_publik', 'DESC')->pluck('updated_at')->first();
+        }
+        else {
+            $data_layanan['updated_at'] = null;
+        }
+        return $data_layanan;
+    }
+
     public function detail_data_layanan($subpage, $id_user, $id_layanan_publik) {
         if($subpage == "Kesehatan" || $subpage == "Pendidikan" || $subpage == "Transportasi" || $subpage == "PTSP" || $subpage == "Kanal Pengaduan" || $subpage == "Tempat Ibadah") {
             $data_layanan = LayananPublik::where('kategori', $subpage)->where('id_user', $id_user)->where('id_layanan_publik', $id_layanan_publik)->first();
