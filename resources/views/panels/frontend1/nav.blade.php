@@ -300,7 +300,7 @@
 									<li><a class="dropdown-item" href="{{ asset('/kelurahan/joglo') }}">Kelurahan Joglo</a></li>
 									<li><a class="dropdown-item" href="{{ asset('/kelurahan/kembangan-selatan') }}">Kelurahan Kembangan Selatan</a></li>
 									<li><a class="dropdown-item" href="{{ asset('/kelurahan/kembangan-utara') }}">Kelurahan Kembangan Utara</a></li>
-									<li><a class="dropdown-item" href="{{ asset('/kelurahan/meruya-selatam') }}">Kelurahan Meruya Selatan</a></li>
+									<li><a class="dropdown-item" href="{{ asset('/kelurahan/meruya-selatan') }}">Kelurahan Meruya Selatan</a></li>
 									<li><a class="dropdown-item" href="{{ asset('/kelurahan/meruya-utara') }}">Kelurahan Meruya Utara</a></li>
 									<li><a class="dropdown-item" href="{{ asset('/kelurahan/srengseng') }}">Kelurahan Srengseng</a></li>
 								</ul>
