@@ -259,15 +259,15 @@ class BeritaController extends Controller
         $mytime = Carbon::now();
         $publishedDate = $mytime->toDateTimeString();
 
-        // $randomName['file_utama'] = null;
-        // $randomName['file_2'] = null;
-        // $randomName['file_3'] = null;
-        // $randomName['file_4'] = null;
+        $randomName['file_utama'] = null;
+        $randomName['file_2'] = null;
+        $randomName['file_3'] = null;
+        $randomName['file_4'] = null;
 
-        $randomName_file_utama = null;
-        $randomName_file_2 = null;
-        $randomName_file_3 = null;
-        $randomName_file_4 = null;
+        // $randomName_file_utama = null;
+        // $randomName_file_2 = null;
+        // $randomName_file_3 = null;
+        // $randomName_file_4 = null;
         $randomNameVid = null;
 
         if($request->get('tags') != null) {
@@ -277,26 +277,26 @@ class BeritaController extends Controller
             $tags = null;
         }
 
-        // foreach($randomName as $key => $value)
-        // {
-        //     if ($request->hasFile($key)) {
-        //         $filenameWithExt = $request->file($key)->getClientOriginalName();
-        //         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //         $extension = $request->file($key)->getClientOriginalExtension();
-        //         $filenameSimpan = md5($filename. time()).'.'.$extension;
-        //         $randomName[$key] = $filenameSimpan;
-        //         $path = $request->file($key)->storeAs('public/berita', $filenameSimpan);
-        //     }
-        // }
-
-        if ($request->hasFile('file_utama')) {
-            $filenameWithExt = $request->file('file_utama')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('file_utama')->getClientOriginalExtension();
-            $filenameSimpan = md5($filename. time()).'.'.$extension;
-            $randomName_file_utama = $filenameSimpan;
-            $path = $request->file('file_utama')->storeAs('public/berita', $filenameSimpan);
+        foreach($randomName as $key => $value)
+        {
+            if ($request->hasFile($key)) {
+                $filenameWithExt = $request->file($key)->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file($key)->getClientOriginalExtension();
+                $filenameSimpan = md5($filename. time()).'.'.$extension;
+                $randomName[$key] = $filenameSimpan;
+                $path = $request->file($key)->storeAs('public/berita', $filenameSimpan);
+            }
         }
+
+        // if ($request->hasFile('file_utama')) {
+        //     $filenameWithExt = $request->file('file_utama')->getClientOriginalName();
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     $extension = $request->file('file_utama')->getClientOriginalExtension();
+        //     $filenameSimpan = md5($filename. time()).'.'.$extension;
+        //     $randomName_file_utama = $filenameSimpan;
+        //     $path = $request->file('file_utama')->storeAs('public/berita', $filenameSimpan);
+        // }
 
         // thumbnails
         $filename_thumbnail = null;
@@ -329,11 +329,11 @@ class BeritaController extends Controller
             'time' => $request->time,
             'caption' => $request->caption,
             'caption' => $request->caption,
-            'img' => $randomName_file_utama,
-            // 'img' => $randomName['file_utama'],
-            // 'img_2' => $randomName['file_2'],
-            // 'img_3' => $randomName['file_3'],
-            // 'img_4' => $randomName['file_4'],
+            // 'img' => $randomName_file_utama,
+            'img' => $randomName['file_utama'],
+            'img_2' => $randomName['file_2'],
+            'img_3' => $randomName['file_3'],
+            'img_4' => $randomName['file_4'],
             'thumbnail' => $filename_thumbnail,
             'published' => $request->published,
             'published_date' => $publishedDate,
