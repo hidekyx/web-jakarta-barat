@@ -158,7 +158,6 @@ class BeritaController extends Controller
     public function kategori() 
     {
         // Function kategori ini sebenernya untuk tambah data, 
-        // tapi programmer sebelumnya tolol ngasih nama function
         if (Auth::check()) {
             $datauser = Auth::user();
             $priv= DB::select(DB::raw("SELECT p.name from role_has_permissions rhp 
@@ -389,14 +388,15 @@ class BeritaController extends Controller
                 return view('mainmenu.editberita', ['editberita' => $editberita, 'post'=>$post, 'priv'=>$priv, 'datauser'=>$datauser, 'tags'=>$tags]);
             } 
             else if($hasRole == "reporter") {
-                foreach($editberita as $b) { //kondisional reporter tidak bisa mengedit berita orang lain
-                    if ($b->writer == $datauser->id) {
-                        return view('mainmenu.reportereditberita', ['editberita' => $editberita, 'post'=>$post, 'priv'=>$priv, 'datauser'=>$datauser, 'tags'=>$tags]);
-                    }
-                    else {
-                        return redirect('/dashboard')->with('jsAlert', 'User has no permission to edit this, Access denied!');
-                    }
-                }
+                return view('mainmenu.reportereditberita', ['editberita' => $editberita, 'post'=>$post, 'priv'=>$priv, 'datauser'=>$datauser, 'tags'=>$tags]);
+                // foreach($editberita as $b) { //kondisional reporter tidak bisa mengedit berita orang lain
+                //     if ($b->writer == $datauser->id) {
+                //         return view('mainmenu.reportereditberita', ['editberita' => $editberita, 'post'=>$post, 'priv'=>$priv, 'datauser'=>$datauser, 'tags'=>$tags]);
+                //     }
+                //     else {
+                //         return redirect('/dashboard')->with('jsAlert', 'User has no permission to edit this, Access denied!');
+                //     }
+                // }
             }
             else {
                 return redirect('/dashboard')->with('jsAlert', 'User has no permission, Access denied!');
