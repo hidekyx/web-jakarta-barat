@@ -514,6 +514,31 @@ class BeritaController extends Controller
             ]);
         }
 
+        if ($request->delete_file_utama_bool == "true") {
+            DB::table('berita')->where('id', '=' , $id)->update([
+                'img' => null,
+                'thumbnail' => null,
+            ]);
+        }
+
+        if ($request->delete_file_2_bool == "true") {
+            DB::table('berita')->where('id', '=' , $id)->update([
+                'img_2' => null,
+            ]);
+        }
+
+        if ($request->delete_file_3_bool == "true") {
+            DB::table('berita')->where('id', '=' , $id)->update([
+                'img_3' => null,
+            ]);
+        }
+
+        if ($request->delete_file_4_bool == "true") {
+            DB::table('berita')->where('id', '=' , $id)->update([
+                'img_4' => null,
+            ]);
+        }
+
         return redirect('/menuberita');
     }
 
