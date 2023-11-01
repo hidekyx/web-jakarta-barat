@@ -65,7 +65,7 @@ class InformasiController extends Controller
             'statistik' => $statistik,
             'informasi_publik' => $informasi_publik,
             'jumlah_download' => $jumlah_download,
-            'page' => 'Daftar Informasi Publik',
+            'page' => 'Dokumen Informasi Publik',
             'results' => $results,
             'subpage' => 'Kota Administrasi Jakarta Barat'
         ]);
