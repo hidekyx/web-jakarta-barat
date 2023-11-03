@@ -10,9 +10,9 @@ class PpidInformasiSertamerta extends Model
     protected $primaryKey = 'id_ppid';
     
     protected $fillable = [
-        'id_user',
-        'judul',
-        'file',
-        'keterangan',
+        'id_subkategori',
+        'kategori',
+        'jenis',
+        'isi',
     ];
 }

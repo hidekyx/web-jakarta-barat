@@ -42,15 +42,27 @@ trait PpidTrait
         elseif($subpage == "waktu-dan-biaya-layanan-informasi" || $subpage == "Waktu Dan Biaya Layanan Informasi") {
             $data_ppid = PpidWaktubiaya::where('id_user', $id_user)->first();
         }
-        // elseif($subpage == "daftar-informasi-publik-setiap-saat" || $subpage == "Daftar Informasi Publik Setiap Saat") {
-        //     $data_ppid = PpidInformasiSetiapsaat::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
-        // }
-        // elseif($subpage == "daftar-informasi-publik-berkala" || $subpage == "Daftar Informasi Publik Berkala") {
-        //     $data_ppid = PpidInformasiBerkala::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
-        // }
-        // elseif($subpage == "daftar-informasi-publik-serta-merta" || $subpage == "Daftar Informasi Publik Serta Merta") {
-        //     $data_ppid = PpidInformasiSertamerta::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
-        // }
+        elseif($subpage == "daftar-informasi-publik-berkala" || $subpage == "Daftar Informasi Publik Berkala") {
+            $sub_kategori = PpidInformasiBerkala::where('jenis', 'Sub Kategori')->get();
+            foreach($sub_kategori as $key => $sb) {
+                $data_ppid[$key]['judul'] = $sb->isi;
+                $data_ppid[$key]['isi'] = PpidInformasiBerkala::where('jenis', 'Judul')->where('id_subkategori', $sb->id_ppid)->get();
+            }
+        }
+        elseif($subpage == "daftar-informasi-publik-serta-merta" || $subpage == "Daftar Informasi Publik Serta Merta") {
+            $sub_kategori = PpidInformasiSertamerta::where('jenis', 'Sub Kategori')->get();
+            foreach($sub_kategori as $key => $sb) {
+                $data_ppid[$key]['judul'] = $sb->isi;
+                $data_ppid[$key]['isi'] = PpidInformasiSertamerta::where('jenis', 'Judul')->where('id_subkategori', $sb->id_ppid)->get();
+            }
+        }
+        elseif($subpage == "daftar-informasi-publik-setiap-saat" || $subpage == "Daftar Informasi Publik Setiap Saat") {
+            $sub_kategori = PpidInformasiSetiapsaat::where('jenis', 'Sub Kategori')->get();
+            foreach($sub_kategori as $key => $sb) {
+                $data_ppid[$key]['judul'] = $sb->isi;
+                $data_ppid[$key]['isi'] = PpidInformasiSetiapsaat::where('jenis', 'Judul')->where('id_subkategori', $sb->id_ppid)->get();
+            }
+        }
         elseif($subpage == "dokumen-informasi-publik" || $subpage == "Dokumen Informasi Publik") {
             $data_ppid = PpidDokumen::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
         }
