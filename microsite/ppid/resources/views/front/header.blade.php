@@ -42,9 +42,9 @@
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Daftar Informasi Publik</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Informasi Publik</a>
                 <div class="dropdown-menu m-0">
-                    <a href="{{ asset('/daftar-informasi-publik') }}" class="dropdown-item">Daftar Informasi Publik</a>
+                    <a href="{{ asset('/daftar-informasi-publik') }}" class="dropdown-item">Dokumen Informasi Publik</a>
                     <a href="{{ asset('/informasi-berkala') }}" class="dropdown-item">Informasi Berkala</a>
                     <a href="{{ asset('/informasi-serta-merta') }}" class="dropdown-item">Informasi Serta Merta</a>
                     <a href="{{ asset('/informasi-setiap-saat') }}" class="dropdown-item">Informasi Setiap Saat</a>

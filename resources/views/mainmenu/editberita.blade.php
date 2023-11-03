@@ -76,12 +76,14 @@
 					</script>
 
 					<div class="input-group mb-3">
-						<input type="file" name="file_utama" class="file file_utama_browse" accept="image/*">
+						<input type="file" name="file_utama" id="file_submitted_utama" class="file file_utama_browse" accept="image/*">
 						<label for="basic-url" class="form-label">Upload Foto Utama</label>
 						<div class="input-group mb-3">
 							<button type="button" class="browse btn btn-primary" id="file_utama">Pilih File</button>
 							<input type="text" class="form-control" disabled placeholder="Upload File" id="file_utama_name">
+							<button type="button" class="btn-delete btn btn-danger" id="delete_file_utama">Hapus Foto</button>
 						</div>
+						<input type="hidden" id="delete_file_utama_bool" name="delete_file_utama_bool" value="false">
 						@if($p->img != null || $p->img != "")
 							<img src="{{  asset('storage/berita/'.$p->img)  }}" width="50%" id="file_utama_preview" class="img-thumbnail">
 						@else
@@ -92,12 +94,14 @@
 					<div class="row">
 						<div class="col">
 							<div class="input-group mb-3">
-								<input type="file" name="file_2" class="file file_2_browse" accept="image/*">
+								<input type="file" name="file_2" id="file_submitted_2" class="file file_2_browse" accept="image/*">
 								<label for="basic-url" class="form-label">Upload Foto #2</label>
 								<div class="input-group mb-3">
 									<button type="button" class="browse btn btn-primary" id="file_2">Pilih File</button>
 									<input type="text" class="form-control" disabled placeholder="Upload File" id="file_2_name">
+									<button type="button" class="btn-delete btn btn-danger" id="delete_file_2">Hapus Foto</button>
 								</div>
+								<input type="hidden" id="delete_file_2_bool" name="delete_file_2_bool" value="false">
 								@if($p->img_2 != null || $p->img_2 != "")
 									<img src="{{  asset('storage/berita/'.$p->img_2)  }}" width="80%" id="file_2_preview" class="img-thumbnail">
 								@else
@@ -107,12 +111,14 @@
 						</div>
 						<div class="col">
 							<div class="input-group mb-3">
-								<input type="file" name="file_3" class="file file_3_browse" accept="image/*">
+								<input type="file" name="file_3" id="file_submitted_3" class="file file_3_browse" accept="image/*">
 								<label for="basic-url" class="form-label">Upload Foto #3</label>
 								<div class="input-group mb-3">
 									<button type="button" class="browse btn btn-primary" id="file_3">Pilih File</button>
 									<input type="text" class="form-control" disabled placeholder="Upload File" id="file_3_name">
+									<button type="button" class="btn-delete btn btn-danger" id="delete_file_3">Hapus Foto</button>
 								</div>
+								<input type="hidden" id="delete_file_3_bool" name="delete_file_3_bool" value="false">
 								@if($p->img_3 != null || $p->img_3 != "")
 									<img src="{{  asset('storage/berita/'.$p->img_3)  }}" width="80%" id="file_3_preview" class="img-thumbnail">
 								@else
@@ -122,12 +128,14 @@
 						</div>
 						<div class="col">
 							<div class="input-group mb-3">
-								<input type="file" name="file_4" class="file file_4_browse" accept="image/*">
+								<input type="file" name="file_4" id="file_submitted_4" class="file file_4_browse" accept="image/*">
 								<label for="basic-url" class="form-label">Upload Foto #4</label>
 								<div class="input-group mb-3">
 									<button type="button" class="browse btn btn-primary" id="file_4">Pilih File</button>
 									<input type="text" class="form-control" disabled placeholder="Upload File" id="file_4_name">
+									<button type="button" class="btn-delete btn btn-danger" id="delete_file_4">Hapus Foto</button>
 								</div>
+								<input type="hidden" id="delete_file_4_bool" name="delete_file_4_bool" value="false">
 								@if($p->img_4 != null || $p->img_4 != "")
 									<img src="{{  asset('storage/berita/'.$p->img_4)  }}" width="80%" id="file_4_preview" class="img-thumbnail">
 								@else
@@ -149,14 +157,40 @@
 						var id = $(this).attr('name');
 						var id_filename = '#' + id + '_name';
 						var id_preview = id + '_preview';
+						var id_delete_bool = '#delete_' + id + '_bool';
 						$(id_filename).val(fileName);
 
 						var reader = new FileReader();
 						reader.onload = function(e) {
 							document.getElementById(id_preview).src = e.target.result;
 							document.getElementById(id_preview).hidden = false;
+							$(id_delete_bool).val('false');
+							$(id_filename).val('');
 						};
 						reader.readAsDataURL(this.files[0]);
+					});
+					$(".btn-delete").click(function(){
+						var id_button = $(this).attr('id');
+						if(id_button == "delete_file_utama") {
+							$('#file_utama_preview').removeAttr('src');
+							document.getElementById('file_utama_preview').hidden = true;
+							$('#delete_file_utama_bool').val('true');
+						}
+						else if(id_button == "delete_file_2") {
+							$('#file_2_preview').removeAttr('src');
+							document.getElementById('file_2_preview').hidden = true;
+							$('#delete_file_2_bool').val('true');
+						}
+						else if(id_button == "delete_file_3") {
+							$('#file_3_preview').removeAttr('src');
+							document.getElementById('file_3_preview').hidden = true;
+							$('#delete_file_3_bool').val('true');
+						}
+						else if(id_button == "delete_file_4") {
+							$('#file_4_preview').removeAttr('src');
+							document.getElementById('file_4_preview').hidden = true;
+							$('#delete_file_4_bool').val('true');
+						}
 					});
 					</script>
 

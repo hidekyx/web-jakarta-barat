@@ -85,12 +85,9 @@ class HomeController extends Controller
                 $waktu_validasi_absen = null;
                 $waktu_validasi_kegiatan = null;
                 $tenaga_terampil = User::where('id_role','=','3')->get();
-                $kegiatan_all = Kegiatan::all();
-                $absensi_all = Absensi::all();
-
+                $jumlah_kegiatan = Kegiatan::count();
+                $jumlah_absensi = Absensi::count();
                 $jumlah_tenaga_terampil = count($tenaga_terampil);
-                $jumlah_kegiatan = count($kegiatan_all);
-                $jumlah_absensi = count($absensi_all);
 
                 $bulan_lalu = date("Y-m", strtotime("-1 months"));
                 $bulan_lalu_split = explode('-', $bulan_lalu);

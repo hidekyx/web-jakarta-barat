@@ -69,7 +69,9 @@ position: absolute;
                             <div class="input-group mb-3">
                                 <button type="button" class="browse btn btn-primary" id="file_utama">Pilih File</button>
                                 <input type="text" class="form-control" disabled placeholder="Upload File" id="file_utama_name">
+                                <button type="button" class="btn-delete btn btn-danger" id="delete_file_utama">Hapus Foto</button>
                             </div>
+                            <input type="hidden" id="delete_file_utama_bool" name="delete_file_utama_bool" value="false">
                             <img src="https://placehold.it/80x80" width="50%" hidden="true" id="file_utama_preview" class="img-thumbnail">
                         </div>
 
@@ -81,7 +83,9 @@ position: absolute;
                                     <div class="input-group mb-3">
                                         <button type="button" class="browse btn btn-primary" id="file_2">Pilih File</button>
                                         <input type="text" class="form-control" disabled placeholder="Upload File" id="file_2_name">
+                                        <button type="button" class="btn-delete btn btn-danger" id="delete_file_2">Hapus Foto</button>
                                     </div>
+                                    <input type="hidden" id="delete_file_2_bool" name="delete_file_2_bool" value="false">
                                     <img src="https://placehold.it/80x80" width="80%" hidden="true" id="file_2_preview" class="img-thumbnail">
                                 </div>
                             </div>
@@ -92,7 +96,9 @@ position: absolute;
                                     <div class="input-group mb-3">
                                         <button type="button" class="browse btn btn-primary" id="file_3">Pilih File</button>
                                         <input type="text" class="form-control" disabled placeholder="Upload File" id="file_3_name">
+                                        <button type="button" class="btn-delete btn btn-danger" id="delete_file_3">Hapus Foto</button>
                                     </div>
+                                    <input type="hidden" id="delete_file_3_bool" name="delete_file_3_bool" value="false">
                                     <img src="https://placehold.it/80x80" width="80%" hidden="true" id="file_3_preview" class="img-thumbnail">
                                 </div>
                             </div>
@@ -103,7 +109,9 @@ position: absolute;
                                     <div class="input-group mb-3">
                                         <button type="button" class="browse btn btn-primary" id="file_4">Pilih File</button>
                                         <input type="text" class="form-control" disabled placeholder="Upload File" id="file_4_name">
+                                        <button type="button" class="btn-delete btn btn-danger" id="delete_file_4">Hapus Foto</button>
                                     </div>
+                                    <input type="hidden" id="delete_file_4_bool" name="delete_file_4_bool" value="false">
                                     <img src="https://placehold.it/80x80" width="80%" hidden="true" id="file_4_preview" class="img-thumbnail">
                                 </div>
                             </div>
@@ -121,14 +129,40 @@ position: absolute;
                             var id = $(this).attr('name');
                             var id_filename = '#' + id + '_name';
                             var id_preview = id + '_preview';
+                            var id_delete_bool = '#delete_' + id + '_bool';
                             $(id_filename).val(fileName);
 
                             var reader = new FileReader();
                             reader.onload = function(e) {
                                 document.getElementById(id_preview).src = e.target.result;
                                 document.getElementById(id_preview).hidden = false;
+                                $(id_delete_bool).val('false');
+							    $(id_filename).val('');
                             };
                             reader.readAsDataURL(this.files[0]);
+                        });
+                        $(".btn-delete").click(function(){
+                            var id_button = $(this).attr('id');
+                            if(id_button == "delete_file_utama") {
+                                $('#file_utama_preview').removeAttr('src');
+                                document.getElementById('file_utama_preview').hidden = true;
+                                $('#delete_file_utama_bool').val('true');
+                            }
+                            else if(id_button == "delete_file_2") {
+                                $('#file_2_preview').removeAttr('src');
+                                document.getElementById('file_2_preview').hidden = true;
+                                $('#delete_file_2_bool').val('true');
+                            }
+                            else if(id_button == "delete_file_3") {
+                                $('#file_3_preview').removeAttr('src');
+                                document.getElementById('file_3_preview').hidden = true;
+                                $('#delete_file_3_bool').val('true');
+                            }
+                            else if(id_button == "delete_file_4") {
+                                $('#file_4_preview').removeAttr('src');
+                                document.getElementById('file_4_preview').hidden = true;
+                                $('#delete_file_4_bool').val('true');
+                            }
                         });
                         </script>
 

@@ -100,7 +100,7 @@
         @elseif($subpage == "Tugas dan Fungsi PPID")
             @include('front.profil.tugasfungsi')
         @endif
-    @elseif($page == "Daftar Informasi Publik")
+    @elseif($page == "Dokumen Informasi Publik")
         @include('front.informasi.informasi')
         @include('front.footer')
     <!-- @elseif($page == "Berita")

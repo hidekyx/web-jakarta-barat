@@ -39,7 +39,13 @@
                                         <td>{{ $dp->judul }}</td>
                                         <td>{{ $dp->keterangan }}</td>
                                         <td style="color: #899bbd;">{{ \Carbon\Carbon::parse($dp->created_at)->isoFormat('D MMMM Y')}}</td>
+                                        @if($current_subpage == "SOP-PPID")
+                                        <td><a target="_blank" href="{{ asset('storage/files/images/foto/ppid_sop/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
+                                        @elseif($current_subpage == "Laporan-Penyelesaian-PPID")
+                                        <td><a target="_blank" href="{{ asset('storage/files/images/foto/ppid_laporan_penyelesaian/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
+                                        @else
                                         <td><a target="_blank" href="{{ asset('storage/files/images/foto/ppid_daftar_informasi_publik/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>
