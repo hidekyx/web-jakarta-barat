@@ -404,5 +404,13 @@
 			</div>
 		</div>
 	</nav>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-8KL8RBX7ZV"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-8KL8RBX7ZV');
+	</script>
 </body>
 </html>
