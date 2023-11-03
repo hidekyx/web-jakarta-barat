@@ -5,11 +5,7 @@
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ asset('/dashboard/home') }}">Home</a></li>
             <li class="breadcrumb-item">PPID</li>
-            @if($subpage == "laporan-penyelesaian-ppid")
-                <li class="breadcrumb-item active">Laporan Penyelesaian PPID</li>
-            @else
-                <li class="breadcrumb-item active">@unlink($subpage)</li>
-            @endif
+            <li class="breadcrumb-item active">Dokumen Informasi Publik</li>
             </ol>
         </nav>
     </div>
@@ -24,11 +20,7 @@
             @endif
             <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                @if($subpage == "laporan-penyelesaian-ppid")
-                    <h5 class="card-title">Data PPID - Laporan Penyelesaian PPID <span>| {{ $logged_user->nama }}</span></h5>
-                @else
-                    <h5 class="card-title">Data PPID - @unlink($subpage) <span>| {{ $logged_user->nama }}</span></h5>
-                @endif
+                <h5 class="card-title">Data PPID - Dokumen Informasi Publik <span>| {{ $logged_user->nama }}</span></h5>
                 <a href="{{ asset('dashboard/ppid/'.$subpage.'/tambah') }}"><button type="button" class="btn btn-primary"><i class="bx bx-plus"></i> Tambah Data</button></a>
                 <hr>
                 <table class="table table-borderless table-striped table-hover datatable">
@@ -49,7 +41,7 @@
                             <td>{{ $dp->judul }}</td>
                             <td>{{ $dp->keterangan }}</td>
                             <td style="color: #899bbd;">{{ \Carbon\Carbon::parse($dp->created_at)->isoFormat('D MMMM Y - H:m')}}</td>
-                            <td><a href="{{ asset('storage/files/images/foto/ppid_laporan_penyelesaian/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
+                            <td><a href="{{ asset('storage/files/images/foto/ppid_dokumen_informasi_publik/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
                             <td style="min-width: 100px;">
                                 <a href="{{ asset('dashboard/ppid/'.$subpage.'/edit/'.$dp->id_ppid) }}"><button type="button" class="btn btn-sm btn-warning"><i class="bx bxs-pencil text-white"></i></button></a>
                                 <button type="button" class="btn btn-sm btn-danger" onclick="delete_informasi({{ $dp->id_ppid }})"><i class="bx bxs-trash-alt"></i></button>
@@ -60,8 +52,8 @@
                     <script type="text/javascript">
                         function delete_informasi(id_ppid) {
                             Swal.fire({
-                            title: 'Hapus data laporan penyelesaian PPID ini?',
-                            text: "Data laporan penyelesaian PPID yang dihapus tidak akan bisa dikembalikan!",
+                            title: 'Hapus data dokumen informasi publik ini?',
+                            text: "Data dokumen informasi publik yang dihapus tidak akan bisa dikembalikan!",
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#d33',
@@ -82,7 +74,7 @@
                                         if (results.success === true) {
                                             Swal.fire(
                                             'Berhasil',
-                                            'Data laporan penyelesaian PPID berhasil dihapus',
+                                            'Data dokumen informasi publik berhasil dihapus',
                                             'success'
                                             )
                                             window.location.reload();
@@ -92,7 +84,7 @@
                                         Swal.fire({
                                         icon: 'error',
                                         title: 'Gagal',
-                                        text: 'Data laporan penyelesaian PPID tidak terhapus'
+                                        text: 'Data dokumen informasi publik tidak terhapus'
                                         })
                                     }
                                 });

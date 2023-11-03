@@ -43,8 +43,8 @@
                                         <td><a target="_blank" href="{{ asset('storage/files/images/foto/ppid_sop/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
                                         @elseif($current_subpage == "Laporan-Penyelesaian-PPID")
                                         <td><a target="_blank" href="{{ asset('storage/files/images/foto/ppid_laporan_penyelesaian/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
-                                        @else
-                                        <td><a target="_blank" href="{{ asset('storage/files/images/foto/ppid_daftar_informasi_publik/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
+                                        @elseif($current_subpage == "dokumen-informasi-publik")
+                                        <td><a target="_blank" href="{{ asset('storage/files/images/foto/ppid_dokumen_informasi_publik/'.$dp->file) }}"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
                                         @endif
                                     </tr>
                                     @endforeach

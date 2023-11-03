@@ -100,6 +100,8 @@
                 @include('dashboard.menu.ppid_laporan_list')
             @elseif($submenu == "Sop Ppid")
                 @include('dashboard.menu.ppid_sop_list')
+            @elseif($submenu == "Dokumen Informasi Publik")
+                @include('dashboard.menu.ppid_dokumen_list')
             @elseif($submenu == "Create")
                 @include('dashboard.menu.ppid_create')
             @elseif($submenu == "Edit")
