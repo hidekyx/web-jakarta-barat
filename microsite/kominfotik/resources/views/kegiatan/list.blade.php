@@ -261,7 +261,7 @@
                             </div>
                             </div>
                         @elseif($k->validated == "I")
-                        <i class="material-icons ms-auto text-warning cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Validated">info</i>
+                        <i class="material-icons ms-auto text-warning cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Revisi: {{ $k->keterangan }}">info</i>
                         @else
                         <i class="material-icons ms-auto text-success cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Validated">check</i>
                         @endif
