@@ -71,6 +71,7 @@ class FrontpageController extends Controller
                 }
                 $list_menu = $this->get_list_menu();
                 $data = $this->get_data($kewilayahan);
+                // dd($data['ppid']['daftar-informasi-publik-berkala']);
                 return view("front.main", [
                     'kewilayahan' => $kewilayahan,
                     'list_menu' => $list_menu,

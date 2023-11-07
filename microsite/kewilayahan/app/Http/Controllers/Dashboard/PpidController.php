@@ -27,6 +27,7 @@ class PpidController extends Controller
             $list_menu = $this->get_list_menu();
             $data_ppid = $this->get_data_ppid($subpage, $id_user);
             // dd($data_ppid[0]['isi'][0]->pivot($data_ppid[0]['isi'][0]->id_ppid, $id_user));
+            // dd($data_ppid);
             if($data_ppid == "Halaman PPID tidak ditemukan") {
                 echo "404"; die(); // redirect ke 404
             }

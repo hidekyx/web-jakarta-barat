@@ -94,6 +94,21 @@ trait PpidTrait
             $data_ppid ['sop-ppid'] = PpidSop::where('id_user', $id_user)->orderBy('created_at', 'DESC')->get();
             $data_ppid ['visi-dan-misi-ppid'] = PpidVisimisi::where('id_user', $id_user)->first();
             $data_ppid ['maklumat-pelayanan-informasi'] = PpidVisimisi::where('id_user', $id_user)->first();
+            $data_ppid ['daftar-informasi-publik-berkala'] = PpidInformasiBerkala::where('jenis', 'Sub Kategori')->get();
+            $data_ppid ['daftar-informasi-publik-serta-merta'] = PpidInformasiSertamerta::where('jenis', 'Sub Kategori')->get();
+            $data_ppid ['daftar-informasi-publik-setiap-saat'] = PpidInformasiSetiapsaat::where('jenis', 'Sub Kategori')->get();
+            foreach($data_ppid['daftar-informasi-publik-berkala'] as $key => $sb) {
+                $data_ppid['daftar-informasi-publik-berkala'][$key]['judul'] = $sb->isi;
+                $data_ppid['daftar-informasi-publik-berkala'][$key]['isi'] = PpidInformasiBerkala::where('jenis', 'Judul')->where('id_subkategori', $sb->id_ppid)->get();
+            }
+            foreach($data_ppid['daftar-informasi-publik-serta-merta'] as $key => $sb) {
+                $data_ppid['daftar-informasi-publik-serta-merta'][$key]['judul'] = $sb->isi;
+                $data_ppid['daftar-informasi-publik-serta-merta'][$key]['isi'] = PpidInformasiSertamerta::where('jenis', 'Judul')->where('id_subkategori', $sb->id_ppid)->get();
+            }
+            foreach($data_ppid['daftar-informasi-publik-setiap-saat'] as $key => $sb) {
+                $data_ppid['daftar-informasi-publik-setiap-saat'][$key]['judul'] = $sb->isi;
+                $data_ppid['daftar-informasi-publik-setiap-saat'][$key]['isi'] = PpidInformasiSetiapsaat::where('jenis', 'Judul')->where('id_subkategori', $sb->id_ppid)->get();
+            }
         }
         else {
             $data_ppid = "Halaman PPID tidak ditemukan"; // apabila mengakses halaman PPID yang tidak ada di menu
@@ -103,18 +118,6 @@ trait PpidTrait
     }
 
     public function detail_data_ppid($subpage, $id_user, $id_ppid) {
-        // if($subpage == "daftar-informasi-publik-berkala" || $subpage == "Daftar Informasi Publik Berkala") {
-        //     $data_ppid = PpidInformasiBerkalaPivot::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
-        //     if($data_ppid == null) {
-        //         $data_ppid = PpidInformasiBerkala::where('id_ppid', $id_ppid)->first();
-        //     }
-        // }
-        // elseif($subpage == "daftar-informasi-publik-serta-merta" || $subpage == "Daftar Informasi Publik Serta Merta") {
-        //     $data_ppid = PpidInformasiSertamerta::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
-        // }
-        // elseif($subpage == "daftar-informasi-publik-setiap-saat" || $subpage == "Daftar Informasi Publik Setiap Saat") {
-        //     $data_ppid = PpidInformasiSetiapsaat::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
-        // }
         if($subpage == "laporan-penyelesaian-ppid" || $subpage == "Laporan Penyelesaian PPID") {
             $data_ppid = PpidLaporan::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
         }
