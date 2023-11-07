@@ -15,4 +15,9 @@ class PpidInformasiSetiapsaat extends Model
         'jenis',
         'isi',
     ];
+
+    public function pivot($id_ppid, $id_user)
+    {
+        return PpidInformasiSetiapsaatPivot::where('id_ppid', $id_ppid)->where('id_user', $id_user)->first();
+    }
 }

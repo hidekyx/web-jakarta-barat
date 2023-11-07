@@ -15,4 +15,9 @@ class PpidInformasiBerkala extends Model
         'jenis',
         'isi',
     ];
+
+    public function pivot($id_ppid, $id_user)
+    {
+        return PpidInformasiBerkalaPivot::where('id_ppid', $id_ppid)->where('id_user', $id_user)->first();
+    }
 }

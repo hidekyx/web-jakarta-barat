@@ -26,9 +26,4 @@ class Menu extends Model
 
         return $this->hasOne(ProfilSejarah::class, 'id_user', 'id_user');
     }
-
-    public function kegiatan()
-    {
-        return $this->hasMany(Kegiatan::class, 'id_kegiatan');
-    }
 }
