@@ -51,6 +51,48 @@
                                 </tbody>
                             </table>
                         </div>
+                    @elseif($current_menu->konten == "Tabel Informasi")
+                    <div class="table-responsive">
+                    <table class="table table-bordered table-hover" style="width:100%">
+                        <thead style="background-color: #3c4043; color: #fff">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Judul</th>
+                                <th scope="col">Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($data['ppid'][strtolower($current_subpage)] as $key => $dp)
+                                <tr style="background-color: #e4e6ef;">
+                                    <th scope="row"><a href="#">{{ $key+1 }}</a></th>
+                                    <th>{{ $dp->judul }}</th>
+                                    <th></th>
+                                </tr>
+                                @foreach($dp['isi'] as $isi)
+                                <tr>
+                                    <th></th>
+                                    <td>{{ $isi->isi }}</td>
+                                    @if($isi->pivot($isi->id_ppid, $kewilayahan->id_user))
+                                    <td>
+                                        @if($isi->pivot($isi->id_ppid, $kewilayahan->id_user)->type == "Link")
+                                        <a href="{{ $isi->pivot($isi->id_ppid, $kewilayahan->id_user)->value }}">
+                                            <button type="button" class="btn btn-sm btn-info text-white">Link</button>
+                                        </a>
+                                        @elseif($isi->pivot($isi->id_ppid, $kewilayahan->id_user)->type == "File")
+                                        <a href="{{ asset('storage/files/images/foto/ppid_daftar_informasi_publik/'.$isi->pivot($isi->id_ppid, $kewilayahan->id_user)->value) }}">
+                                            <button type="button" class="btn btn-sm btn-primary">File</button>
+                                        </a>
+                                        @endif
+                                    </td>
+                                    @else
+                                    <td>-</td>
+                                    @endif
+                                </tr>
+                                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                    </div>
                     @else
                         <p>Data belum tersedia.</p>
                     @endif

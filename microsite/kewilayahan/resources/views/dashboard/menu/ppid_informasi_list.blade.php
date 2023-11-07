@@ -63,51 +63,8 @@
                             @endforeach
                         @endforeach
                     </tbody>
-                    <script type="text/javascript">
-                        function delete_informasi(id_ppid) {
-                            Swal.fire({
-                            title: 'Hapus data informasi publik ini?',
-                            text: "Data informasi publik yang dihapus tidak akan bisa dikembalikan!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#6c757d',
-                            confirmButtonText: 'Hapus',
-                            cancelButtonText: "Batal",
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                                $.ajax({
-                                    type: 'POST',
-                                    url: "{{ url('/dashboard/ppid/'.$subpage.'/delete') }}/" + id_ppid,
-                                    data: {
-                                        _token: CSRF_TOKEN
-                                    },
-                                    dataType: 'JSON',
-                                    success: function(results) {
-                                        if (results.success === true) {
-                                            Swal.fire(
-                                            'Berhasil',
-                                            'Data informasi publik berhasil dihapus',
-                                            'success'
-                                            )
-                                            window.location.reload();
-                                        }
-                                    },
-                                    error: function(results) {
-                                        Swal.fire({
-                                        icon: 'error',
-                                        title: 'Gagal',
-                                        text: 'Data informasi publik tidak terhapus'
-                                        })
-                                    }
-                                });
-                            }
-                            })
-                        }
-                    </script>
                 </table>
-                </div>
+            </div>
             </div>
         </div>
     </div>
