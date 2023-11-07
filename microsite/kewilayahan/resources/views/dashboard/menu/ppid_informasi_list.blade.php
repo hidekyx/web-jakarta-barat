@@ -43,8 +43,22 @@
                             <tr>
                                 <th></th>
                                 <td>{{ $isi->isi }}</td>
-                                <td><a href="#"><button type="button" class="btn btn-sm btn-primary">Lihat File</button></a></td>
-                                <th><a href="{{ asset('dashboard/ppid/'.$subpage.'/edit/'.$logged_user->id_user) }}"><button type="button" class="btn btn-sm btn-warning"><i class="bx bxs-pencil text-white"></i></button></a></th>
+                                @if($isi->pivot($isi->id_ppid, $logged_user->id_user))
+                                <td>
+                                    @if($isi->pivot($isi->id_ppid, $logged_user->id_user)->type == "Link")
+                                    <a href="{{ $isi->pivot($isi->id_ppid, $logged_user->id_user)->value }}">
+                                        <button type="button" class="btn btn-sm btn-info text-white">Lihat Link</button>
+                                    </a>
+                                    @elseif($isi->pivot($isi->id_ppid, $logged_user->id_user)->type == "File")
+                                    <a href="{{ asset('storage/files/images/foto/ppid_daftar_informasi_publik/'.$isi->pivot($isi->id_ppid, $logged_user->id_user)->value) }}">
+                                        <button type="button" class="btn btn-sm btn-primary">Lihat File</button>
+                                    </a>
+                                    @endif
+                                </td>
+                                @else
+                                <td>-</td>
+                                @endif
+                                <th><a href="{{ asset('dashboard/ppid/'.$subpage.'/edit_informasi/'.$isi->id_ppid) }}"><button type="button" class="btn btn-sm btn-warning"><i class="bx bxs-pencil text-white"></i></button></a></th>
                             </tr>
                             @endforeach
                         @endforeach

@@ -106,6 +106,8 @@
                 @include('dashboard.menu.ppid_create')
             @elseif($submenu == "Edit")
                 @include('dashboard.menu.ppid_edit')
+            @elseif($submenu == "Edit Informasi")
+                @include('dashboard.menu.ppid_informasi_edit')
             @endif
         @endisset
     @endif
