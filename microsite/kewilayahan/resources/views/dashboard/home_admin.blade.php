@@ -89,7 +89,7 @@
                                                     <td>PPID</td>
                                                     <th scope="row">{{ Str::headline($key) }}</th>
                                                     @if($data)
-                                                        @if($key == "daftar-informasi-publik-setiap-saat" || $key == "daftar-informasi-publik-berkala" || $key == "daftar-informasi-publik-serta-merta" || $key == "laporan-penyelesaian-ppid" || $key == "sop-ppid")
+                                                        @if($key == "dokumen-informasi-publik" || $key == "laporan-penyelesaian-ppid" || $key == "sop-ppid")
                                                             @if(count($data) != 0)
                                                             <td><span class="badge bg-info">{{ count($data) }}</span></td>
                                                             <td><span class="badge bg-success w-100">Sudah Dipublikasi</span></td>
@@ -99,6 +99,10 @@
                                                             <td><span class="badge bg-danger w-100">Belum Diisi</span></td>
                                                             <td>-</td>
                                                             @endif
+                                                        @elseif($key == "daftar-informasi-publik-berkala" || $key == "daftar-informasi-publik-serta-merta" || $key == "daftar-informasi-publik-setiap-saat")
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
                                                         @else
                                                         <td>-</td>
                                                         <td><span class="badge bg-success w-100">Sudah Dipublikasi</span></td>
