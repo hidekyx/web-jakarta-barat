@@ -4,8 +4,11 @@ namespace App\Traits;
 
 use App\Models\PpidDokumen;
 use App\Models\PpidInformasiBerkala;
+use App\Models\PpidInformasiBerkalaPivot;
 use App\Models\PpidInformasiSertamerta;
+use App\Models\PpidInformasiSertamertaPivot;
 use App\Models\PpidInformasiSetiapsaat;
+use App\Models\PpidInformasiSetiapsaatPivot;
 use App\Models\PpidKeberatan;
 use App\Models\PpidLaporan;
 use App\Models\PpidMaklumat;
@@ -100,16 +103,19 @@ trait PpidTrait
     }
 
     public function detail_data_ppid($subpage, $id_user, $id_ppid) {
-        if($subpage == "daftar-informasi-publik-setiap-saat" || $subpage == "Daftar Informasi Publik Setiap Saat") {
-            $data_ppid = PpidInformasiSetiapsaat::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
-        }
-        elseif($subpage == "daftar-informasi-publik-berkala" || $subpage == "Daftar Informasi Publik Berkala") {
-            $data_ppid = PpidInformasiBerkala::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
-        }
-        elseif($subpage == "daftar-informasi-publik-serta-merta" || $subpage == "Daftar Informasi Publik Serta Merta") {
-            $data_ppid = PpidInformasiSertamerta::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
-        }
-        elseif($subpage == "laporan-penyelesaian-ppid" || $subpage == "Laporan Penyelesaian PPID") {
+        // if($subpage == "daftar-informasi-publik-berkala" || $subpage == "Daftar Informasi Publik Berkala") {
+        //     $data_ppid = PpidInformasiBerkalaPivot::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+        //     if($data_ppid == null) {
+        //         $data_ppid = PpidInformasiBerkala::where('id_ppid', $id_ppid)->first();
+        //     }
+        // }
+        // elseif($subpage == "daftar-informasi-publik-serta-merta" || $subpage == "Daftar Informasi Publik Serta Merta") {
+        //     $data_ppid = PpidInformasiSertamerta::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+        // }
+        // elseif($subpage == "daftar-informasi-publik-setiap-saat" || $subpage == "Daftar Informasi Publik Setiap Saat") {
+        //     $data_ppid = PpidInformasiSetiapsaat::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+        // }
+        if($subpage == "laporan-penyelesaian-ppid" || $subpage == "Laporan Penyelesaian PPID") {
             $data_ppid = PpidLaporan::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
         }
         elseif($subpage == "sop-ppid" || $subpage == "SOP PPID") {
@@ -117,6 +123,41 @@ trait PpidTrait
         }
         elseif($subpage == "dokumen-informasi-publik" || $subpage == "Dokumen Informasi Publik") {
             $data_ppid = PpidDokumen::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+        }
+        else {
+            $data_ppid = "Halaman PPID tidak ditemukan"; // apabila mengakses halaman PPID yang tidak ada di menu
+        }
+
+        return $data_ppid;
+    }
+
+    public function detail_data_ppid_informasi($subpage, $id_user, $id_ppid) {
+        if($subpage == "daftar-informasi-publik-berkala" || $subpage == "Daftar Informasi Publik Berkala") {
+            $data_ppid = PpidInformasiBerkalaPivot::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+            if(!$data_ppid) {
+                $data_ppid = PpidInformasiBerkala::where('id_ppid', $id_ppid)->first();
+            }
+            else {
+                $data_ppid->isi = PpidInformasiBerkala::where('id_ppid', $id_ppid)->pluck('isi')->first();
+            }
+        }
+        elseif($subpage == "daftar-informasi-publik-serta-merta" || $subpage == "Daftar Informasi Publik Serta Merta") {
+            $data_ppid = PpidInformasiSertamertaPivot::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+            if(!$data_ppid) {
+                $data_ppid = PpidInformasiSertamerta::where('id_ppid', $id_ppid)->first();
+            }
+            else {
+                $data_ppid->isi = PpidInformasiSertamerta::where('id_ppid', $id_ppid)->pluck('isi')->first();
+            }
+        }
+        elseif($subpage == "daftar-informasi-publik-setiap-saat" || $subpage == "Daftar Informasi Publik Setiap Saat") {
+            $data_ppid = PpidInformasiSetiapsaatPivot::where('id_user', $id_user)->where('id_ppid', $id_ppid)->first();
+            if(!$data_ppid) {
+                $data_ppid = PpidInformasiSetiapsaat::where('id_ppid', $id_ppid)->first();
+            }
+            else {
+                $data_ppid->isi = PpidInformasiSetiapsaat::where('id_ppid', $id_ppid)->pluck('isi')->first();
+            }
         }
         else {
             $data_ppid = "Halaman PPID tidak ditemukan"; // apabila mengakses halaman PPID yang tidak ada di menu
@@ -229,55 +270,67 @@ trait PpidTrait
                 'status' => "Sudah Dipublikasi",
             ]);
         }
-        elseif($subpage == "daftar-informasi-publik-setiap-saat") {
-            $randomName = null;
-            if ($request->hasFile('file')) {
-                $filenameWithExt = $request->file('file')->getClientOriginalName();
-                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('file')->getClientOriginalExtension();
-                $filenameSimpan = md5($filename. time()).'.'.$extension;
-                $randomName = $filenameSimpan;
-                $path = $request->file('file')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik/', $filenameSimpan);
-            }
-            $data_ppid = new PpidInformasiSetiapsaat([
-                'id_user' => $id_user,
-                'judul' => $request->get('judul'),
-                'keterangan' => $request->get('keterangan'),
-                'file' => $randomName,
-            ]);
-        }
         elseif($subpage == "daftar-informasi-publik-berkala") {
             $randomName = null;
-            if ($request->hasFile('file')) {
-                $filenameWithExt = $request->file('file')->getClientOriginalName();
+            if ($request->hasFile('value')) {
+                $filenameWithExt = $request->file('value')->getClientOriginalName();
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('file')->getClientOriginalExtension();
+                $extension = $request->file('value')->getClientOriginalExtension();
                 $filenameSimpan = md5($filename. time()).'.'.$extension;
                 $randomName = $filenameSimpan;
-                $path = $request->file('file')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik/', $filenameSimpan);
+                $path = $request->file('value')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik/', $filenameSimpan);
+                $value = $randomName;
             }
-            $data_ppid = new PpidInformasiBerkala([
+            else {
+                $value = $request->get('value');
+            }
+            $data_ppid = new PpidInformasiBerkalaPivot([
                 'id_user' => $id_user,
-                'judul' => $request->get('judul'),
-                'keterangan' => $request->get('keterangan'),
-                'file' => $randomName,
+                'id_ppid' => $request->get('id_ppid'),
+                'type' => $request->get('type'),
+                'value' => $value,
             ]);
         }
         elseif($subpage == "daftar-informasi-publik-serta-merta") {
             $randomName = null;
-            if ($request->hasFile('file')) {
-                $filenameWithExt = $request->file('file')->getClientOriginalName();
+            if ($request->hasFile('value')) {
+                $filenameWithExt = $request->file('value')->getClientOriginalName();
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('file')->getClientOriginalExtension();
+                $extension = $request->file('value')->getClientOriginalExtension();
                 $filenameSimpan = md5($filename. time()).'.'.$extension;
                 $randomName = $filenameSimpan;
-                $path = $request->file('file')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik/', $filenameSimpan);
+                $path = $request->file('value')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik/', $filenameSimpan);
+                $value = $randomName;
             }
-            $data_ppid = new PpidInformasiSertamerta([
+            else {
+                $value = $request->get('value');
+            }
+            $data_ppid = new PpidInformasiSertamertaPivot([
                 'id_user' => $id_user,
-                'judul' => $request->get('judul'),
-                'keterangan' => $request->get('keterangan'),
-                'file' => $randomName,
+                'id_ppid' => $request->get('id_ppid'),
+                'type' => $request->get('type'),
+                'value' => $value,
+            ]);
+        }
+        elseif($subpage == "daftar-informasi-publik-setiap-saat") {
+            $randomName = null;
+            if ($request->hasFile('value')) {
+                $filenameWithExt = $request->file('value')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('value')->getClientOriginalExtension();
+                $filenameSimpan = md5($filename. time()).'.'.$extension;
+                $randomName = $filenameSimpan;
+                $path = $request->file('value')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik/', $filenameSimpan);
+                $value = $randomName;
+            }
+            else {
+                $value = $request->get('value');
+            }
+            $data_ppid = new PpidInformasiSetiapsaatPivot([
+                'id_user' => $id_user,
+                'id_ppid' => $request->get('id_ppid'),
+                'type' => $request->get('type'),
+                'value' => $value,
             ]);
         }
         elseif($subpage == "laporan-penyelesaian-ppid") {
@@ -365,18 +418,19 @@ trait PpidTrait
         }
         elseif($subpage == "daftar-informasi-publik-setiap-saat" || $subpage == "daftar-informasi-publik-berkala" || $subpage == "daftar-informasi-publik-serta-merta") {
             $randomName = null;
-            if ($request->hasFile('file')) {
-                $filenameWithExt = $request->file('file')->getClientOriginalName();
+            if ($request->hasFile('value')) {
+                $filenameWithExt = $request->file('value')->getClientOriginalName();
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('file')->getClientOriginalExtension();
+                $extension = $request->file('value')->getClientOriginalExtension();
                 $filenameSimpan = md5($filename. time()).'.'.$extension;
                 $randomName = $filenameSimpan;
-                $path = $request->file('file')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik', $filenameSimpan);
-                $data_ppid->file = $randomName;
+                $path = $request->file('value')->storeAs('public/files/images/foto/ppid_daftar_informasi_publik', $filenameSimpan);
+                $data_ppid->type = $request->get('type');
+                $data_ppid->value = $randomName;
             }
             else {
-                $data_ppid->judul = $request->get('judul');
-                $data_ppid->keterangan = $request->get('keterangan');
+                $data_ppid->type = $request->get('type');
+                $data_ppid->value = $request->get('value');
             }
         }
         elseif($subpage == "laporan-penyelesaian-ppid") {
