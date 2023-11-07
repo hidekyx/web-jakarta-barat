@@ -46,6 +46,8 @@ Route::get('/dashboard/ppid/{subpage}/tambah', [PpidController::class, 'ppid_cre
 Route::get('/dashboard/ppid/{subpage}/edit/{id_ppid}', [PpidController::class, 'ppid_edit']);
 Route::post('/dashboard/ppid/{subpage}/simpan', [PpidController::class, 'ppid_store']);
 Route::post('/dashboard/ppid/{subpage}/delete/{id_ppid}', [PpidController::class, 'ppid_delete']);
+Route::get('/dashboard/ppid/{subpage}/edit_informasi/{id_ppid}', [PpidController::class, 'ppid_edit_informasi']);
+Route::post('/dashboard/ppid/{subpage}/simpan_informasi', [PpidController::class, 'ppid_store_informasi']);
 
 Route::get('/dashboard/layanan-publik/{subpage}', [LayananController::class, 'layanan_view']);
 Route::get('/dashboard/layanan-publik/{subpage}/tambah', [LayananController::class, 'layanan_create']);
