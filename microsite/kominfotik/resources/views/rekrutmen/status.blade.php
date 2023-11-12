@@ -98,16 +98,15 @@
                     <li><a target="_blank" class="text-info" href="{{ asset('/rekrutmen/download/'.$rekrutmen->nik.'/scan_npwp') }}">Scan NPWP </a><i class="fa fa-check text-success"></i></li>
                     <li><a target="_blank" class="text-info" href="{{ asset('/rekrutmen/download/'.$rekrutmen->nik.'/scan_ijazah') }}">Scan Ijazah dan Transkrip Nilai </a><i class="fa fa-check text-success"></i></li>
                     <li><a target="_blank" class="text-info" href="{{ asset('/rekrutmen/download/'.$rekrutmen->nik.'/scan_sertifikat_pendukung') }}">Scan Sertifikat Pendukung </a><i class="fa fa-check text-success"></i></li>
+                    @if($rekrutmen->posisi == "TJJ" || $rekrutmen->posisi == "TJS" || $rekrutmen->posisi == "FG" || $rekrutmen->posisi == "REP")
                     <li><a target="_blank" class="text-info" href="{{ asset('/rekrutmen/download/'.$rekrutmen->nik.'/scan_sim') }}">Scan SIM </a><i class="fa fa-check text-success"></i></li>
-                    <li><a target="_blank" class="text-info" href="{{ asset('/rekrutmen/download/'.$rekrutmen->nik.'/scan_sertifikat_vaksin') }}">Scan Sertifikat Vaksin </a><i class="fa fa-check text-success"></i></li>
-                    <li><a target="_blank" class="text-info" href="{{ asset('/rekrutmen/download/'.$rekrutmen->nik.'/scan_skck') }}">Scan SKCK </a><i class="fa fa-check text-success"></i></li>
-                    <li><a target="_blank" class="text-info" href="{{ asset('/rekrutmen/download/'.$rekrutmen->nik.'/scan_keterangan_sehat') }}">Scan Surat Keterangan Sehat </a><i class="fa fa-check text-success"></i></li>
+                    @endif
                     @if($rekrutmen->scan_surat_pengalaman_kerja != null)
                     <li><a target="_blank" class="text-info" href="{{ asset('/rekrutmen/download/'.$rekrutmen->nik.'/scan_surat_pengalaman_kerja') }}">Scan Surat Pengalaman Kerja </a><i class="fa fa-check text-success"></i></li>
                     @else
                     <li><a class="text-dark">Scan Surat Pengalaman Kerja </a><i class="fa fa-close text-danger"></i></li>
                     @endif
-                    @if($rekrutmen->posisi == "EAV" || $rekrutmen->posisi == "DG")
+                    @if($rekrutmen->posisi == "EAV" || $rekrutmen->posisi == "EV" || $rekrutmen->posisi == "DG")
                     <li><a target="_blank" class="text-info" href="{{ $rekrutmen->portofolio }}">Portofolio</a><i class="fa fa-check text-success"></i></li>
                     @endif
                 </ul>

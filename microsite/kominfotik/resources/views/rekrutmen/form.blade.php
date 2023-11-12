@@ -3,7 +3,7 @@
     <div class="card-header pb-0 px-3">
         <div class="row">
         <div class="col-md-6">
-            <h6 class="mb-4">Form Calon Kandidat Tenaga Terampil - Sudis Kominfotik JB</h6>
+            <h6 class="mb-4">Form Calon Kandidat PJLP 2024 - Sudis Kominfotik JB</h6>
         </div>
         </div>
     </div>
@@ -51,11 +51,21 @@
                 <h6 class="text-dark text-sm ">Posisi Yang Dilamar: </h6>
                 <div class="input-group input-group-outline mb-1">
                     <select class="selectpicker w-100" id="posisi" title="Posisi" data-live-search="true" data-size="8" name="posisi" required>
-                    <optgroup label="Jaringan Komunikasi Data">
-                        <option value="TSJ-SMK">Technical Support Jaringan (SMK)</option>
+                    <optgroup label="Seksi Infrastruktur Data">
+                        <option value="TJJ">Teknisi Jaringan Junior</option>
+                        <option value="TJS">Teknisi Jaringan Senior</option>
                     </optgroup>
-                    <optgroup label="Komunikasi Informasi Publik">
-                        <option value="KMR-SMA">Kameramen (SMA)</option>
+                    <optgroup label="Seksi Komunikasi dan Informasi Publik">
+                        <option value="OSM">Operator Sosial Media</option>
+                        <option value="EV">Editor Video</option>
+                        <option value="DG">Desainer Grafis</option>
+                        <option value="FG">Fotografer</option>
+                        <option value="REP">Reporter</option>
+                        <option value="EB">Editor Berita</option>
+                    </optgroup>
+                    <optgroup label="Seksi Aplikasi Siber dan Statistik">
+                        <option value="TWA">Tenaga Web Aplikasi</option>
+                        <option value="TSKI">Technical Support Keamanan Informasi</option>
                     </optgroup>
                     </select>
                 </div>
@@ -84,13 +94,23 @@
                             $('#wrapper').append('<li class="text-xs text-secondary '+ data[i].posisi +'">'+ data[i].keterangan +'</li>');
                             posisi_awal = data[i].posisi;
                         }
-                        if (posisi == "EAV" || posisi == "DG") {
+                        if (posisi == "EV" || posisi == "DG") {
                             $('#portofolio').fadeIn();
                             $('#portofolio_form').prop('required', true);
+                            $('#sim').fadeOut();
+                            $('#sim_form').prop('required', false);
+                        }
+                        else if (posisi == "TJJ" || posisi == "TJS" || posisi == "FG" || posisi == "REP") {
+                            $('#sim').fadeIn();
+                            $('#sim_form').prop('required', true);
+                            $('#portofolio').fadeOut();
+                            $('#portofolio_form').prop('required', false);
                         }
                         else {
                             $('#portofolio').fadeOut();
                             $('#portofolio_form').prop('required', false);
+                            $('#sim').fadeOut();
+                            $('#sim_form').prop('required', false);
                         }
                     }
                 });
@@ -100,7 +120,7 @@
         <hr>
         <div id="Lampiran" style="display: none;">
         <h6 class="text-dark text-sm ">Lampiran Berkas Kandidat: </h6>
-        <i class="text-xs text-secondary">(*)Scan asli Surat Lamaran Kerja ditujukan kepada Pejabat Pengadaan Barang/Jasa (PPBJ) Suku Dinas Komunikasi, Informatika dan Statistik Kota Administrasi Jakarta Barat</i>
+        <i class="text-xs text-secondary">(*)Scan asli Surat Lamaran Kerja ditujukan kepada Pejabat Pengadaan Barang/Jasa (PPBJ) Suku Dinas Komunikasi, Informatika dan Statistik Kota Administrasi Jakarta Barat;</i>
         <div class="mb-3">
             <input class="form-control" type="file" name="scan_surat_lamaran_kerja" accept=".pdf" required oninvalid="this.setCustomValidity('Scan surat lamaran kerja wajib diupload')" oninput="this.setCustomValidity('')">
         </div>
@@ -125,34 +145,16 @@
             <input class="form-control" type="file" name="scan_ijazah" accept=".pdf" required oninvalid="this.setCustomValidity('Scan Ijazah wajib diupload')" oninput="this.setCustomValidity('')">
         </div>
 
-        <i class="text-xs text-secondary">(*)Scan asli Sertifikat Keahlian/Kompetensi pendukung</i>
+        <i class="text-xs text-secondary">(*)Scan asli Sertifikat Kompetensi/Training pendukung maksimal 2 (dua) tahun terakhir (dijadikan 1 file pdf)</i>
         <div class="mb-3">
             <input class="form-control" type="file" name="scan_sertifikat_pendukung" accept=".pdf" required oninvalid="this.setCustomValidity('Scan sertifikat pendukung wajib diupload')" oninput="this.setCustomValidity('')">
         </div>
 
-        <i class="text-xs text-secondary">(*)Scan asli Surat Ijin Mengemudi (SIM A/C) yang masih berlaku (Technical Support, Kameramen, Reporter, dan Editor Berita)</i>
-        <div class="mb-3">
-            <input class="form-control" type="file" name="scan_sim" accept=".pdf" required oninvalid="this.setCustomValidity('Scan SIM wajib diupload')" oninput="this.setCustomValidity('')">
-        </div>
-
-        <i class="text-xs text-secondary">(*)Scan asli Sertifikat Vaksin Covid-19 lengkap (3 dosis)</i>
-        <div class="mb-3">
-            <input class="form-control" type="file" name="scan_sertifikat_vaksin" accept=".pdf" required oninvalid="this.setCustomValidity('Scan sertifikat vaksin wajib diupload')" oninput="this.setCustomValidity('')">
-        </div>
-
-        <i class="text-xs text-secondary">(*)Scan asli Surat Keterangan Catatan Kepolisian (SKCK) yang masih berlaku</i>
-        <div class="mb-3">
-            <input class="form-control" type="file" name="scan_skck" accept=".pdf" required oninvalid="this.setCustomValidity('Scan SKCK wajib diupload')" oninput="this.setCustomValidity('')">
-        </div>
-
-        <i class="text-xs text-secondary">(*)Scan asli Surat Keterangan Kesehatan</i>
-        <div class="mb-3">
-            <input class="form-control" type="file" name="scan_keterangan_sehat" accept=".pdf" required oninvalid="this.setCustomValidity('Scan surat keterangan sehat wajib diupload')" oninput="this.setCustomValidity('')">
-        </div>
-
-        <i class="text-xs text-secondary">Scan asli Surat Keterangan Pengalaman Kerja sesuai dengan bidangnya</i>
-        <div class="mb-3">
-            <input class="form-control" type="file" name="scan_surat_pengalaman_kerja" accept=".pdf">
+        <div style="display: none;" id="sim">
+            <i class="text-xs text-secondary">(*)Scan asli Surat Ijin Mengemudi (SIM A/C) yang masih berlaku (Teknisi Jaringan, Fotografer, dan Reporter)</i>
+            <div class="mb-3">
+                <input class="form-control" type="file" id="sim_form" name="scan_sim" accept=".pdf" oninvalid="this.setCustomValidity('Scan SIM wajib diupload')" oninput="this.setCustomValidity('')">
+            </div>
         </div>
 
         <div style="display: none;" id="portofolio">
@@ -160,6 +162,11 @@
             <div class="input-group input-group-outline mb-3">
                 <input name="portofolio" type="text" id="portofolio_form" class="form-control" placeholder="Portofolio">
             </div>
+        </div>
+
+        <i class="text-xs text-secondary">Scan asli Surat Keterangan Pengalaman Kerja sesuai dengan bidangnya</i>
+        <div class="mb-3">
+            <input class="form-control" type="file" name="scan_surat_pengalaman_kerja" accept=".pdf">
         </div>
 
         <i class="text-xs text-secondary">- Tanda <b>(*)</b> artinya calon kandidat wajib melampirkan berkas tersebut</i><br>

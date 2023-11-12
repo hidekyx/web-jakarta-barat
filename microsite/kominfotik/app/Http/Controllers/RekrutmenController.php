@@ -73,7 +73,7 @@ class RekrutmenController extends Controller
             'email' => 'required|string',
             'alamat' => 'required|string',
             'tanggal_lahir' => 'required|date',
-            'posisi' => 'required|string|in:KMR-SMA,KMR-D3,OMS,EAV,DG,REP,EB,TSA,TWA,TSJ-SMK,TSJ-D3',
+            'posisi' => 'required|string|in:TJJ,TJS,OSM,EV,DG,FG,REP,EB,TWA,TSKI',
         ];
         $messages = [
             'nama_lengkap.required' => 'Nama Lengkap wajib diisi',
@@ -108,10 +108,6 @@ class RekrutmenController extends Controller
             'scan_npwp',
             'scan_ijazah',
             'scan_sertifikat_pendukung',
-            'scan_sim',
-            'scan_sertifikat_vaksin',
-            'scan_skck',
-            'scan_keterangan_sehat'
         );
 
         $label_berkas = array(
@@ -121,13 +117,13 @@ class RekrutmenController extends Controller
             'Scan NPWP',
             'Scan Ijazah dan Transkrip Nilai',
             'Scan Sertifikat Pendukung',
-            'Scan SIM',
-            'Scan Sertifikat Vaksin',
-            'Scan SKCK',
-            'Scan Surat Keterangan Sehat'
         );
+
+        if ($request->get('posisi') == "TJJ" || $request->get('posisi') == "TJS" || $request->get('posisi') == "FG" || $request->get('posisi') == "REP") {
+            $berkas = $berkas + array('scan_sim');
+            $label_berkas = $label_berkas + array('Scan SIM');
+        }
         $total_berkas = count($berkas);
-        // dd($request->hasFile($berkas[0]));
 
         for ($i=0; $i < $total_berkas; $i++) {
             $nama_berkas[$i] = null;
@@ -144,6 +140,10 @@ class RekrutmenController extends Controller
         }
         for ($i=0; $i < $total_berkas; $i++) {
             $request->file($berkas[$i])->storeAs('public/rekrutmen/berkas/', $nama_berkas[$i]);
+        }
+
+        if ($request->get('posisi') == "TJJ" || $request->get('posisi') == "TJS" || $request->get('posisi') == "FG" || $request->get('posisi') == "REP") {
+            $nama_berkas[6] = null;
         }
 
         $scan_surat_pengalaman_kerja = null;
@@ -171,14 +171,11 @@ class RekrutmenController extends Controller
             'scan_ijazah' => $nama_berkas[4],
             'scan_sertifikat_pendukung' => $nama_berkas[5],
             'scan_sim' => $nama_berkas[6],
-            'scan_sertifikat_vaksin' => $nama_berkas[7],
-            'scan_skck' => $nama_berkas[8],
-            'scan_keterangan_sehat' => $nama_berkas[9],
             'scan_surat_pengalaman_kerja' => $scan_surat_pengalaman_kerja,
             'portofolio' => $portofolio,
             'tanggal_submit' => date('Y-m-d'),
             'status' => "Menunggu Pengumuman",
-            "periode" => "Periode 2"
+            "periode" => "2024"
         ]);
         if($rekrutmen->save()) {
             return redirect('/rekrutmen/status?nik='.$rekrutmen->nik)->with('success', 'Data dan berkas lamaran kerja akan kami review');
