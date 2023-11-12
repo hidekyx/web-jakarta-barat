@@ -201,7 +201,7 @@
                     <li class="text-sm text-secondary">Rekrutmen ini adalah untuk menjadi PJLP di Suku Dinas Komunikasi, Informatika dan Statistik Kota Administrasi Jakarta Barat Tahun Anggaran 2024.</li>
                 </ul>
 
-                <span class="text-sm">Download file pengumuman lengkap </span><a target="_blank" class="text-sm text-info" href="{{ asset('/storage/rekrutmen/dokumen/Pengumuman-Penerimaan-PJLP-2024-Tambahan.pdf') }}">di sini.</a></i>
+                <!-- <span class="text-sm">Download file pengumuman lengkap </span><a target="_blank" class="text-sm text-info" href="{{ asset('/storage/rekrutmen/dokumen/Pengumuman-Penerimaan-PJLP-2024-Tambahan.pdf') }}">di sini.</a></i> -->
                 <hr class="mb-0">
                 <div class="text-start">
                     <a href="{{ asset('/rekrutmen/form') }}"><button type="submit" class="btn bg-gradient-primary my-4 mb-2 mx-1">Lamar Pekerjaan</button></a>
