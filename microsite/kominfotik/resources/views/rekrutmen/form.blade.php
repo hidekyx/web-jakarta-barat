@@ -130,7 +130,7 @@
             <input class="form-control" type="file" name="scan_daftar_riwayat_hidup" accept=".pdf" required oninvalid="this.setCustomValidity('Scan daftar riwayat hidup wajib diupload')" oninput="this.setCustomValidity('')">
         </div>
 
-        <i class="text-xs text-secondary">(*)Scan asli Kartu Tanda Penduduk (KTP)</i>
+        <i class="text-xs text-secondary">(*)Scan asli Kartu Tanda Penduduk (KTP) dan/atau Surat Keterangan Domisili</i>
         <div class="mb-3">
             <input class="form-control" type="file" name="scan_ktp" accept=".pdf" required oninvalid="this.setCustomValidity('Scan KTP wajib diupload')" oninput="this.setCustomValidity('')">
         </div>
