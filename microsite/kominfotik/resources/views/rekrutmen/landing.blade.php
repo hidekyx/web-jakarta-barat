@@ -185,7 +185,13 @@
                 <ul>
                     <li class="text-sm text-secondary">Pengumuman secara online melalui website https://barat.jakarta.go.id pada tanggal 13 November 2023;</li>
                     <li class="text-sm text-secondary">Pelamar dapat mengirimkan surat lamaran secara daring dan mengunggah scan berkas sebagaimana disebutkan pada poin VI (Berkas) melalui menu/tombol ”Daftar” pada link website <a href="https://barat.jakarta.go.id/kominfotik/rekrutmen">https://barat.jakarta.go.id/kominfotik/rekrutmen</a>. Pengiriman dapat dilakukan mulai tanggal 13 November 2023 ditutup pada tanggal 19 November 2023 pukul 23:59 WIB;</li>
-                    <li class="text-sm text-secondary">Pelamar yang dinyatakan lolos seleksi administrasi akan menjalani 3 (tiga) tahap seleksi yaitu:</li>
+                    <li class="text-sm text-secondary">Pelamar yang dinyatakan lolos seleksi administrasi akan menjalani 3 (tiga) tahap seleksi yaitu:
+                        <ul class="text-dark text-sm mb-0">
+                            <li class="text-sm text-secondary">Test CAT;</li>
+                            <li class="text-sm text-secondary">Test Praktek; dan</li>
+                            <li class="text-sm text-secondary">Test Wawancara;</li>
+                        </ul>
+                    </li>
                     <li class="text-sm text-secondary">Pada saat wawancara, pelamar diwajibkan membawa berkas asli sesuai dengan berkas lamaran yang diunggah pada poin VI, dimasukkan ke dalam <b>Map</b> diberi keterangan <b>Nama dan Posisi Pelamar di pojok kanan atas</b> untuk diperlihatkan kepada panitia pada saat wawancara;</li>
                     <li class="text-sm text-secondary">Pelamar yang dinyatakan lolos tahapan seleksi akan diinformasikan melalui menu/tombol ”Cek Status” pada link website <a href="https://barat.jakarta.go.id/kominfotik/rekrutmen">https://barat.jakarta.go.id/kominfotik/rekrutmen</a>.</li>
                 </ul>
