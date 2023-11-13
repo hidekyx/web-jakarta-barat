@@ -56,7 +56,7 @@
                         <option value="TJS">Teknisi Jaringan Senior</option>
                     </optgroup>
                     <optgroup label="Seksi Komunikasi dan Informasi Publik">
-                        <option value="OSM">Operator Sosial Media</option>
+                        <option value="OMS">Operator Media Sosial</option>
                         <option value="EV">Editor Video</option>
                         <option value="DG">Desainer Grafis</option>
                         <option value="FG">Fotografer</option>

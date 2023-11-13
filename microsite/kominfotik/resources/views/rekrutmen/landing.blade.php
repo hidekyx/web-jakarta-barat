@@ -35,9 +35,9 @@
                         </tr>
                         <tr>
                             <td class="p-2">3</td>
-                            <td class="p-2">Operator Sosial Media</td>
+                            <td class="p-2">Operator Media Sosial</td>
                             <td class="p-2">1 Orang</td>
-                            <td class="p-2">OSM</td>
+                            <td class="p-2">OMS</td>
                         </tr>
                         <tr>
                             <td class="p-2">4</td>
@@ -201,7 +201,7 @@
                     <li class="text-sm text-secondary">Rekrutmen ini adalah untuk menjadi PJLP di Suku Dinas Komunikasi, Informatika dan Statistik Kota Administrasi Jakarta Barat Tahun Anggaran 2024.</li>
                 </ul>
 
-                <!-- <span class="text-sm">Download file pengumuman lengkap </span><a target="_blank" class="text-sm text-info" href="{{ asset('/storage/rekrutmen/dokumen/Pengumuman-Penerimaan-PJLP-2024-Tambahan.pdf') }}">di sini.</a></i> -->
+                <span class="text-sm">Download file pengumuman lengkap </span><a target="_blank" class="text-sm text-info" href="{{ asset('/storage/rekrutmen/dokumen/Pengumuman-Rekrutmen-Penyedia-Jasa-Lainnya-Perorangan-Sudin-Kominfotik-JB-Tahun-2024.pdf') }}">di sini.</a></i>
                 <hr class="mb-0">
                 <div class="text-start">
                     <a href="{{ asset('/rekrutmen/form') }}"><button type="submit" class="btn bg-gradient-primary my-4 mb-2 mx-1">Daftar</button></a>
