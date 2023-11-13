@@ -204,7 +204,7 @@
                 <!-- <span class="text-sm">Download file pengumuman lengkap </span><a target="_blank" class="text-sm text-info" href="{{ asset('/storage/rekrutmen/dokumen/Pengumuman-Penerimaan-PJLP-2024-Tambahan.pdf') }}">di sini.</a></i> -->
                 <hr class="mb-0">
                 <div class="text-start">
-                    <a href="{{ asset('/rekrutmen/form') }}"><button type="submit" class="btn bg-gradient-primary my-4 mb-2 mx-1">Lamar Pekerjaan</button></a>
+                    <a href="{{ asset('/rekrutmen/form') }}"><button type="submit" class="btn bg-gradient-primary my-4 mb-2 mx-1">Daftar</button></a>
                     <a href="{{ asset('/rekrutmen/status') }}"><button type="submit" class="btn bg-gradient-dark my-4 mb-2 mx-1">Cek Status</button></a>
                 </div>
             </div>
