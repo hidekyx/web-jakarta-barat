@@ -119,10 +119,6 @@ class RekrutmenController extends Controller
             'Scan Sertifikat Pendukung',
         );
 
-        if ($request->get('posisi') == "TJJ" || $request->get('posisi') == "TJS" || $request->get('posisi') == "FG" || $request->get('posisi') == "REP") {
-            $berkas = $berkas + array('scan_sim');
-            $label_berkas = $label_berkas + array('Scan SIM');
-        }
         $total_berkas = count($berkas);
 
         for ($i=0; $i < $total_berkas; $i++) {
@@ -142,10 +138,6 @@ class RekrutmenController extends Controller
             $request->file($berkas[$i])->storeAs('public/rekrutmen/berkas/', $nama_berkas[$i]);
         }
 
-        if ($request->get('posisi') == "TJJ" || $request->get('posisi') == "TJS" || $request->get('posisi') == "FG" || $request->get('posisi') == "REP") {
-            $nama_berkas[6] = null;
-        }
-
         $scan_surat_pengalaman_kerja = null;
         if ($request->hasFile('scan_surat_pengalaman_kerja')) {
             $filenameWithExt = $request->file('scan_surat_pengalaman_kerja')->getClientOriginalName();
@@ -154,6 +146,16 @@ class RekrutmenController extends Controller
             $filenameSimpan = $request->get('posisi').' - '.$request->get('nama_lengkap').' ('.$request->get('nik').') '.' - Scan Surat Pengalaman Kerja.'.$extension;
             $scan_surat_pengalaman_kerja = $filenameSimpan;
             $request->file('scan_surat_pengalaman_kerja')->storeAs('public/rekrutmen/berkas/', $scan_surat_pengalaman_kerja);
+        }
+
+        $scan_sim = null;
+        if ($request->hasFile('scan_sim')) {
+            $filenameWithExt = $request->file('scan_sim')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('scan_sim')->getClientOriginalExtension();
+            $filenameSimpan = $request->get('posisi').' - '.$request->get('nama_lengkap').' ('.$request->get('nik').') '.' - Scan SIM.'.$extension;
+            $scan_sim = $filenameSimpan;
+            $request->file('scan_sim')->storeAs('public/rekrutmen/berkas/', $scan_sim);
         }
 
         $rekrutmen = new Rekrutmen([
@@ -170,7 +172,7 @@ class RekrutmenController extends Controller
             'scan_npwp' => $nama_berkas[3],
             'scan_ijazah' => $nama_berkas[4],
             'scan_sertifikat_pendukung' => $nama_berkas[5],
-            'scan_sim' => $nama_berkas[6],
+            'scan_sim' => $scan_sim,
             'scan_surat_pengalaman_kerja' => $scan_surat_pengalaman_kerja,
             'portofolio' => $portofolio,
             'tanggal_submit' => date('Y-m-d'),
