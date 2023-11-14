@@ -73,7 +73,7 @@ class RekrutmenController extends Controller
             'email' => 'required|string',
             'alamat' => 'required|string',
             'tanggal_lahir' => 'required|date',
-            'posisi' => 'required|string|in:TJJ,TJS,OSM,EV,DG,FG,REP,EB,TWA,TSKI',
+            'posisi' => 'required|string|in:TJJ,TJS,OMS,EV,DG,FG,REP,EB,TWA,TSKI',
         ];
         $messages = [
             'nama_lengkap.required' => 'Nama Lengkap wajib diisi',

@@ -55,7 +55,7 @@
                                 Email: {{ $rekrutmen->email }}<br>
                                 No Telp: {{ $rekrutmen->no_telp }}
                             </td>
-                            <td class="text-sm">{{ \Carbon\Carbon::parse($rekrutmen->tanggal_submit)->isoFormat('DD MMMM Y')}}</td>
+                            <td class="text-sm">{{ \Carbon\Carbon::parse($rekrutmen->tanggal_lahir)->isoFormat('DD MMMM Y')}}</td>
                             <td class="text-sm font-weight-bolder">{{ $rekrutmen->posisi }}</td>
                         </tr>
                         <tr class="text-sm font-weight-bold">
