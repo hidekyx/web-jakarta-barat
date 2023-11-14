@@ -261,21 +261,6 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td class="text-xs font-weight-bold">Scan Sertifikat Vaksin</td>
-                    <td colspan="8" class="text-xs font-weight-bold text-info">: <a target="_blank" class="text-info" href="{{ asset('storage/rekrutmen/berkas/'.$r->scan_sertifikat_vaksin) }}">{{ $r->scan_sertifikat_vaksin }}</a></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="text-xs font-weight-bold">Scan SKCK</td>
-                    <td colspan="8" class="text-xs font-weight-bold text-info">: <a target="_blank" class="text-info" href="{{ asset('storage/rekrutmen/berkas/'.$r->scan_skck) }}">{{ $r->scan_skck }}</a></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="text-xs font-weight-bold">Scan Surat Keterangan Sehat</td>
-                    <td colspan="8" class="text-xs font-weight-bold text-info">: <a target="_blank" class="text-info" href="{{ asset('storage/rekrutmen/berkas/'.$r->scan_keterangan_sehat) }}">{{ $r->scan_keterangan_sehat }}</a></td>
-                </tr>
-                <tr>
-                    <td></td>
                     <td class="text-xs font-weight-bold">Scan Surat Pengalaman Kerja</td>
                     @if($r->scan_surat_pengalaman_kerja != null)
                     <td colspan="8" class="text-xs font-weight-bold text-info">: <a target="_blank" class="text-info" href="{{ asset('storage/rekrutmen/berkas/'.$r->scan_surat_pengalaman_kerja) }}">{{ $r->scan_surat_pengalaman_kerja }}</a></td>
@@ -283,7 +268,7 @@
                     <td colspan="8" class="text-xs font-weight-bold text-info">: -</td>
                     @endif
                 </tr>
-                @if($r->posisi == "EAV" || $r->posisi == "DG")
+                @if($r->posisi == "EV" || $r->posisi == "DG")
                 <tr>
                     <td></td>
                     <td class="text-xs font-weight-bold">Portofolio</td>
