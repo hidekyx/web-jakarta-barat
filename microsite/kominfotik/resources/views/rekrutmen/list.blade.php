@@ -49,21 +49,20 @@
                             <h6 class="text-dark text-sm ">Posisi: </h6>
                             <div class="input-group input-group-outline">
                             <select class="selectpicker w-100" id="posisi" title="Posisi" data-live-search="true" data-size="5" name="posisi">
-                                <optgroup label="Jaringan Komunikasi Data">
-                                    <option value="TSJ-SMK">Technical Support Jaringan (SMK)</option>
-                                    <option value="TSJ-D3">Technical Support Jaringan (D3)</option>
+                                <optgroup label="Infrastruktur Data">
+                                    <option value="TJJ">Teknisi Jaringan Junior</option>
+                                    <option value="TJS">Teknisi Jaringan Senior</option>
                                 </optgroup>
-                                <optgroup label="Komunikasi Informasi Publik">
-                                    <option value="KMR-SMA">Kameramen (SMA)</option>
-                                    <option value="KMR-D3">Kameramen (D3)</option>
+                                <optgroup label="Komunikasi dan Informasi Publik">
                                     <option value="OMS">Operator Media Sosial</option>
-                                    <option value="EAV">Editor Audio Video</option>
-                                    <option value="DG">Desain Grafis</option>
+                                    <option value="EV">Editor Video</option>
+                                    <option value="DG">Desainer Grafis</option>
+                                    <option value="FG">Fotografer</option>
                                     <option value="REP">Reporter</option>
                                     <option value="EB">Editor Berita</option>
-                                <optgroup label="Sistem Informasi dan Siber Sandi">
-                                    <option value="TSA">Technical Support Aplikasi</option>
+                                <optgroup label="Aplikasi Siber dan Statistik">
                                     <option value="TWA">Tenaga Web Aplikasi</option>
+                                    <option value="TSKI">Techinical Support Keamanan Informasi</option>
                                 </optgroup>
                             </select>
                             </div>

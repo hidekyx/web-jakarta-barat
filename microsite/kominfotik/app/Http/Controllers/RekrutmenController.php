@@ -17,7 +17,7 @@ class RekrutmenController extends Controller
             $id_role = $logged_user->id_role;
 
             if($id_role == 1 || $id_role == 2) {
-                $query = Rekrutmen::orderBy('id_rekrutmen', 'DESC');
+                $query = Rekrutmen::where('periode', '2024')->orderBy('id_rekrutmen', 'DESC');
                 $instansi = Instansi::get();
                 $results = null;
                 $currentURL = url()->full();
