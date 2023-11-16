@@ -11,10 +11,10 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Layanan</a>
                 <div class="dropdown-menu m-0">
-                    <a href="{{ asset('/standar-layanan/form-permohonan-informasi-publik') }}" class="dropdown-item">Form Permohonan Informasi Publik</a>
-                    <a href="{{ asset('/standar-layanan/form-pengajuan-keberatan-informasi-publik') }}" class="dropdown-item">Form Pengajuan Keberatan Informasi Publik</a>
-                    <a href="{{ asset('/standar-layanan/status-permohonan-informasi-publik') }}" class="dropdown-item">Cek Status Permohonan Informasi Publik</a>
-                    <a href="{{ asset('/standar-layanan/status-pengajuan-keberatan-informasi-publik') }}" class="dropdown-item">Cek Status Pengajuan Keberatan Informasi Publik</a>
+                    <a href="https://ppid.jakarta.go.id/permohonan-informasi" class="dropdown-item">Form Permohonan Informasi Publik</a>
+                    <a href="https://ppid.jakarta.go.id/pengajuan-keberatan" class="dropdown-item">Form Pengajuan Keberatan Informasi Publik</a>
+                    <a href="https://ppid.jakarta.go.id/cek-status-permohonan-informasi" class="dropdown-item">Cek Status Permohonan Informasi Publik</a>
+                    <a href="https://ppid.jakarta.go.id/cek-status-keberatan" class="dropdown-item">Cek Status Pengajuan Keberatan Informasi Publik</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
